@@ -1,10 +1,19 @@
+// Images
 import Image from "next/image";
-import styles from "./page.module.css";
-import { Lora } from "next/font/google";
+import doctorPatient1 from "../public/doctor-patient1.png";
+import community3 from "../public/community3.png";
+import recovery3 from "../public/recovery3.png";
+import inspection2 from "../public/inspection2.png";
+import remediation3 from "../public/remediation3.png";
+import cleaning1 from "../public/cleaning1.png";
 
 // Components
 import Header from "./components/Header";
 import Hero from "./components/Hero";
+
+// Styles & Fonts
+import styles from "./page.module.css";
+import { Lora } from "next/font/google";
 
 const lora = Lora({
   subsets: ["latin"],
@@ -12,6 +21,37 @@ const lora = Lora({
   variable: "--lora-font",
   // weight: ["400", "600", "700"],
 });
+
+const StepComponent = ({
+  number,
+  title,
+  imageSource,
+  copy,
+  buttonCopy,
+  buttonLink,
+  showButton = false,
+}) => {
+  return (
+    <>
+      <h3>
+        Step {number}: {title}
+      </h3>
+      <div className={styles.stepBox}>
+        <Image src={imageSource} className={styles.stepImg} alt={buttonCopy} />
+        <p>{copy}</p>
+        {showButton ? (
+          <a className={styles.stepBtn} href={buttonLink}>
+            <span className={styles.stepBtnText}>{buttonCopy}</span>
+          </a>
+        ) : (
+          <a className={styles.stepBtn} href="#">
+            <span className={styles.stepBtnText}>Coming Soon</span>
+          </a>
+        )}
+      </div>
+    </>
+  );
+};
 
 export default function Home() {
   return (
@@ -58,11 +98,63 @@ export default function Home() {
         <div className={styles.steps}>
           <h2 style={lora.style}>Dealing with Mold, One Step at a Time</h2>
 
-          <p>
+          <p style={{ marginBottom: "45px" }}>
             The good news is that it's possible to heal and restore your body.
             The bad news is that it's going to take more than a simple pill.
             Let's break it down.
           </p>
+
+          <StepComponent
+            number="1"
+            title="Diagnose Your Illness"
+            copy="Many of the symptoms of mold illness are shared by other diseases, so it's important to work with a doctor who can accurately
+              diagnose you."
+            buttonCopy="Find Doctors"
+            buttonLink="/practitioners"
+            imageSource={doctorPatient1}
+            showButton
+          />
+          <StepComponent
+            number="2"
+            title="Find the Source"
+            copy="Locating the source of your exposure is important so you can understand the severity of the problem."
+            buttonCopy="Find Inspectors"
+            buttonLink="/inspectors"
+            imageSource={inspection2}
+          />
+          <StepComponent
+            number="3"
+            title="Remediate or Move"
+            copy="Depending on your situation, you may need to move to a new home or hire professionals to remediate the contaminated area."
+            buttonCopy="Find Remediators"
+            buttonLink="/remediation-companies"
+            imageSource={remediation3}
+          />
+          <StepComponent
+            number="4"
+            title="Clean Your Belongings"
+            copy="In some cases, it may be necessary to sanitize or discard personal items to avoid triggering your symptoms."
+            buttonCopy="Clean Up"
+            buttonLink="/cleaning"
+            imageSource={cleaning1}
+          />
+          <StepComponent
+            number="5"
+            title="Detox & Heal"
+            copy="Once you've eliminated your exposure to mold, it's time for your body to heal and recover."
+            buttonCopy="Find Doctors"
+            buttonLink="/practitioners"
+            imageSource={recovery3}
+            showButton
+          />
+          <StepComponent
+            number="6"
+            title="Get Support"
+            copy="It's important to get help from others to get through this -- either from your friends and family or an online community on the same journey as you."
+            buttonCopy="Join The Community"
+            buttonLink="/community"
+            imageSource={community3}
+          />
         </div>
       </div>
     </main>

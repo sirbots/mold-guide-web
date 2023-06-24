@@ -31,7 +31,7 @@ export default function Home() {
 
       {/* Page Content */}
       <div className={styles.pageContent}>
-        <h2 className={lora.className}>About</h2>
+        <h2 className={lora.className}>Find Mold Doctors & Practitioners</h2>
         <p>Page content.</p>
       </div>
     </main>
