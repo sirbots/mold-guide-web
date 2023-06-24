@@ -179,8 +179,8 @@
 
 
 
-/* Homepage Styles */
-.home-content {
+/* Basic Content Page Styles */
+.pageContent {
   width: 70%;
   max-width: 800px;
   margin-top: 40px;
@@ -190,10 +190,6 @@
 .home-content .header {
   text-align: center;
   margin-bottom: 3px;
-}
-
-.home-content .intro {
-  /* Insert something here */
 }
 
 .home-content .steps .step-box {
