@@ -346,12 +346,125 @@
   color: #FEFEFE;
 } 
 
-/* /Imported from RN but not fixed yet */
-
-
 
 
 /* Single Listing Pages */
+.singleListingHero {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  min-height: 300px;
+  padding-top: 65px;
+  width: 100%;
+  background-color: #fefefe;
+}
+
+.singleListingHero .star {
+  color: #EE9B00;
+}
+
+/* Hero box rules */
+.singleListingHero .textBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 300px;
+  padding-top: 30px;
+}
+
+.singleListingHero .img {
+  height: 300px;
+  width: 300px;
+}
+
+
+.singleListingHero .doctorName {
+  font-size: 28px;
+  margin-bottom: 3px;
+}
+
+.singleListingHero .doctorLocation {
+  
+  font-size: 15px;
+  margin-top: 21px;
+}
+
+.singleListingHero .addressBox {
+  display: flex;
+  flex-direction: column;
+  margin-top: 25px;
+}
+
+.singleListingHero .streetAddress,
+.singleListingHero .unitNumber {
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.singleListingHero .cityState,
+.singleListingHero .phoneNumber {
+  font-size: 16px;
+}
+
+.singleListingHero .website {
+  font-size: 16px;
+  color: #0A9396;
+  margin-top: 10px;
+}
+
+
+.singleListingHero .starContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+/* DoctorInfo rules */
+.singeListingInfoContainer {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 100%;
+  margin: 50px 0;
+  padding: 0 70px;
+  /* background-color: #E2D4AC; */
+}
+
+/* .spacer {
+  border: 0.5px solid #001219;
+  height: 0;
+  width: 60%;
+  margin-bottom: 45px;
+  align-self: center;
+}
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

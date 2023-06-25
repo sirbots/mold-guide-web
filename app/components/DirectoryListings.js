@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect } from "react";
+
 // Styles & Design
 import styles from "../page.module.css";
 
@@ -78,7 +80,7 @@ const DoctorListing = ({
       </span>
 
       {/* Button */}
-      <a className={styles.listingBtn} href="#">
+      <a className={styles.listingBtn} href={"/practitioners/" + id}>
         <span className={styles.listingBtnText}>View Profile</span>
       </a>
 
@@ -103,7 +105,14 @@ export default function DirectoryListings({ directoryType }) {
   );
 
   if (error) console.log(error);
-  if (value) console.log(value);
+  if (value) {
+    value.docs.map((doc) => {
+      console.log(doc.data().first_name);
+    });
+  }
+  // if (value) console.log(value.json());
+
+  useEffect(() => {}, [value]);
 
   return (
     <div className={styles.listingsContainer}>
