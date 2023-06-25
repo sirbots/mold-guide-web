@@ -77,17 +77,13 @@ const DoctorListing = ({
         {certifications ? arrayToCommaString(certifications) : " "}
       </span>
 
-      {website ? (
-        <a href={website} target="_blank" className={styles.website}>
-          Website
-        </a>
-      ) : (
-        <a className={styles.website}> </a>
-      )}
       {/* Button */}
-      <a className={styles.listingBtn}>
-        {/* TO DO: figure out how to handle these links. Will have to do with dynamic routes or something. */}
-        {/* <Link
+      <a className={styles.listingBtn} href="#">
+        <span className={styles.listingBtnText}>View Profile</span>
+      </a>
+
+      {/* TO DO: figure out how to handle these links. Will have to do with dynamic routes or something. */}
+      {/* <Link
             to={{
               screen: "DoctorProfile",
               params: {
@@ -95,8 +91,7 @@ const DoctorListing = ({
               },
             }}
           > */}
-        {/* <ButtonText>View Profile</ButtonText> */}
-      </a>
+      {/* <ButtonText>View Profile</ButtonText> */}
     </div>
   );
 };
