@@ -160,6 +160,19 @@
 }
   
 
+.footer {
+  display: flex;
+  justify-content: center;
+
+  margin-top: 50px;
+  padding: 20px 0;
+  
+  background-color: #E1D6B8 ;
+}
+
+.footer p {
+  color: #1e332e;
+}
 
 
 /* Basic Content Page Styles */
@@ -212,7 +225,34 @@
   color: #005F73;
 }
 
+/* Directory Pages */
+.directoryPage {
 
+}
+
+.directoryPage h2 {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.listingsContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-self: center;
+  margin-top: 50px;
+  max-width: 80%;
+}
+
+
+
+
+
+
+
+
+/* Single Listing Pages */
 
 
 

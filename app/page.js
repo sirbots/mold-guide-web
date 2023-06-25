@@ -10,6 +10,7 @@ import cleaning1 from "../public/cleaning1.png";
 // Components
 import Header from "./components/Header";
 import Hero from "./components/Hero";
+import Footer from "./components/Footer";
 
 // Styles & Fonts
 import styles from "./page.module.css";
@@ -157,6 +158,7 @@ export default function Home() {
           />
         </div>
       </div>
+      <Footer />
     </main>
   );
 }
