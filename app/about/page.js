@@ -16,7 +16,7 @@ const lora = Lora({
   // weight: ["400", "600", "700"],
 });
 
-export default function Home() {
+export default function AboutPage() {
   return (
     <main className={styles.container}>
       <Header />
