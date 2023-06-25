@@ -1,5 +1,5 @@
 import "./globals.css";
-import styles from "./page.module.css";
+import AnalyticsScripts from "./components/helpers/AnalyticsScripts";
 import { Merriweather, Lora } from "next/font/google";
 
 export const metadata = {
@@ -16,6 +16,7 @@ const merriweather = Merriweather({
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <AnalyticsScripts />
       <body className={merriweather.className}>{children}</body>
     </html>
   );
