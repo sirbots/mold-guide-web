@@ -15,6 +15,10 @@ const lora = Lora({
   // weight: ["400", "600", "700"],
 });
 
+export const metadata = {
+  title: "Find Mold Doctors",
+};
+
 export default function PractitionerListingsPage() {
   return (
     <main className={styles.container}>

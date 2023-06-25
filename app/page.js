@@ -23,6 +23,13 @@ const lora = Lora({
   // weight: ["400", "600", "700"],
 });
 
+export const metadata = {
+  title: "The Mold Guide: Resources for Surviving Mold Illness",
+  verification: {
+    google: "AMiM3LHsmUCVLAhP6EZWi4yCMBRNGlBa1_eY0cKnBnA",
+  },
+};
+
 const StepComponent = ({
   number,
   title,

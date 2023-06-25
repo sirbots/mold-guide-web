@@ -16,6 +16,10 @@ const lora = Lora({
   // weight: ["400", "600", "700"],
 });
 
+export const metadata = {
+  title: "About The Mold Guide",
+};
+
 export default function AboutPage() {
   return (
     <main className={styles.container}>
