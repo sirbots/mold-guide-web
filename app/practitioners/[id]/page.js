@@ -78,7 +78,6 @@ export default function Page({ params }) {
             <div className={styles.addressBox}>
               <span className={styles.streetAddress}>
                 {doctor.address_street}
-                1714 Echo Park Ave
               </span>
               <span className={styles.unitNumber}>{doctor.address_unit}</span>
               <span className={styles.cityState}>
