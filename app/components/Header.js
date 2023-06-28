@@ -15,9 +15,9 @@ export default function Header({ navigation }) {
         <li>
           <a href="/about">About</a>
         </li>
-        {/* <li>
-          <a href="/signup">Sign up</a>
-        </li> */}
+        <li>
+          <a href="/next-auth">next-auth</a>
+        </li>
       </ul>
 
       {/* Mobile Nav Links */}
