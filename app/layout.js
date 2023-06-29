@@ -1,5 +1,10 @@
 import "./globals.css";
 import AnalyticsScripts from "./components/AnalyticsScripts";
+
+// Auth
+import { NextAuthProvider } from "./lib/providers";
+
+// Styles & Design
 import { Merriweather, Lora } from "next/font/google";
 
 export const metadata = {
@@ -17,7 +22,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <AnalyticsScripts />
-      <body className={merriweather.className}>{children}</body>
+      <body className={merriweather.className}>
+        <NextAuthProvider>{children}</NextAuthProvider>
+      </body>
     </html>
   );
 }

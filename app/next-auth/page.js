@@ -29,8 +29,7 @@ import {
 
 import { getServerSession } from "next-auth";
 import { authOptions } from "../lib/auth";
-
-// left off here
+import { User } from "../components/UserComponent";
 
 export default async function NextAuthPage() {
   const session = await getServerSession(authOptions);

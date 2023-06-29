@@ -17,7 +17,7 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
 // Helpers
-import convertTextArrayToFormattedString from "../../components/helpers/convertTextArrayToFormattedString";
+import convertTextArrayToFormattedString from "../../lib/convertTextArrayToFormattedString";
 import arrayToCommaString from "../../lib/arrayToCommaString";
 
 // Styles & Fonts
