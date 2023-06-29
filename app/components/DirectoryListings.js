@@ -16,7 +16,7 @@ import maleDoctor2 from "../../public/male-doctor2.png";
 import femaleDoctor6 from "../../public/female-doctor6.png";
 
 // Helpers
-import arrayToCommaString from "../components/helpers/arrayToCommaString";
+import arrayToCommaString from "../lib/arrayToCommaString";
 
 // Doctor Listing Component
 const DoctorListing = ({

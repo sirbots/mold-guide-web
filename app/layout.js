@@ -1,5 +1,5 @@
 import "./globals.css";
-import AnalyticsScripts from "./components/helpers/AnalyticsScripts";
+import AnalyticsScripts from "./components/AnalyticsScripts";
 import { Merriweather, Lora } from "next/font/google";
 
 export const metadata = {

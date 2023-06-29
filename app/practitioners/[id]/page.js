@@ -18,7 +18,7 @@ import Footer from "../../components/Footer";
 
 // Helpers
 import convertTextArrayToFormattedString from "../../components/helpers/convertTextArrayToFormattedString";
-import arrayToCommaString from "../../components/helpers/arrayToCommaString";
+import arrayToCommaString from "../../lib/arrayToCommaString";
 
 // Styles & Fonts
 import styles from "../../page.module.css";
