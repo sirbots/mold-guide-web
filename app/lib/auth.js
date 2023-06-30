@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { compare } from "bcryptjs";
-import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+// import { NextAuthOptions } from "next-auth"; Only need this if you use TS methinks
 
 const prisma = new PrismaClient();
 
@@ -47,7 +47,7 @@ export const authOptions = {
   ],
   callbacks: {
     session: ({ session, token }) => {
-      console.log("Session Callback", { session, token });
+      // console.log("Session Callback", { session, token });
       return {
         ...session,
         user: {
@@ -58,7 +58,7 @@ export const authOptions = {
       };
     },
     jwt: ({ token, user }) => {
-      console.log("JWT Callback", { token, user });
+      // console.log("JWT Callback", { token, user });
       if (user) {
         const u = user;
         return {

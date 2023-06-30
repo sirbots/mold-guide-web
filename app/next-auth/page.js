@@ -19,7 +19,9 @@ const lora = Lora({
 //   title: "Sign up for an account",
 // };
 
+// ****************
 // next-auth stuff!
+// ****************
 import {
   LoginButton,
   LogoutButton,
@@ -35,9 +37,9 @@ import { compare } from "bcryptjs";
 
 import { PrismaClient } from "@prisma/client";
 
-const db = new PrismaClient();
+const prisma = new PrismaClient();
 
-const user = await db.user.findUnique({
+const user = await prisma.user.findUnique({
   where: {
     email: "admin@admin.com",
   },

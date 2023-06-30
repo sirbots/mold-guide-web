@@ -18,6 +18,9 @@ export default function Header({ navigation }) {
         <li>
           <a href="/next-auth">next-auth</a>
         </li>
+        <li>
+          <a href="/profile">profile</a>
+        </li>
       </ul>
 
       {/* Mobile Nav Links */}
