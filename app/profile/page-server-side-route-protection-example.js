@@ -5,11 +5,11 @@ import { redirect } from "next/navigation";
 export default async function Profile() {
   // This is how you request a session and/or protect a server-side route.
   // See the page-client-side-route-protection.js or https://codevoweb.com/setup-and-use-nextauth-in-nextjs-13-app-directory/ for how to ask for a session or protect a route in a client component.
-  //   const session = await getServerSession(authOptions);
+  const session = await getServerSession(authOptions);
 
-  //   if (!session) {
-  //     redirect("/api/auth/signin");
-  //   }
+  if (!session) {
+    redirect("/api/auth/signin");
+  }
 
   const users = await fetch("https://jsonplaceholder.typicode.com/users").then(
     (res) => res.json()

@@ -1,4 +1,32 @@
 import styles from "../page.module.css";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../lib/auth";
+import { redirect } from "next/navigation";
+
+const AccountLinks = async () => {
+  const session = await getServerSession(authOptions);
+
+  if (!session) {
+    return (
+      <>
+        <li>
+          <a href="/api/auth/signin?callbackUrl=http%3A%2F%2Flocalhost%3A3000%2Fnext-auth">
+            Sign In
+          </a>
+        </li>
+        <li>
+          <a href="/register">Register</a>
+        </li>
+      </>
+    );
+  }
+
+  return (
+    <li>
+      <a href="/profile">Profile</a>
+    </li>
+  );
+};
 
 // Create a header component to use in the Navigator
 export default function Header({ navigation }) {
@@ -18,9 +46,7 @@ export default function Header({ navigation }) {
         <li>
           <a href="/next-auth">next-auth</a>
         </li>
-        <li>
-          <a href="/profile">profile</a>
-        </li>
+        <AccountLinks />
       </ul>
 
       {/* Mobile Nav Links */}
