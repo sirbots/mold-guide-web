@@ -31,22 +31,26 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../lib/auth";
 import { User } from "../components/UserComponent";
 
+import { compare } from "bcryptjs";
+
+import { PrismaClient } from "@prisma/client";
+
+const db = new PrismaClient();
+
+const user = await db.user.findUnique({
+  where: {
+    email: "admin@admin.com",
+  },
+});
+
 export default async function NextAuthPage() {
   const session = await getServerSession(authOptions);
   console.log(session);
+  console.log(user);
 
   return (
     <main className={styles.container}>
       <Header />
-      <Hero
-        imageSource="doctorPatient3"
-        orientation="left"
-        headline="Mold Recovery Made Simple"
-        subHead=""
-        // useBtn
-        btnLinkToScreen="Doctors"
-        buttonText="Find Doctors"
-      />
 
       {/* Page Content */}
       <div className={styles.pageContent}>
@@ -66,7 +70,10 @@ export default async function NextAuthPage() {
           <ProfileButton />
 
           <h1>Server Session</h1>
+          <p></p>
           <pre>{JSON.stringify(session)}</pre>
+
+          <User />
         </div>
       </div>
 
