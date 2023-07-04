@@ -1,35 +1,24 @@
 import styles from "../page.module.css";
-import { getServerSession } from "next-auth";
-import { authOptions } from "../lib/auth";
-import { redirect } from "next/navigation";
-import { useSearchParams } from "next/navigation";
 
-const AccountLinks = async () => {
+// Auth
+import { authOptions } from "../lib/auth";
+import { getServerSession } from "next-auth/next";
+
+async function getUserSession() {
   const session = await getServerSession(authOptions);
 
   if (!session) {
-    // const currentUrl = window.location.href;
-    return (
-      <>
-        <li>
-          <a href="/api/auth/signin">Sign In</a>
-        </li>
-        <li>
-          <a href="/signup">Register</a>
-        </li>
-      </>
-    );
+    return false;
   }
-
-  return (
-    <li>
-      <a href="/profile">Profile</a>
-    </li>
-  );
-};
+  if (session) {
+    return true;
+  }
+}
 
 // Create a header component to use in the Navigator
-export default function Header({ navigation }) {
+export default async function Header() {
+  const session = await getUserSession();
+
   return (
     <div className={styles.header}>
       {/* Desktop Nav Links */}
@@ -43,7 +32,21 @@ export default function Header({ navigation }) {
         <li>
           <a href="/about">About</a>
         </li>
-        <AccountLinks />
+        {session ? (
+          <li>
+            <a href="/profile">Profile</a>
+          </li>
+        ) : (
+          <>
+            <li>
+              <a href="/api/auth/signin">Sign In</a>
+            </li>
+            <li>
+              <a href="/signup">Register</a>
+            </li>
+          </>
+        )}
+        {/* <HeaderAccountLinks /> */}
       </ul>
 
       {/* Mobile Nav Links */}
@@ -57,6 +60,20 @@ export default function Header({ navigation }) {
         <li>
           <a href="/about">About</a>
         </li>
+        {session ? (
+          <li>
+            <a href="/profile">Profile</a>
+          </li>
+        ) : (
+          <>
+            <li>
+              <a href="/api/auth/signin">Sign In</a>
+            </li>
+            <li>
+              <a href="/signup">Register</a>
+            </li>
+          </>
+        )}
       </ul>
     </div>
   );

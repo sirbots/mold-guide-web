@@ -1,8 +1,5 @@
-// this route is protected in the middleware, so no need to import this stuff. see examples in same dir for how to do client- and server-side route protection in a single component.
-
-// import { getServerSession } from "next-auth";
-// import { authOptions } from "../lib/auth";
-// import { redirect } from "next/navigation";
+// this route is protected in the middleware.
+// see examples in same dir for how to do client- and server-side route protection in a single component.
 
 // Components
 import Header from "../components/Header";
@@ -11,7 +8,6 @@ import Footer from "../components/Footer";
 // Auth
 import { getServerSession } from "next-auth";
 import { authOptions } from "../lib/auth";
-import { User } from "../components/UserComponent";
 
 // SEO
 export const metadata = {
@@ -31,9 +27,7 @@ const lora = Lora({
 
 import { LogoutButton } from "../components/Buttons";
 
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+// const prisma = new PrismaClient();
 
 export default async function Profile() {
   const session = await getServerSession(authOptions);

@@ -83,17 +83,6 @@ const DoctorListing = ({
       <a className={styles.listingBtn} href={"/practitioners/" + id}>
         <span className={styles.listingBtnText}>View Profile</span>
       </a>
-
-      {/* TO DO: figure out how to handle these links. Will have to do with dynamic routes or something. */}
-      {/* <Link
-            to={{
-              screen: "DoctorProfile",
-              params: {
-                practitionerId: id,
-              },
-            }}
-          > */}
-      {/* <ButtonText>View Profile</ButtonText> */}
     </div>
   );
 };
@@ -105,12 +94,6 @@ export default function DirectoryListings({ directoryType }) {
   );
 
   if (error) console.log(error);
-  if (value) {
-    value.docs.map((doc) => {
-      console.log(doc.data().first_name);
-    });
-  }
-  // if (value) console.log(value.json());
 
   useEffect(() => {}, [value]);
 

@@ -7,10 +7,7 @@ import femaleDoctor6 from "../../../public/female-doctor6.png";
 // Firebase
 import { db } from "../../../firebase/firebaseConfig";
 import { collection, getDocs, doc } from "firebase/firestore";
-import {
-  useCollection,
-  useDocumentDataOnce,
-} from "react-firebase-hooks/firestore";
+import { useDocumentDataOnce } from "react-firebase-hooks/firestore";
 
 // Components
 import Header from "../../components/Header";
