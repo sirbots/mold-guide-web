@@ -16,6 +16,7 @@ const lora = Lora({
   // weight: ["400", "600", "700"],
 });
 
+// SEO
 export const metadata = {
   title: "About The Mold Guide",
 };

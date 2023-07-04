@@ -6,6 +6,13 @@ import CredentialsProvider from "next-auth/providers/credentials";
 const prisma = new PrismaClient();
 
 export const authOptions = {
+  pages: {
+    signIn: "/login",
+    // signOut: "/auth/signout",
+    // error: "/auth/error", // Error code passed in query string as ?error=
+    // verifyRequest: "/auth/verify-request", // (used for check email message)
+    // newUser: "/auth/new-user", // New users will be directed here on first sign in (leave the property out if not of interest)
+  },
   session: {
     strategy: "jwt",
   },
@@ -40,12 +47,20 @@ export const authOptions = {
           id: user.id,
           email: user.email,
           name: user.name,
+          // TO DO: randomize this key
           randomKey: "Hey cool",
         };
       },
     }),
   ],
   callbacks: {
+    // signIn({ url, baseUrl }) {
+    //   // Allows relative callback URLs
+    //   if (url.startsWith("/")) return `${baseUrl}${url}`;
+    //   // Allows callback URLs on the same origin
+    //   else if (new URL(url).origin === baseUrl) return url;
+    //   return baseUrl;
+    // },
     session: ({ session, token }) => {
       // console.log("Session Callback", { session, token });
       return {

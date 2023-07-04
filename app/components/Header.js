@@ -2,20 +2,20 @@ import styles from "../page.module.css";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../lib/auth";
 import { redirect } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 const AccountLinks = async () => {
   const session = await getServerSession(authOptions);
 
   if (!session) {
+    // const currentUrl = window.location.href;
     return (
       <>
         <li>
-          <a href="/api/auth/signin?callbackUrl=http%3A%2F%2Flocalhost%3A3000%2Fnext-auth">
-            Sign In
-          </a>
+          <a href="/api/auth/signin">Sign In</a>
         </li>
         <li>
-          <a href="/register">Register</a>
+          <a href="/signup">Register</a>
         </li>
       </>
     );
@@ -42,9 +42,6 @@ export default function Header({ navigation }) {
         </li>
         <li>
           <a href="/about">About</a>
-        </li>
-        <li>
-          <a href="/next-auth">next-auth</a>
         </li>
         <AccountLinks />
       </ul>

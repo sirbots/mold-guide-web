@@ -2,7 +2,7 @@
 import Header from "../components/Header";
 import Hero from "../components/Hero";
 import Footer from "../components/Footer";
-import SignUpForm from "../components/forms/SignUpForm";
+import LoginForm from "../components/forms/LoginForm";
 
 // Styles & Fonts
 import styles from "../page.module.css";
@@ -19,17 +19,18 @@ export const metadata = {
   title: "Sign up for an account",
 };
 
-export default function AboutPage() {
+export default function LoginPage() {
   return (
     <main className={styles.container}>
       <Header />
 
       {/* Page Content */}
       <div className={styles.pageContent}>
-        <h2 className={lora.className}>Create Your Account</h2>
+        <h2 className={lora.className}>Log in to your account</h2>
       </div>
 
-      <SignUpForm />
+      <LoginForm />
+
       <Footer />
     </main>
   );

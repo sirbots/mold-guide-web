@@ -13,7 +13,7 @@ export const LoginButton = () => {
 
 export const RegisterButton = () => {
   return (
-    <Link href="/register" style={{ marginRight: 10 }}>
+    <Link href="/signup" style={{ marginRight: 10 }}>
       Register
     </Link>
   );
@@ -21,7 +21,10 @@ export const RegisterButton = () => {
 
 export const LogoutButton = () => {
   return (
-    <button style={{ marginRight: 10 }} onClick={() => signOut()}>
+    <button
+      style={{ marginRight: 10 }}
+      onClick={() => signOut({ callbackUrl: "/" })}
+    >
       Sign Out
     </button>
   );

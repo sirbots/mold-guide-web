@@ -65,7 +65,7 @@ export default function SignUpForm() {
         <input
           className={styles.formInput}
           type="text"
-          id="name"
+          // id="name"
           name="name"
           value={formValues.name}
           onChange={handleChange}
@@ -80,9 +80,9 @@ export default function SignUpForm() {
         <input
           className={styles.formInput}
           type="email"
-          id="email"
+          // id="email"
           name="email"
-          value={formValues.name}
+          value={formValues.email}
           onChange={handleChange}
           required
         />
@@ -94,9 +94,9 @@ export default function SignUpForm() {
         <input
           className={styles.formInput}
           type="password"
-          id="password"
+          // id="password"
           name="password"
-          value={formValues.name}
+          value={formValues.password}
           onChange={handleChange}
           required
         />
