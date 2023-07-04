@@ -7,18 +7,15 @@ import femaleDoctor6 from "../../../public/female-doctor6.png";
 // Firebase
 import { db } from "../../../firebase/firebaseConfig";
 import { collection, getDocs, doc } from "firebase/firestore";
-import {
-  useCollection,
-  useDocumentDataOnce,
-} from "react-firebase-hooks/firestore";
+import { useDocumentDataOnce } from "react-firebase-hooks/firestore";
 
 // Components
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
 // Helpers
-import convertTextArrayToFormattedString from "../../components/helpers/convertTextArrayToFormattedString";
-import arrayToCommaString from "../../components/helpers/arrayToCommaString";
+import convertTextArrayToFormattedString from "../../lib/convertTextArrayToFormattedString";
+import arrayToCommaString from "../../lib/arrayToCommaString";
 
 // Styles & Fonts
 import styles from "../../page.module.css";
