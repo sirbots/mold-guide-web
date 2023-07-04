@@ -3,6 +3,17 @@
 import { signIn, signOut } from "next-auth/react";
 import Link from "next/link";
 
+// Styles & Fonts
+import styles from "../page.module.css";
+import { Lora } from "next/font/google";
+
+const lora = Lora({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--lora-font",
+  // weight: ["400", "600", "700"],
+});
+
 export const LoginButton = () => {
   return (
     <button style={{ marginRight: 10 }} onClick={() => signIn()}>
@@ -21,12 +32,12 @@ export const RegisterButton = () => {
 
 export const LogoutButton = () => {
   return (
-    <button
-      style={{ marginRight: 10 }}
+    <a
+      className={styles.logoutBtn}
       onClick={() => signOut({ callbackUrl: "/" })}
     >
-      Sign Out
-    </button>
+      <span className={styles.logoutBtnText}>Log Out</span>
+    </a>
   );
 };
 
