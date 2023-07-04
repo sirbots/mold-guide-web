@@ -1,8 +1,6 @@
 // Components
 import Header from "../components/Header";
-import Hero from "../components/Hero";
 import Footer from "../components/Footer";
-// import SignUpForm from "../components/forms/SignUpForm";
 
 // Styles & Fonts
 import styles from "../page.module.css";
@@ -14,10 +12,6 @@ const lora = Lora({
   variable: "--lora-font",
   // weight: ["400", "600", "700"],
 });
-
-// export const metadata = {
-//   title: "Sign up for an account",
-// };
 
 // ****************
 // next-auth stuff!
@@ -35,9 +29,7 @@ import { User } from "../components/UserComponent";
 
 import { compare } from "bcryptjs";
 
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { prisma } from "../../app/lib/prisma";
 
 const user = await prisma.user.findUnique({
   where: {

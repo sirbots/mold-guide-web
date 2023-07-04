@@ -6,9 +6,13 @@ import { useEffect } from "react";
 import styles from "../page.module.css";
 
 // Firebase
+// TO DO: remove these when Prisma is working
 import { db } from "../../firebase/firebaseConfig";
 import { collection } from "firebase/firestore";
 import { useCollection } from "react-firebase-hooks/firestore";
+
+// Auth
+import { prisma } from "../lib/prisma";
 
 // Images
 import Image from "next/image";

@@ -29,3 +29,25 @@ model User {
   email    String  @unique
   password String
 }
+
+model Doctor {
+  id                String   @id @default(uuid()) @map("_id")
+  firstName         String
+  middleName        String
+  lastName          String
+  gender            String
+  practiceName      String
+  phoneNumber       String
+  addressStreet     String
+  addressUnit       String
+  addressCity       String
+  addressState      String
+  addressZipcode    String
+  addressCountry    String
+  website           String
+  telehealth        String
+  shoemakerProtocol Boolean
+  conditionsTreated String[] @default(["Mold Illness"])
+  seesPatientsIn    String[]
+  bio               String[] @default(["Coming soon!"])
+}
