@@ -32,22 +32,24 @@ model User {
 
 model Doctor {
   id                String   @id @default(uuid()) @map("_id")
+  slug              String   @unique
   firstName         String
-  middleName        String
+  middleName        String?
   lastName          String
   gender            String
-  practiceName      String
-  phoneNumber       String
-  addressStreet     String
-  addressUnit       String
+  practiceName      String?
+  phoneNumber       String?
+  addressStreet     String?
+  addressUnit       String?
   addressCity       String
   addressState      String
-  addressZipcode    String
+  addressZipcode    String?
   addressCountry    String
-  website           String
-  telehealth        String
+  website           String?
+  telehealth        String?
   shoemakerProtocol Boolean
   conditionsTreated String[] @default(["Mold Illness"])
-  seesPatientsIn    String[]
+  certifications    String[] @default([""])
+  seesPatientsIn    String[] @default([""])
   bio               String[] @default(["Coming soon!"])
 }

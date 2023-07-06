@@ -1,6 +1,4 @@
-"use client";
-
-import { useEffect } from "react";
+// import { useEffect } from "react";
 
 // Styles & Design
 import styles from "../page.module.css";
@@ -11,7 +9,7 @@ import { db } from "../../firebase/firebaseConfig";
 import { collection } from "firebase/firestore";
 import { useCollection } from "react-firebase-hooks/firestore";
 
-// Auth
+// Database
 import { prisma } from "../lib/prisma";
 
 // Images
@@ -32,7 +30,6 @@ const DoctorListing = ({
   addressCity,
   addressState,
   certifications,
-  website,
   profilePhoto,
 }) => {
   return (
@@ -71,7 +68,7 @@ const DoctorListing = ({
       </span>
 
       {/* Doctor Photo */}
-      {/* TO DO: Pull this in from Firestore */}
+      {/* TO DO: Pull this in from MongoDB */}
       <Image
         src={gender == "male" ? maleDoctor2 : femaleDoctor6}
         className={styles.doctorListingsImg}
@@ -91,31 +88,23 @@ const DoctorListing = ({
   );
 };
 
+const practitioners = await prisma.doctor.findMany();
+
 export default function DirectoryListings({ directoryType }) {
-  // Get the doctor data with a Firestore hook
-  const [value, loading, error] = useCollection(
-    collection(db, "practitioners")
-  );
-
-  if (error) console.log(error);
-
-  useEffect(() => {}, [value]);
-
   return (
     <div className={styles.listingsContainer}>
-      {value &&
-        value.docs.map((doc) => (
+      {practitioners &&
+        practitioners.map((doc) => (
           <DoctorListing
             key={doc.id}
             id={doc.id}
-            firstName={doc.data().first_name}
-            middleName={doc.data().middle_name}
-            lastName={doc.data().last_name}
-            addressCity={doc.data().address_city}
-            addressState={doc.data().address_state}
-            certifications={doc.data().certifications}
-            website={doc.data().website}
-            gender={doc.data().gender}
+            firstName={doc.firstName}
+            middleName={doc.middleName}
+            lastName={doc.lastName}
+            addressCity={doc.addressCity}
+            addressState={doc.addressState}
+            certifications={doc.certifications}
+            gender={doc.gender}
             profilePhoto="TO DO: insert this dynamically"
           />
         ))}

@@ -25,7 +25,7 @@ const lora = Lora({
   // weight: ["400", "600", "700"],
 });
 
-import { LogoutButton } from "../components/Buttons";
+import { LogoutButton } from "../components/buttons";
 
 // const prisma = new PrismaClient();
 

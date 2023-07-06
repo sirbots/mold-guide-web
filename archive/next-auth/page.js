@@ -1,9 +1,9 @@
 // Components
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 // Styles & Fonts
-import styles from "../page.module.css";
+import styles from "../../page.module.css";
 import { Lora } from "next/font/google";
 
 const lora = Lora({
@@ -21,15 +21,15 @@ import {
   LogoutButton,
   ProfileButton,
   RegisterButton,
-} from "../components/buttons";
+} from "../../components/buttons";
 
 import { getServerSession } from "next-auth";
-import { authOptions } from "../lib/auth";
-import { User } from "../components/UserComponent";
+import { authOptions } from "../../lib/auth";
+// import { User } from "../../components/UserComponent";
 
 import { compare } from "bcryptjs";
 
-import { prisma } from "../../app/lib/prisma";
+import { prisma } from "../../lib/prisma";
 
 const user = await prisma.user.findUnique({
   where: {
@@ -67,7 +67,7 @@ export default async function NextAuthPage() {
           <p></p>
           <pre>{JSON.stringify(session)}</pre>
 
-          <User />
+          {/* <User /> */}
         </div>
       </div>
 
