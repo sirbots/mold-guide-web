@@ -1,13 +1,5 @@
-// import { useEffect } from "react";
-
 // Styles & Design
 import styles from "../page.module.css";
-
-// Firebase
-// TO DO: remove these when Prisma is working
-import { db } from "../../firebase/firebaseConfig";
-import { collection } from "firebase/firestore";
-import { useCollection } from "react-firebase-hooks/firestore";
 
 // Database
 import { prisma } from "../lib/prisma";
@@ -22,7 +14,7 @@ import arrayToCommaString from "../lib/arrayToCommaString";
 
 // Doctor Listing Component
 const DoctorListing = ({
-  id,
+  slug,
   firstName,
   middleName,
   lastName,
@@ -81,7 +73,7 @@ const DoctorListing = ({
       </span>
 
       {/* Button */}
-      <a className={styles.listingBtn} href={"/practitioners/" + id}>
+      <a className={styles.listingBtn} href={"/practitioners/" + slug}>
         <span className={styles.listingBtnText}>View Profile</span>
       </a>
     </div>
@@ -97,7 +89,7 @@ export default function DirectoryListings({ directoryType }) {
         practitioners.map((doc) => (
           <DoctorListing
             key={doc.id}
-            id={doc.id}
+            slug={doc.slug}
             firstName={doc.firstName}
             middleName={doc.middleName}
             lastName={doc.lastName}

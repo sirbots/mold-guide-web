@@ -29,11 +29,11 @@ export default async function Profile() {
             key={user.id}
             style={{ border: "1px solid #ccc", textAlign: "center" }}
           >
-            <img
+            {/* <img
               src={`https://robohash.org/${user.id}?set=set2&size=180x180`}
               alt={user.name}
               style={{ height: 180, width: 180 }}
-            />
+            /> */}
             <h3>{user.name}</h3>
           </div>
         ))}

@@ -408,11 +408,12 @@
 .singleListingHero .phoneNumber {
   font-size: 16px;
 }
+.singleListingHero .phoneNumber { margin-top: 15px;}
 
 .singleListingHero .website {
   font-size: 16px;
   color: #0A9396;
-  margin-top: 10px;
+  margin-top: 15px;
 }
 
 
