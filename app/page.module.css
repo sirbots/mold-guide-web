@@ -164,20 +164,20 @@
 
 .footer {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   
-  bottom: 0;
-
   width: 100%;
+
+  bottom: 0;
   margin-top: 50px;
   padding: 30px 0 15px 0;
-  
-  /* background-color: #E1D6B8 ; */
 }
 
 .footer p {
   color: #1e332e;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
+  margin: 8px;
 }
 
 
