@@ -11,7 +11,6 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
 // Helpers
-import convertTextArrayToFormattedString from "../../lib/convertTextArrayToFormattedString";
 import arrayToCommaString from "../../lib/arrayToCommaString";
 import capitalizeFirstLetter from "../../lib/capitalizeFirstLetter";
 
@@ -132,7 +131,11 @@ export default async function SinglePractitionerPage({ params }) {
       {/* Doctor Info */}
       <div className={styles.singeListingInfoContainer}>
         <h2>About</h2>
-        {bio && <p>{convertTextArrayToFormattedString(bio)}</p>}
+        {/* {bio && convertTextArrayToFormattedString(bio)} */}
+        {bio &&
+          bio.map((paragraph, index) => {
+            return <p key={index}>{paragraph}</p>;
+          })}
 
         <h3>Practice Name</h3>
         <p>{practiceName}</p>
