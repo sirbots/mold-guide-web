@@ -3,6 +3,7 @@ import Image from "next/image";
 // Components
 import Header from "../components/Header";
 import Hero from "../components/Hero";
+import WideImage from "../components/WideImage";
 import Footer from "../components/Footer";
 
 // Styles & Fonts
@@ -26,18 +27,19 @@ export default function AboutPage() {
     <main className={styles.container}>
       <Header />
       <Hero
-        imageSource="doctorPatient3"
-        orientation="left"
-        headline="Mold Recovery Made Simple"
+        // orientation="left"
+        headline="About"
         subHead=""
         // useBtn
-        btnLinkToScreen="Doctors"
-        buttonText="Find Doctors"
+        // btnLink="/practitioners"
+        // buttonText="Find Doctors"
       />
+
+      <WideImage backgroundImage="inspection2" />
 
       {/* Page Content */}
       <div className={styles.pageContent}>
-        <h2 className={lora.className}>About</h2>
+        <h2 className={lora.className}></h2>
 
         <h3>My Story</h3>
         <p>

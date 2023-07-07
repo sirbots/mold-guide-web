@@ -60,15 +60,19 @@
 .header {
   width: 100%;
   min-height: 7vh;
+  padding-top: 30px;
+
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   
-  background-color: #3d5a3f;
+  /* background-color: #3d5a3f; */
+  background-color: #fefefe;;
   /* overflow: hidden; */
 
-  color: #fefefe; /* This line overrides the color value above */
+  /* color: #fefefe; This line overrides the color value above */
+  color: #001219; /* This line overrides the color value above */
   font-weight: bold;
   /* font-family: "Lora-Bold", serif;  */
 }
@@ -93,23 +97,36 @@
 /* Hero styles */
 .hero {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   align-content: center; 
+  justify-content: center;
+  align-items: center;
+
   width: 100%;
-  min-height: 50vh;
 
   margin: 0;
-  padding: 0;
-  background:  url("../public/doctor-patient3.png") no-repeat center center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  padding: 8% 10% 6% 10%;
+
     
 }
 
+.heroTextBox {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  align-items: center;
+  
+  /* align-self: flex-start; */
+  /* padding-bottom: 11%;
+  padding-top: 15%;
+  padding-left: 10%; */
+}
 
+.heroTextBox h1 {
+  text-align: center;
+}
+/* 
 .heroTextBoxLeft {
   display: flex;
   flex-direction: column;
@@ -120,19 +137,16 @@
   padding-top: 15%;
   padding-left: 10%;
 }
-
 .heroTextBoxRight {
   align-self: flex-end; 
   padding-top: 10%;
   padding-right: 10%;
-}
-
-
-.heroTextBoxLeft h1, .heroTextBoxRight h1 {
+} */
+/* .heroTextBoxLeft h1, .heroTextBoxRight h1 {
   max-width: 330px;
-}
+} */
 
-.heroTextBoxLeft p, .heroTextBoxRight p {
+.heroTextBox p, .heroTextBoxLeft p, .heroTextBoxRight p {
   font-size: 20px;
   color: #001219;
 }
@@ -148,8 +162,6 @@
   justify-content: center;
   align-items: center;
 
-  text-align: center;
-
   background-color: #CA383A;
   border: 1px solid #CA383A;
   box-shadow: 1px 2px #E4705F;
@@ -162,6 +174,257 @@
 }
   
 
+/* Wide Page Images */
+.wideImgDoctorPatient1 {
+  background:  url("../public/doctor-patient1.png") no-repeat center center;
+  
+  width: 100%;
+  min-height: 350px;
+
+  margin: 0;
+  padding: 0;
+  
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+    
+}
+.wideImgDoctorPatient2 {
+  background:  url("../public/doctor-patient2.png") no-repeat center center;
+  
+  width: 100%;
+  min-height: 350px;
+
+  margin: 0;
+  padding: 0;
+  
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+    
+}
+.wideImgDoctorPatient3 {
+  background:  url("../public/doctor-patient3.png") no-repeat center center;
+  
+  width: 100%;
+  min-height: 350px;
+
+  margin: 0;
+  padding: 0;
+  
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+    
+}
+.wideImgDoctorPatient4 {
+  background:  url("../public/doctor-patient4.png") no-repeat center center;
+  
+  width: 100%;
+  min-height: 350px;
+
+  margin: 0;
+  padding: 0;
+  
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+    
+}
+.wideImgDoctorPatient5 {
+  background:  url("../public/doctor-patient5.png") no-repeat center center;
+  
+  width: 100%;
+  min-height: 350px;
+
+  margin: 0;
+  padding: 0;
+  
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+    
+}
+.wideImgCommunity1 {
+  background:  url("../public/community1.png") no-repeat center center;
+  
+  width: 100%;
+  min-height: 350px;
+
+  margin: 0;
+  padding: 0;
+  
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+    
+}
+.wideImgCommunity2 {
+  background:  url("../public/community2.png") no-repeat center center;
+  
+  width: 100%;
+  min-height: 350px;
+
+  margin: 0;
+  padding: 0;
+  
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+    
+}
+.wideImgCommunity3 {
+  background:  url("../public/community3.png") no-repeat center center;
+  
+  width: 100%;
+  min-height: 350px;
+
+  margin: 0;
+  padding: 0;
+  
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+    
+}
+.wideImgInspection1 {
+  background:  url("../public/inspection1.png") no-repeat center center;
+  width: 100%;
+  min-height: 350px;
+  margin: 0;
+  padding: 0;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; 
+}
+.wideImgInspection2 {
+  background:  url("../public/inspection2.png") no-repeat center center;
+  width: 100%;
+  min-height: 350px;
+  margin: 0;
+  padding: 0;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; 
+}
+
+.wideImgRecovery1 {
+  background:  url("../public/recovery1.png") no-repeat center center;
+  width: 100%;
+  min-height: 350px;
+  margin: 0;
+  padding: 0;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; 
+}
+.wideImgRecovery2 {
+  background:  url("../public/recovery2.png") no-repeat center center;
+  width: 100%;
+  min-height: 350px;
+  margin: 0;
+  padding: 0;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; 
+}
+.wideImgRecovery3 {
+  background:  url("../public/recovery3.png") no-repeat center center;
+  width: 100%;
+  min-height: 350px;
+  margin: 0;
+  padding: 0;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; 
+}
+.wideImgRecovery4 {
+  background:  url("../public/recovery4.png") no-repeat center center;
+  width: 100%;
+  min-height: 350px;
+  margin: 0;
+  padding: 0;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; 
+}
+.wideImgRecovery5 {
+  background:  url("../public/recovery5.png") no-repeat center center;
+  width: 100%;
+  min-height: 350px;
+  margin: 0;
+  padding: 0;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; 
+}
+.wideImgRecovery6 {
+  background:  url("../public/recovery6.png") no-repeat center center;
+  width: 100%;
+  min-height: 350px;
+  margin: 0;
+  padding: 0;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; 
+}
+
+.wideImgRemediation1 {
+  background:  url("../public/remediation1.png") no-repeat center center;
+  width: 100%;
+  min-height: 350px;
+  margin: 0;
+  padding: 0;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; 
+}
+.wideImgRemediation2 {
+  background:  url("../public/remediation2.png") no-repeat center center;
+  width: 100%;
+  min-height: 350px;
+  margin: 0;
+  padding: 0;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; 
+}
+.wideImgRemediation3 {
+  background:  url("../public/remediation3.png") no-repeat center center;
+  width: 100%;
+  min-height: 350px;
+  margin: 0;
+  padding: 0;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; 
+}
+
+
+
+
+
+
+/* Footer */
 .footer {
   display: flex;
   flex-direction: column;

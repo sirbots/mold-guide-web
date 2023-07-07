@@ -9,32 +9,25 @@ const lora = Lora({
 });
 
 const Hero = ({
-  orientation = "left",
+  // orientation = "left",
   headline,
   subHead,
   useBtn,
-  btnLinkToScreen,
+  btnLink,
   buttonText,
 }) => {
   //
   return (
     <div className={styles.hero}>
-      <div
-        className={
-          orientation == "left"
-            ? styles.heroTextBoxLeft
-            : styles.heroTextBoxRight
-        }
-      >
+      <div className={styles.heroTextBox}>
         <h1 style={lora.style}>{headline}</h1>
         <p>{subHead}</p>
-
-        {useBtn && (
-          <a className={styles.heroBtn} href={btnLinkToScreen}>
-            <span className={styles.heroBtnText}>{buttonText}</span>
-          </a>
-        )}
       </div>
+      {useBtn && (
+        <a className={styles.heroBtn} href={btnLink}>
+          <span className={styles.heroBtnText}>{buttonText}</span>
+        </a>
+      )}
     </div>
   );
 };

@@ -10,6 +10,7 @@ import cleaning1 from "../public/cleaning1.png";
 // Components
 import Header from "./components/Header";
 import Hero from "./components/Hero";
+import WideImage from "./components/WideImage";
 import Footer from "./components/Footer";
 
 // Styles & Fonts
@@ -66,14 +67,14 @@ export default function Home() {
     <main className={styles.container}>
       <Header />
       <Hero
-        imageSource="doctorPatient3"
-        orientation="left"
         headline="Mold Recovery Made Simple"
-        subHead=""
+        subHead="Resources to help you conquer mold, one step at a time."
         useBtn
-        btnLinkToScreen="Doctors"
+        btnLink="/practitioners"
         buttonText="Find Doctors"
       />
+
+      <WideImage backgroundImage="doctor-patient3" />
 
       {/* Page Content */}
       <div className={styles.pageContent}>
@@ -104,7 +105,7 @@ export default function Home() {
         </p>
 
         <div className={styles.steps}>
-          <h2 style={lora.style}>Dealing with Mold, One Step at a Time</h2>
+          {/* <h2 style={lora.style}>Dealing with Mold, One Step at a Time</h2> */}
 
           <p style={{ marginBottom: "45px" }}>
             The good news is that it&rsquo;s possible to heal and restore your

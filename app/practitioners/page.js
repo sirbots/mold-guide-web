@@ -1,6 +1,7 @@
 // Components
 import Header from "../components/Header";
 import Hero from "../components/Hero";
+import WideImage from "../components/WideImage";
 import Footer from "../components/Footer";
 import DirectoryListings from "../components/DirectoryListings";
 
@@ -24,19 +25,18 @@ export default function PractitionerListingsPage() {
     <main className={styles.container}>
       <Header />
       <Hero
-        imageSource="doctorPatient3"
         orientation="left"
-        headline="Find a Mold Doctor Near You"
-        subHead=""
+        headline="Find Mold Doctors and Practitioners Near You"
+        subHead="Finding a trained medical practitioner is essential to diagnosis & treatment."
         // useBtn
-        btnLinkToScreen=""
-        buttonText=""
+        // btnLink=""
+        // buttonText=""
       />
-
+      <WideImage backgroundImage="doctor-patient1" />
       {/* Page Content */}
       <div className={styles.directoryPage}>
-        <h2 className={lora.className}>Find Mold Doctors & Practitioners</h2>
-
+        <h2 className={lora.className}>Browse Doctors</h2>
+        <p>Coming soon: search by location and more.</p>
         <DirectoryListings />
       </div>
       <Footer />
