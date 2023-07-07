@@ -16,7 +16,7 @@ const lora = Lora({
 });
 
 export const metadata = {
-  title: "Find Mold Doctors",
+  title: "Find Mold Doctors and Treatment",
 };
 
 export default function PractitionerListingsPage() {

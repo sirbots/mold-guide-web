@@ -13,6 +13,7 @@ import Footer from "../../components/Footer";
 // Helpers
 import arrayToCommaString from "../../lib/arrayToCommaString";
 import capitalizeFirstLetter from "../../lib/capitalizeFirstLetter";
+import formatMiddleName from "../../lib/formatMiddleName";
 
 // Styles & Fonts
 import styles from "../../page.module.css";
@@ -36,6 +37,36 @@ export async function generateStaticParams() {
   return practitioners.map((doc) => ({
     slug: doc.slug,
   }));
+}
+
+// SEO: generate dynamic metadata
+export async function generateMetadata({ params }) {
+  const doctor = await prisma.doctor.findUnique({
+    where: {
+      slug: params.slug,
+    },
+  });
+
+  let {
+    firstName: firstName,
+    middleName: middleName,
+    lastName: lastName,
+    addressCity: city,
+    addressState: stateName,
+  } = doctor;
+
+  return {
+    title:
+      firstName +
+      " " +
+      formatMiddleName(middleName) +
+      " " +
+      lastName +
+      " | Mold Illness Treatment in " +
+      city +
+      ", " +
+      stateName,
+  };
 }
 
 export default async function SinglePractitionerPage({ params }) {
@@ -72,10 +103,6 @@ export default async function SinglePractitionerPage({ params }) {
     conditionsTreated: conditionsTreated,
   } = doctor;
 
-  // Add a period to the end if their middle name is just an initial, else leave as is
-  const formattedMiddleName =
-    middleName && middleName.length == 1 ? middleName + "." : middleName;
-
   return (
     <main className={styles.container}>
       <Header />
@@ -90,7 +117,7 @@ export default async function SinglePractitionerPage({ params }) {
 
         <div className={styles.textBox}>
           <span className={styles.doctorName}>
-            {firstName} {middleName ? formattedMiddleName : ""} {lastName}
+            {firstName} {formatMiddleName(middleName)} {lastName}
           </span>
           <div className={styles.addressBox}>
             <span className={styles.streetAddress}>{street}</span>

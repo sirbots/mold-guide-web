@@ -11,6 +11,7 @@ import femaleDoctor6 from "../../public/female-doctor6.png";
 
 // Helpers
 import arrayToCommaString from "../lib/arrayToCommaString";
+import formatMiddleName from "../lib/formatMiddleName";
 
 // Doctor Listing Component
 const DoctorListing = ({
@@ -47,13 +48,12 @@ const DoctorListing = ({
         </View>
          */}
 
-      {middleName ? (
-        <span className={styles.doctorName}>
-          {firstName + " " + middleName + " " + lastName}
-        </span>
-      ) : (
-        <span className={styles.doctorName}>{firstName + " " + lastName}</span>
-      )}
+      {/* Name */}
+      <span className={styles.doctorName}>
+        {firstName + " " + formatMiddleName(middleName) + " " + lastName}
+      </span>
+
+      {/* Address */}
       <span className={styles.doctorLocation}>
         {addressCity ? addressCity + ", " : ""}{" "}
         {addressState ? addressState : ""}
