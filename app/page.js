@@ -80,8 +80,8 @@ export default function Home() {
         <h2 className={lora.className}>Do You Have a Mold Problem?</h2>
 
         <p className={styles.text}>
-          If you&lsquo;re here, then there&lsquo;s a good chance that
-          you&lsquo;re not feeling great.
+          If you&rsquo;re here, then there&rsquo;s a good chance that
+          you&rsquo;re not feeling great.
         </p>
         <p>
           You might feel sick or you might feel like your body and mind are
@@ -89,13 +89,13 @@ export default function Home() {
           debilitating ways.
         </p>
         <p>
-          Maybe you&lsquo;re plagued with anxiety and depression, chronic
-          fatigue, or constant muscle and joint aches. Maybe you&lsquo;re
+          Maybe you&rsquo;re plagued with anxiety and depression, chronic
+          fatigue, or constant muscle and joint aches. Maybe you&rsquo;re
           coughing more or having trouble sleeping.
         </p>
         <p>
-          Maybe you&lsquo;re suffering from brain fog, cognitive impairment, or
-          memory loss. You&lsquo;re reacting to foods that never bothered you
+          Maybe you&rsquo;re suffering from brain fog, cognitive impairment, or
+          memory loss. You&rsquo;re reacting to foods that never bothered you
           before or you developed eczema, psorisasis, or weird rashes.
         </p>
         <p>
@@ -107,15 +107,15 @@ export default function Home() {
           <h2 style={lora.style}>Dealing with Mold, One Step at a Time</h2>
 
           <p style={{ marginBottom: "45px" }}>
-            The good news is that it&lsquo;s possible to heal and restore your
-            body. The bad news is that it&lsquo;s going to take more than a
-            simple pill. Let&lsquo;s break it down.
+            The good news is that it&rsquo;s possible to heal and restore your
+            body. The bad news is that it&rsquo;s going to take more than a
+            simple pill. Let&rsquo;s break it down.
           </p>
 
           <StepComponent
             number="1"
             title="Diagnose Your Illness"
-            copy="Many of the symptoms of mold illness are shared by other diseases, so it&lsquo;s important to work with a doctor who can accurately
+            copy="Many of the symptoms of mold illness are shared by other diseases, so it&rsquo;s important to work with a doctor who can accurately
               diagnose you."
             buttonCopy="Find Doctors"
             buttonLink="/practitioners"
@@ -149,7 +149,7 @@ export default function Home() {
           <StepComponent
             number="5"
             title="Detox & Heal"
-            copy="Once you&lsquo;ve eliminated your exposure to mold, it&lsquo;s time for your body to heal and recover."
+            copy="Once you&rsquo;ve eliminated your exposure to mold, it&rsquo;s time for your body to heal and recover."
             buttonCopy="Find Doctors"
             buttonLink="/practitioners"
             imageSource={recovery3}
@@ -158,7 +158,7 @@ export default function Home() {
           <StepComponent
             number="6"
             title="Get Support"
-            copy="It&lsquo;s important to get help from others to get through this -- either from your friends and family or an online community on the same journey as you."
+            copy="It&rsquo;s important to get help from others to get through this -- either from your friends and family or an online community on the same journey as you."
             buttonCopy="Join The Community"
             buttonLink="/community"
             imageSource={community3}

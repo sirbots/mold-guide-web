@@ -66,38 +66,38 @@ export default function AboutPage() {
         </h3>
         <p>
           Sadly, finding a doctor who will even look for or think of mold, is
-          incredibly difficult. I&lsquo;ve seen doctors who flat out deny that
-          it&lsquo;s a problem, while others run some tests and say
-          &quot;you&lsquo;re fine.&quot;
+          incredibly difficult. I&rsquo;ve seen doctors who flat out deny that
+          it&rsquo;s a problem, while others run some tests and say
+          &quot;you&rsquo;re fine.&quot;
         </p>
         <p>
-          And it&lsquo;s not just mainstream MDs -- I&lsquo;ve seen many
+          And it&rsquo;s not just mainstream MDs -- I&rsquo;ve seen many
           holistic, naturopathic, and functional medicine practitioners who
-          missed the diagnosis because they didn&lsquo;t test for it.
+          missed the diagnosis because they didn&rsquo;t test for it.
         </p>
         <p>
           I left those appointments frustrated, depressed, and holding a
           prescription (or a bag of supplements) for something totally
           unrelated.
         </p>
-        <p>Perhaps you&lsquo;ve had a similar experience?</p>
+        <p>Perhaps you&rsquo;ve had a similar experience?</p>
 
         <p>
-          Here&lsquo;s a quick story that illustrates just how broken our
+          Here&rsquo;s a quick story that illustrates just how broken our
           medical system is. I once met a woman whose doctors thought she had
           dementia (!) in her early 30s. Her life had completely fallen apart.
           She lost her job, her business, and even her ability to drive. She had
-          been to dozens of doctors who couldn&lsquo;t help her until...
+          been to dozens of doctors who couldn&rsquo;t help her until...
         </p>
 
         <p>
           One day, she brought her sick dog to the vet, who found mold spores in
-          her dog&lsquo;s lungs. She had her home inspected for mold and found a
+          her dog&rsquo;s lungs. She had her home inspected for mold and found a
           huge patch of toxic mold growing in the ceiling over her bed.
         </p>
 
         <p>
-          The thing is, we know that mold is harmful. There&lsquo;s plenty of
+          The thing is, we know that mold is harmful. There&rsquo;s plenty of
           published medical research to support this.
         </p>
         <p>
@@ -120,27 +120,27 @@ export default function AboutPage() {
           a lot of mistakes along the way.
         </p>
         <p>
-          I&lsquo;m building this site with the hope of creating something that
-          would&lsquo;ve made this whole process much easier for me when I first
+          I&rsquo;m building this site with the hope of creating something that
+          would&rsquo;ve made this whole process much easier for me when I first
           started feeling sick.
         </p>
         <p>
-          It&lsquo;s new and it&lsquo;s a work in progress. I&lsquo;m building
+          It&rsquo;s new and it&rsquo;s a work in progress. I&rsquo;m building
           it in my free time, bit by bit, with the hope that some day it grows
           into a place where people can find the help they need along every step
           of the way.
         </p>
         <p>
-          Soon, it will be interactive and you&lsquo;ll have the ability to
+          Soon, it will be interactive and you&rsquo;ll have the ability to
           share great resources with others, leave ratings and reviews, and get
           essential information on identifying mold and removing it from your
           environment.
         </p>
         <p>
-          I&lsquo;m not a doctor and this isn&lsquo;t medical advice, but
-          I&lsquo;ve seen many people recover from old illness and get their
+          I&rsquo;m not a doctor and this isn&rsquo;t medical advice, but
+          I&rsquo;ve seen many people recover from old illness and get their
           lives back. Wherever you are in your mold journey, know that
-          you&lsquo;re not alone, and there is hope that you can reverse all
+          you&rsquo;re not alone, and there is hope that you can reverse all
           those crazy symptoms.
         </p>
         <p>-- Robert</p>
