@@ -9,7 +9,6 @@ const lora = Lora({
 });
 
 const Hero = ({
-  imageSource,
   orientation = "left",
   headline,
   subHead,
@@ -31,7 +30,7 @@ const Hero = ({
         <p>{subHead}</p>
 
         {useBtn && (
-          <a className={styles.heroBtn} href="/practitioners">
+          <a className={styles.heroBtn} href={btnLinkToScreen}>
             <span className={styles.heroBtnText}>{buttonText}</span>
           </a>
         )}
