@@ -52,4 +52,6 @@ model Doctor {
   certifications    String[] @default([""])
   seesPatientsIn    String[] @default([""])
   bio               String[] @default(["Coming soon!"])
+  createdAt         DateTime
+  lastModified      DateTime
 }
