@@ -4,19 +4,16 @@ import { prisma } from "./lib/prisma";
 const URL = "https://themoldguide.com/";
 
 // Get all of the practitioners
-const practitioners = await prisma.doctor.findMany();
+const practitionersArray = await prisma.doctor.findMany();
 
-// Map the practitioner slugs to a new Array
-let slugArray = practitioners.map((practitioner) => practitioner.slug);
+// Create an empty array for the doctor data
+const doctorData = [];
 
-// Create an array for all the doctor URLs
-const doctorUrls = [];
-
-// Iterate through the slugArray and push an object for each slug
-slugArray.forEach((slug) =>
-  doctorUrls.push({
-    url: URL + "practitioners/" + slug,
-    lastModified: new Date(),
+// Iterate through the practitionersArray and push an object with the slug and lastModified data for each practitioner
+practitionersArray.forEach((practitioner) =>
+  doctorData.push({
+    url: URL + "practitioners/" + practitioner.slug,
+    lastModified: practitioner.lastModified,
   })
 );
 
@@ -50,7 +47,7 @@ const staticUrls = [
   // TO DO: insert other status pages here as you create them
 ];
 
-const combinedUrls = staticUrls.concat(doctorUrls);
+const combinedUrls = staticUrls.concat(doctorData);
 
 export default async function sitemap() {
   // Return the combinedUrls array of objects to Nextjs sitemap() function
