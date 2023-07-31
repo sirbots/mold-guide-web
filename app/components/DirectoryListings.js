@@ -14,6 +14,7 @@ import femaleDoctor6 from "../../public/female-doctor6.png";
 // Helpers
 import arrayToCommaString from "../lib/arrayToCommaString";
 import formatMiddleName from "../lib/formatMiddleName";
+import stateNames from "../lib/stateNames";
 
 // Doctor Listing Component
 const DoctorListing = ({
@@ -26,9 +27,15 @@ const DoctorListing = ({
   addressState,
   certifications,
   profilePhoto,
+  shoemakerProtocol,
   addressStateSelected,
+  shoemakerProtocolSelected,
 }) => {
-  if (addressStateSelected == "CH" || addressStateSelected == addressState) {
+  if (
+    (addressStateSelected == "CH" || addressStateSelected == addressState) &&
+    (shoemakerProtocolSelected == "any" ||
+      shoemakerProtocolSelected == shoemakerProtocol.toString())
+  ) {
     return (
       <div className={styles.listing}>
         {/* Doctor Ratings */}
@@ -51,7 +58,6 @@ const DoctorListing = ({
           />
         </View>
          */}
-
         {/* Name */}
         <span className={styles.doctorName}>
           {firstName + " " + formatMiddleName(middleName) + " " + lastName}
@@ -86,78 +92,53 @@ const DoctorListing = ({
 };
 
 // Filter Component
-const ResultsFilter = ({ addressStateSelected, setAddressStateSelected }) => {
+const ResultsFilter = ({
+  filterValues,
+  setFilterValues,
+  addressStatesIncluded,
+}) => {
   const handleChange = (e) => {
-    // TO DO: Create a formValues state object when you expand to other filters
     const { name, value } = e.target;
-    setAddressStateSelected(value);
+    setFilterValues({ ...filterValues, [name]: value });
   };
 
   return (
     <>
       <form className={styles.filterForm}>
         <div className={styles.formRow}>
-          <label className={styles.formLabel} htmlFor="addressState">
-            Filter by State:
-          </label>
+          {/* Filter by State */}
           <select
             className={styles.formInput}
-            name="addressState"
-            id="addressState"
+            name="addressStateSelected"
+            id="addressStateSelected"
             onChange={handleChange}
           >
-            {/* TO DO: Only list states available in the DB */}
             <option value="CH">Choose Your State</option>
-            <option value="AL">Alabama</option>
-            <option value="AK">Alaska</option>
-            <option value="AZ">Arizona</option>
-            <option value="AR">Arkansas</option>
-            <option value="CA">California</option>
-            <option value="CO">Colorado</option>
-            <option value="CT">Connecticut</option>
-            <option value="DE">Delaware</option>
-            <option value="FL">Florida</option>
-            <option value="GA">Georgia</option>
-            <option value="HI">Hawaii</option>
-            <option value="ID">Idaho</option>
-            <option value="IL">Illinois</option>
-            <option value="IN">Indiana</option>
-            <option value="IA">Iowa</option>
-            <option value="KS">Kansas</option>
-            <option value="KY">Kentucky</option>
-            <option value="LA">Louisiana</option>
-            <option value="ME">Maine</option>
-            <option value="MD">Maryland</option>
-            <option value="MA">Massachusetts</option>
-            <option value="MI">Michigan</option>
-            <option value="MN">Minnesota</option>
-            <option value="MS">Mississippi</option>
-            <option value="MO">Missouri</option>
-            <option value="MT">Montana</option>
-            <option value="NE">Nebraska</option>
-            <option value="NV">Nevada</option>
-            <option value="NH">New Hampshire</option>
-            <option value="NJ">New Jersey</option>
-            <option value="NM">New Mexico</option>
-            <option value="NY">New York</option>
-            <option value="NC">North Carolina</option>
-            <option value="ND">North Dakota</option>
-            <option value="OH">Ohio</option>
-            <option value="OK">Oklahoma</option>
-            <option value="OR">Oregon</option>
-            <option value="PA">Pennsylvania</option>
-            <option value="RI">Rhode Island</option>
-            <option value="SC">South Carolina</option>
-            <option value="SD">South Dakota</option>
-            <option value="TN">Tennessee</option>
-            <option value="TX">Texas</option>
-            <option value="UT">Utah</option>
-            <option value="VT">Vermont</option>
-            <option value="VA">Virginia</option>
-            <option value="WA">Washington</option>
-            <option value="WV">West Virginia</option>
-            <option value="WI">Wisconsin</option>
-            <option value="WY">Wyoming</option>
+            {stateNames &&
+              stateNames.map((theState) => {
+                if (addressStatesIncluded.includes(theState["abbreviation"])) {
+                  return (
+                    <option
+                      key={theState["abbreviation"]}
+                      value={theState["abbreviation"]}
+                    >
+                      {theState["fullName"]}
+                    </option>
+                  );
+                }
+              })}
+          </select>
+
+          {/* Filter by Protocol */}
+          <select
+            className={styles.formInput}
+            name="shoemakerProtocolSelected"
+            id="shoemakerProtocolSelected"
+            onChange={handleChange}
+          >
+            <option value="any">Any Protocol</option>
+            <option value="true">Shoemaker Protocol</option>
+            <option value="false">Not Shoemaker Protocol</option>
           </select>
         </div>
       </form>
@@ -168,13 +149,20 @@ const ResultsFilter = ({ addressStateSelected, setAddressStateSelected }) => {
 export default function DirectoryListings({ directoryType, listingsObject }) {
   const practitioners = listingsObject;
 
-  const [addressStateSelected, setAddressStateSelected] = useState("CH");
+  // const [addressStateSelected, setAddressStateSelected] = useState("CH");
+  const [filterValues, setFilterValues] = useState({
+    addressStateSelected: "CH",
+    shoemakerProtocolSelected: "any",
+  });
+
+  const addressStatesIncluded = practitioners.map((doc) => doc.addressState);
 
   return (
     <>
       <ResultsFilter
-        addressStateSelected={addressStateSelected}
-        setAddressStateSelected={setAddressStateSelected}
+        filterValues={filterValues}
+        setFilterValues={setFilterValues}
+        addressStatesIncluded={addressStatesIncluded}
       />
 
       <div className={styles.listingsContainer}>
@@ -190,8 +178,10 @@ export default function DirectoryListings({ directoryType, listingsObject }) {
               addressState={doc.addressState}
               certifications={doc.certifications}
               gender={doc.gender}
+              shoemakerProtocol={doc.shoemakerProtocol}
               profilePhoto="TO DO: insert this dynamically"
-              addressStateSelected={addressStateSelected}
+              addressStateSelected={filterValues.addressStateSelected}
+              shoemakerProtocolSelected={filterValues.shoemakerProtocolSelected}
             />
           ))}
       </div>

@@ -791,7 +791,12 @@
 .filterForm .formLabel {
   align-self: center;
 }
-
+.filterForm .formRow {
+  flex-direction: row;
+}
+.filterForm .formRow .formInput {
+  margin: 0 25px;
+}
 
 
 
