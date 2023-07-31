@@ -1,8 +1,10 @@
+"use client";
+
+// React
+import { useState } from "react";
+
 // Styles & Design
 import styles from "../page.module.css";
-
-// Database
-import { prisma } from "../lib/prisma";
 
 // Images
 import Image from "next/image";
@@ -80,26 +82,102 @@ const DoctorListing = ({
   );
 };
 
-const practitioners = await prisma.doctor.findMany();
+// Filter Component
+const ResultsFilter = ({ addressStateSelected, setAddressStateSelected }) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setAddressStateSelected(value);
+  };
 
-export default function DirectoryListings({ directoryType }) {
+  // Handles the submit event on form submit.
+  // const handleSubmit = async (e) => {
+  //   // Stop the form from submitting and refrehsing the page.
+  //   e.preventDefault();
+  //   try {
+  //     setLoading(true);
+  //     setFormValues({ email: "", password: "" });
+
+  //     const res = await signIn("credentials", {
+  //       redirect: false,
+  //       email: formValues.email,
+  //       password: formValues.password,
+  //       callbackUrl,
+  //     });
+
+  //     setLoading(false);
+
+  //     // console.log(res);
+  //     if (!res?.error) {
+  //       router.push(callbackUrl);
+  //     } else {
+  //       setError("invalid email or password");
+  //     }
+  //   } catch (error) {
+  //     setLoading(false);
+  //     setError(error);
+  //   }
+  // };
+
   return (
-    <div className={styles.listingsContainer}>
-      {practitioners &&
-        practitioners.map((doc) => (
-          <DoctorListing
-            key={doc.id}
-            slug={doc.slug}
-            firstName={doc.firstName}
-            middleName={doc.middleName}
-            lastName={doc.lastName}
-            addressCity={doc.addressCity}
-            addressState={doc.addressState}
-            certifications={doc.certifications}
-            gender={doc.gender}
-            profilePhoto="TO DO: insert this dynamically"
+    <>
+      <form className={styles.filterForm}>
+        <p>The currently selected state is:</p>
+        <p>{addressStateSelected}</p>
+
+        <div className={styles.formRow}>
+          <label className={styles.formLabel} htmlFor="stateName">
+            State:
+          </label>
+          <select
+            className={styles.formInput}
+            name="addressState"
+            id="addressState"
+            onChange={handleChange}
+          >
+            <option value="AK">Arkansas</option>
+            <option value="AZ">Arizona</option>
+          </select>
+          <input
+
+          // value={formValues.addressState}
+          // onChange={handleChange}
           />
-        ))}
-    </div>
+        </div>
+      </form>
+    </>
+  );
+};
+
+export default function DirectoryListings({ directoryType, listingsObject }) {
+  const practitioners = listingsObject;
+
+  const [addressStateSelected, setAddressStateSelected] = useState("None");
+
+  return (
+    <>
+      <ResultsFilter
+        addressStateSelected={addressStateSelected}
+        setAddressStateSelected={setAddressStateSelected}
+      />
+
+      {/* TO DO: pass addressStateSelected to the DoctorListing component so only the filtered results are displayed  */}
+      <div className={styles.listingsContainer}>
+        {practitioners &&
+          practitioners.map((doc) => (
+            <DoctorListing
+              key={doc.id}
+              slug={doc.slug}
+              firstName={doc.firstName}
+              middleName={doc.middleName}
+              lastName={doc.lastName}
+              addressCity={doc.addressCity}
+              addressState={doc.addressState}
+              certifications={doc.certifications}
+              gender={doc.gender}
+              profilePhoto="TO DO: insert this dynamically"
+            />
+          ))}
+      </div>
+    </>
   );
 }

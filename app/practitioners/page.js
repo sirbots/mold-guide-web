@@ -5,6 +5,15 @@ import WideImage from "../components/WideImage";
 import Footer from "../components/Footer";
 import DirectoryListings from "../components/DirectoryListings";
 
+// Images
+import Image from "next/image";
+import maleDoctor2 from "../../public/male-doctor2.png";
+import femaleDoctor6 from "../../public/female-doctor6.png";
+
+// Helpers
+import arrayToCommaString from "../lib/arrayToCommaString";
+import formatMiddleName from "../lib/formatMiddleName";
+
 // Styles & Fonts
 import styles from "../page.module.css";
 import { Lora } from "next/font/google";
@@ -19,6 +28,10 @@ const lora = Lora({
 export const metadata = {
   title: "Find Mold Doctors and Treatment",
 };
+
+// Database
+import { prisma } from "../lib/prisma";
+const practitioners = await prisma.doctor.findMany();
 
 export default function PractitionerListingsPage() {
   return (
@@ -36,8 +49,11 @@ export default function PractitionerListingsPage() {
       {/* Page Content */}
       <div className={styles.directoryPage}>
         <h2 className={lora.className}>Browse Doctors</h2>
-        <p>Coming soon: search by location and more.</p>
-        <DirectoryListings />
+
+        <DirectoryListings
+          directoryType="doctors"
+          listingsObject={practitioners}
+        />
       </div>
       <Footer />
     </main>
