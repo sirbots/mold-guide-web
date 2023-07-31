@@ -26,11 +26,13 @@ const DoctorListing = ({
   addressState,
   certifications,
   profilePhoto,
+  addressStateSelected,
 }) => {
-  return (
-    <div className={styles.listing}>
-      {/* Doctor Ratings */}
-      {/* 
+  if (addressStateSelected == "CH" || addressStateSelected == addressState) {
+    return (
+      <div className={styles.listing}>
+        {/* Doctor Ratings */}
+        {/* 
         <View style={styles.doctorListings.listing.starContainer}>
           <MaterialCommunityIcons
             name="star"
@@ -50,83 +52,53 @@ const DoctorListing = ({
         </View>
          */}
 
-      {/* Name */}
-      <span className={styles.doctorName}>
-        {firstName + " " + formatMiddleName(middleName) + " " + lastName}
-      </span>
+        {/* Name */}
+        <span className={styles.doctorName}>
+          {firstName + " " + formatMiddleName(middleName) + " " + lastName}
+        </span>
 
-      {/* Address */}
-      <span className={styles.doctorLocation}>
-        {addressCity ? addressCity + ", " : ""}{" "}
-        {addressState ? addressState : ""}
-      </span>
+        {/* Address */}
+        <span className={styles.doctorLocation}>
+          {addressCity ? addressCity + ", " : ""}{" "}
+          {addressState ? addressState : ""}
+        </span>
 
-      {/* Doctor Photo */}
-      {/* TO DO: Pull this in from MongoDB */}
-      <Image
-        src={gender == "male" ? maleDoctor2 : femaleDoctor6}
-        className={styles.doctorListingsImg}
-        alt="Practitioner photo"
-      />
+        {/* Doctor Photo */}
+        {/* TO DO: Pull this in from MongoDB */}
+        <Image
+          src={gender == "male" ? maleDoctor2 : femaleDoctor6}
+          className={styles.doctorListingsImg}
+          alt="Practitioner photo"
+        />
 
-      {/* Doctor Metadata */}
-      <span className={styles.doctorCertification}>
-        {certifications ? arrayToCommaString(certifications) : " "}
-      </span>
+        {/* Doctor Metadata */}
+        <span className={styles.doctorCertification}>
+          {certifications ? arrayToCommaString(certifications) : " "}
+        </span>
 
-      {/* Button */}
-      <a className={styles.listingBtn} href={"/practitioners/" + slug}>
-        <span className={styles.listingBtnText}>View Profile</span>
-      </a>
-    </div>
-  );
+        {/* Button */}
+        <a className={styles.listingBtn} href={"/practitioners/" + slug}>
+          <span className={styles.listingBtnText}>View Profile</span>
+        </a>
+      </div>
+    );
+  }
 };
 
 // Filter Component
 const ResultsFilter = ({ addressStateSelected, setAddressStateSelected }) => {
   const handleChange = (e) => {
+    // TO DO: Create a formValues state object when you expand to other filters
     const { name, value } = e.target;
     setAddressStateSelected(value);
   };
 
-  // Handles the submit event on form submit.
-  // const handleSubmit = async (e) => {
-  //   // Stop the form from submitting and refrehsing the page.
-  //   e.preventDefault();
-  //   try {
-  //     setLoading(true);
-  //     setFormValues({ email: "", password: "" });
-
-  //     const res = await signIn("credentials", {
-  //       redirect: false,
-  //       email: formValues.email,
-  //       password: formValues.password,
-  //       callbackUrl,
-  //     });
-
-  //     setLoading(false);
-
-  //     // console.log(res);
-  //     if (!res?.error) {
-  //       router.push(callbackUrl);
-  //     } else {
-  //       setError("invalid email or password");
-  //     }
-  //   } catch (error) {
-  //     setLoading(false);
-  //     setError(error);
-  //   }
-  // };
-
   return (
     <>
       <form className={styles.filterForm}>
-        <p>The currently selected state is:</p>
-        <p>{addressStateSelected}</p>
-
         <div className={styles.formRow}>
-          <label className={styles.formLabel} htmlFor="stateName">
-            State:
+          <label className={styles.formLabel} htmlFor="addressState">
+            Filter by State:
           </label>
           <select
             className={styles.formInput}
@@ -134,14 +106,58 @@ const ResultsFilter = ({ addressStateSelected, setAddressStateSelected }) => {
             id="addressState"
             onChange={handleChange}
           >
-            <option value="AK">Arkansas</option>
+            <option value="CH">Choose Your State</option>
+            <option value="AL">Alabama</option>
+            <option value="AK">Alaska</option>
             <option value="AZ">Arizona</option>
+            <option value="AR">Arkansas</option>
+            <option value="CA">California</option>
+            <option value="CO">Colorado</option>
+            <option value="CT">Connecticut</option>
+            <option value="DE">Delaware</option>
+            <option value="FL">Florida</option>
+            <option value="GA">Georgia</option>
+            <option value="HI">Hawaii</option>
+            <option value="ID">Idaho</option>
+            <option value="IL">Illinois</option>
+            <option value="IN">Indiana</option>
+            <option value="IA">Iowa</option>
+            <option value="KS">Kansas</option>
+            <option value="KY">Kentucky</option>
+            <option value="LA">Louisiana</option>
+            <option value="ME">Maine</option>
+            <option value="MD">Maryland</option>
+            <option value="MA">Massachusetts</option>
+            <option value="MI">Michigan</option>
+            <option value="MN">Minnesota</option>
+            <option value="MS">Mississippi</option>
+            <option value="MO">Missouri</option>
+            <option value="MT">Montana</option>
+            <option value="NE">Nebraska</option>
+            <option value="NV">Nevada</option>
+            <option value="NH">New Hampshire</option>
+            <option value="NJ">New Jersey</option>
+            <option value="NM">New Mexico</option>
+            <option value="NY">New York</option>
+            <option value="NC">North Carolina</option>
+            <option value="ND">North Dakota</option>
+            <option value="OH">Ohio</option>
+            <option value="OK">Oklahoma</option>
+            <option value="OR">Oregon</option>
+            <option value="PA">Pennsylvania</option>
+            <option value="RI">Rhode Island</option>
+            <option value="SC">South Carolina</option>
+            <option value="SD">South Dakota</option>
+            <option value="TN">Tennessee</option>
+            <option value="TX">Texas</option>
+            <option value="UT">Utah</option>
+            <option value="VT">Vermont</option>
+            <option value="VA">Virginia</option>
+            <option value="WA">Washington</option>
+            <option value="WV">West Virginia</option>
+            <option value="WI">Wisconsin</option>
+            <option value="WY">Wyoming</option>
           </select>
-          <input
-
-          // value={formValues.addressState}
-          // onChange={handleChange}
-          />
         </div>
       </form>
     </>
@@ -151,7 +167,7 @@ const ResultsFilter = ({ addressStateSelected, setAddressStateSelected }) => {
 export default function DirectoryListings({ directoryType, listingsObject }) {
   const practitioners = listingsObject;
 
-  const [addressStateSelected, setAddressStateSelected] = useState("None");
+  const [addressStateSelected, setAddressStateSelected] = useState("CH");
 
   return (
     <>
@@ -175,6 +191,7 @@ export default function DirectoryListings({ directoryType, listingsObject }) {
               certifications={doc.certifications}
               gender={doc.gender}
               profilePhoto="TO DO: insert this dynamically"
+              addressStateSelected={addressStateSelected}
             />
           ))}
       </div>

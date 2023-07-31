@@ -707,16 +707,7 @@
  */
 
 
-
-/* Signup & Login Pages */
-.signUpForm {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  width: 300px;
-  margin: 0 auto 50px;
-}
-
+/* Global Form Elements */
 .formRow {
   display: flex;
   flex-direction: column;
@@ -765,8 +756,16 @@
   font-family: inherit;
 }
 
-.logoutBtn {
-  
+/* Signup & Login Forms */
+.signUpForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 300px;
+  margin: 0 auto 50px;
+}
+
+.logoutBtn {  
     display: flex;
     justify-content: center;
     align-items: center;
@@ -786,8 +785,12 @@
   font-size: 16px;
   color: #FEFEFE;
 }
-  
 
+
+/* Listing Filter Forms */
+.filterForm .formLabel {
+  align-self: center;
+}
 
 
 
