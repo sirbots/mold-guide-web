@@ -106,6 +106,7 @@ const ResultsFilter = ({ addressStateSelected, setAddressStateSelected }) => {
             id="addressState"
             onChange={handleChange}
           >
+            {/* TO DO: Only list states available in the DB */}
             <option value="CH">Choose Your State</option>
             <option value="AL">Alabama</option>
             <option value="AK">Alaska</option>
@@ -176,7 +177,6 @@ export default function DirectoryListings({ directoryType, listingsObject }) {
         setAddressStateSelected={setAddressStateSelected}
       />
 
-      {/* TO DO: pass addressStateSelected to the DoctorListing component so only the filtered results are displayed  */}
       <div className={styles.listingsContainer}>
         {practitioners &&
           practitioners.map((doc) => (
