@@ -110,6 +110,35 @@ display: flex;
 }
 
 
+@media screen and (max-width: 575px) {
+  .navLinks {
+    display: flex;
+    flex: 1;
+    justify-self: flex-end;
+  
+  }
+  
+  .mobileNav li {
+    display: inline-block;
+    padding: 0 25px;
+  }
+  .mobileNav li {
+    font-size: 1rem;
+    
+    /* display: none; Uncomment if needed */
+  }
+  
+  .desktopNav {
+    display: none;
+  }
+  .mobileNav {
+    display: inline-block;
+    
+    
+  }
+  
+}
+
 /* Hero styles */
 .hero {
   display: flex;

@@ -64,9 +64,6 @@ export default async function Header() {
         {/* Mobile Nav Links */}
         <ul className={styles.mobileNav}>
           <li>
-            <a href="/">Home</a>
-          </li>
-          <li>
             <a href="/practitioners">Find Mold Doctors</a>
           </li>
           <li>
