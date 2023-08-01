@@ -21,7 +21,7 @@ const Hero = ({
     <div className={styles.hero}>
       <div className={styles.heroTextBox}>
         <h1 style={lora.style}>{headline}</h1>
-        <p>{subHead}</p>
+        <h3 style={{ textAlign: "center" }}>{subHead}</h3>
       </div>
       {useBtn && (
         <a className={styles.heroBtn} href={btnLink}>

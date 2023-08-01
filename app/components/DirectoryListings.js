@@ -113,7 +113,7 @@ const ResultsFilter = ({
             id="addressStateSelected"
             onChange={handleChange}
           >
-            <option value="CH">Choose Your State</option>
+            <option value="CH">Any State</option>
             {stateNames &&
               stateNames.map((theState) => {
                 if (addressStatesIncluded.includes(theState["abbreviation"])) {
