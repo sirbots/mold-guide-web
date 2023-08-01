@@ -69,10 +69,8 @@
   
   /* background-color: #3d5a3f; */
   background-color: #fefefe;
-  /* overflow: hidden; */
-
-  /* color: #fefefe; This line overrides the color value above */
-  color: #001219; /* This line overrides the color value above */
+  
+  color: #001219; 
   font-weight: bold;
   /* font-family: "Lora-Bold", serif;  */
 }
@@ -80,7 +78,7 @@
 .logoBox {
   margin-left: 50px;
   position: relative;
-  display: flex;
+display: flex;
   flex: 1;
 }
 .logoImg {
