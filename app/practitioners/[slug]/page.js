@@ -14,10 +14,13 @@ import Footer from "../../components/Footer";
 import arrayToCommaString from "../../lib/arrayToCommaString";
 import capitalizeFirstLetter from "../../lib/capitalizeFirstLetter";
 import formatMiddleName from "../../lib/formatMiddleName";
+import roundTo from "../../lib/roundTo";
 
 // Styles & Fonts
 import styles from "../../page.module.css";
 import { Lora } from "next/font/google";
+import { StarIcon as StarIconOutline } from "@heroicons/react/24/outline";
+import { StarIcon as StarIconSolid } from "@heroicons/react/24/solid";
 
 const lora = Lora({
   subsets: ["latin"],
@@ -101,7 +104,18 @@ export default async function SinglePractitionerPage({ params }) {
     certifications: certifications,
     seesPatientsIn: seesPatientsIn,
     conditionsTreated: conditionsTreated,
+    ratingAverage: ratingAverage,
   } = doctor;
+
+  const ratingRounded = roundTo(ratingAverage);
+  let ratingArray = [];
+
+  for (let i = 0; i < ratingRounded; i++) {
+    ratingArray.push(true);
+  }
+  for (let i = 0; i < 5 - ratingRounded; i++) {
+    ratingArray.push(false);
+  }
 
   return (
     <main className={styles.container}>
@@ -119,6 +133,32 @@ export default async function SinglePractitionerPage({ params }) {
           <span className={styles.doctorName}>
             {firstName} {formatMiddleName(middleName)} {lastName}
           </span>
+          <span>
+            {[...Array(ratingRounded)].map((value, index) => (
+              <StarIconSolid
+                // colors:
+                // #f5e085
+                // #239EA1
+                // #336765
+                key={index}
+                className="h-12 w-12"
+                stroke="currentColor"
+                style={{
+                  height: "25px",
+                  width: "25px",
+                  color: "#239EA1",
+                }}
+              />
+            ))}
+            {[...Array(5 - ratingRounded)].map((value, index) => (
+              <StarIconOutline
+                key={index}
+                className="h-12 w-12"
+                stroke="currentColor"
+                style={{ height: "25px", width: "25px", color: "#239EA1" }}
+              />
+            ))}
+          </span>
           <div className={styles.addressBox}>
             <span className={styles.streetAddress}>{street}</span>
             <span className={styles.unitNumber}>{unitNum}</span>
@@ -135,25 +175,6 @@ export default async function SinglePractitionerPage({ params }) {
           )}
         </div>
       </div>
-      {/* 
-            // TO DO: build the star ratings design and functionality.
-          
-            <View style={styles.hero.starContainer}> 
-             <MaterialCommunityIcons name="star" size={24} style={styles.star} />
-             <MaterialCommunityIcons name="star" size={24} style={styles.star} />
-             <MaterialCommunityIcons name="star" size={24} style={styles.star} />
-             <MaterialCommunityIcons
-               name="star-half-full"
-               size={24}
-               style={styles.star}
-             />
-             <MaterialCommunityIcons
-               name="star-outline"
-               size={24}
-               style={styles.star}
-             />
-           </View>
-           */}
 
       {/* Doctor Info */}
       <div className={styles.singeListingInfoContainer}>
