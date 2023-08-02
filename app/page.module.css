@@ -97,36 +97,54 @@ display: flex;
 .desktopNav li {
   display: inline-block;
   padding: 0 25px;
-}
-.desktopNav li {
   font-size: 1.2rem;
-  
-  /* display: none; Uncomment if needed */
 }
 
+
 .mobileNav {
-  /* TO DO: make the nav responsive */
   display: none;
 }
 
+.hamburgerHolder {
+ display: none;   
+}
 
 @media screen and (max-width: 575px) {
+
+  .logoBox {
+    flex: 0;
+  }
   .navLinks {
     display: flex;
     flex: 1;
     justify-self: flex-end;
   
   }
-  
+  .hamburgerHolder {
+    display: inline-block;  
+  }
+  .hamburgerImg {
+    height: 35px;
+    width: 35px;
+  }
+
+  .mobileNav {
+    background-color:#CA383A;
+    position: absolute;
+    top: 5;
+
+    z-index: 99;
+  }
+
   .mobileNav li {
     display: inline-block;
     padding: 0 25px;
-  }
-  .mobileNav li {
     font-size: 1rem;
-    
-    /* display: none; Uncomment if needed */
   }
+  
+    
+    
+  
   
   .desktopNav {
     display: none;

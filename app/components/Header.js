@@ -2,10 +2,10 @@
 import styles from "../page.module.css";
 import Image from "next/image";
 import logo from "../../public/logos/logo_with_text.png";
+import hamburgerIcon from "../../public/hamburger_icon.png";
 
 // Auth
 import { authOptions } from "../lib/auth";
-import { getServerSession } from "next-auth/next";
 
 async function getUserSession() {
   const session = await getServerSession(authOptions);
@@ -34,11 +34,9 @@ export default async function Header() {
           />
         </a>
       </div>
+
       <div className={styles.navLinks}>
         <ul className={styles.desktopNav}>
-          {/* <li>
-            <a href="/">Home</a>
-          </li> */}
           <li>
             <a href="/practitioners">Find Mold Doctors</a>
           </li>
@@ -60,8 +58,8 @@ export default async function Header() {
           </>
         )} */}
         </ul>
-
         {/* Mobile Nav Links */}
+
         <ul className={styles.mobileNav}>
           <li>
             <a href="/practitioners">Find Mold Doctors</a>
@@ -70,6 +68,15 @@ export default async function Header() {
             <a href="/about">About</a>
           </li>
         </ul>
+        <div className={styles.hamburgerHolder}>
+          <a href="/">
+            <Image
+              src={hamburgerIcon}
+              className={styles.hamburgerImg}
+              alt="Click to open the mobile menu."
+            />
+          </a>
+        </div>
       </div>
     </div>
   );
