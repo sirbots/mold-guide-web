@@ -2,7 +2,9 @@
 import styles from "../page.module.css";
 import Image from "next/image";
 import logo from "../../public/logos/logo_with_text.png";
-import hamburgerIcon from "../../public/hamburger_icon.png";
+
+// Components
+import MobileNav from "../components/MobileNav";
 
 // Auth
 import { authOptions } from "../lib/auth";
@@ -24,7 +26,7 @@ export default async function Header() {
 
   return (
     <div className={styles.header}>
-      {/* Desktop Nav Links */}
+      {/* Logo */}
       <div className={styles.logoBox}>
         <a href="/">
           <Image
@@ -34,8 +36,9 @@ export default async function Header() {
           />
         </a>
       </div>
-
+      {/* Nav Container */}
       <div className={styles.navLinks}>
+        {/* Desktop Nav Links */}
         <ul className={styles.desktopNav}>
           <li>
             <a href="/practitioners">Find Mold Doctors</a>
@@ -59,24 +62,7 @@ export default async function Header() {
         )} */}
         </ul>
         {/* Mobile Nav Links */}
-
-        <ul className={styles.mobileNav}>
-          <li>
-            <a href="/practitioners">Find Mold Doctors</a>
-          </li>
-          <li>
-            <a href="/about">About</a>
-          </li>
-        </ul>
-        <div className={styles.hamburgerHolder}>
-          <a href="/">
-            <Image
-              src={hamburgerIcon}
-              className={styles.hamburgerImg}
-              alt="Click to open the mobile menu."
-            />
-          </a>
-        </div>
+        <MobileNav />
       </div>
     </div>
   );

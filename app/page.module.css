@@ -79,7 +79,7 @@
 .logoBox {
   margin-left: 50px;
   position: relative;
-display: flex;
+  display: flex;
   flex: 1;
 }
 .logoImg {
@@ -89,9 +89,8 @@ display: flex;
 
 .navLinks {
   display: flex;
-  flex: 1;
-  justify-self: flex-end;
-
+  justify-content: flex-end;
+  margin-right: 50px;
 }
 
 .desktopNav li {
@@ -109,53 +108,6 @@ display: flex;
  display: none;   
 }
 
-@media screen and (max-width: 575px) {
-
-  .logoBox {
-    flex: 0;
-  }
-  .navLinks {
-    display: flex;
-    flex: 1;
-    justify-self: flex-end;
-  
-  }
-  .hamburgerHolder {
-    display: inline-block;  
-  }
-  .hamburgerImg {
-    height: 35px;
-    width: 35px;
-  }
-
-  .mobileNav {
-    background-color:#CA383A;
-    position: absolute;
-    top: 5;
-
-    z-index: 99;
-  }
-
-  .mobileNav li {
-    display: inline-block;
-    padding: 0 25px;
-    font-size: 1rem;
-  }
-  
-    
-    
-  
-  
-  .desktopNav {
-    display: none;
-  }
-  .mobileNav {
-    display: inline-block;
-    
-    
-  }
-  
-}
 
 /* Hero styles */
 .hero {
@@ -863,6 +815,61 @@ display: flex;
 
 
 @media screen and (max-width: 600px) {
+  /*  */
+  /* Handling the mobile nav */
+  /*  */
+  .header {
+    min-height: 24vh;
+  }
+  .desktopNav {
+    display: none;
+  }
+  .logoBox {
+    flex: 0;
+  }
+  .navLinks {
+    display: flex;
+    flex: 1 1;
+    justify-content: flex-end;
+    padding-right: 20px;
+  }
+
+  .mobileNav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    height: 100px;
+    padding-top: 10px;
+        
+    /* background-color:#CA383A; */
+  }
+  
+  .hamburgerHolder {
+    display: block;
+  }
+  .hamburgerImg {
+    height: 38px;
+    width: 38px;
+  }
+
+  .mobileListOpen {
+    display: contents;  
+  }
+  .mobileListClosed {
+    display: none;
+  }
+  .mobileListOpen li {
+    display: inline-block;    
+    font-size: 1rem;
+    margin: 4px 0;
+  }
+  
+}
+
+@media screen and (max-width: 500px) {
+  /*  */
+  /* Handling the listing page filters */
+  /*  */
   .filterForm .formRow {
     flex-direction: column;
     align-items: center;   
@@ -870,12 +877,7 @@ display: flex;
   .filterForm .formRow .formInput {
     margin: 13px 0;
   }
-
-  
 }
-
-
-
 
 
 
