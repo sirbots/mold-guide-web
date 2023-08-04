@@ -108,14 +108,6 @@ export default async function SinglePractitionerPage({ params }) {
   } = doctor;
 
   const ratingRounded = roundTo(ratingAverage);
-  let ratingArray = [];
-
-  for (let i = 0; i < ratingRounded; i++) {
-    ratingArray.push(true);
-  }
-  for (let i = 0; i < 5 - ratingRounded; i++) {
-    ratingArray.push(false);
-  }
 
   return (
     <main className={styles.container}>

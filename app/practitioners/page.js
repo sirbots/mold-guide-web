@@ -5,15 +5,6 @@ import WideImage from "../components/WideImage";
 import Footer from "../components/Footer";
 import DirectoryListings from "../components/DirectoryListings";
 
-// Images
-import Image from "next/image";
-import maleDoctor2 from "../../public/male-doctor2.png";
-import femaleDoctor6 from "../../public/female-doctor6.png";
-
-// Helpers
-import arrayToCommaString from "../lib/arrayToCommaString";
-import formatMiddleName from "../lib/formatMiddleName";
-
 // Styles & Fonts
 import styles from "../page.module.css";
 import { Lora } from "next/font/google";

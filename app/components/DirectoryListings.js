@@ -5,6 +5,8 @@ import { useState } from "react";
 
 // Styles & Design
 import styles from "../page.module.css";
+import { StarIcon as StarIconOutline } from "@heroicons/react/24/outline";
+import { StarIcon as StarIconSolid } from "@heroicons/react/24/solid";
 
 // Images
 import Image from "next/image";
@@ -30,7 +32,12 @@ const DoctorListing = ({
   shoemakerProtocol,
   addressStateSelected,
   shoemakerProtocolSelected,
+  ratingAverage,
 }) => {
+  // Round the ratingAverage double
+  const ratingRounded = roundTo(ratingAverage);
+
+  // Filter results based on user-selected filters on page
   if (
     (addressStateSelected == "CH" || addressStateSelected == addressState) &&
     (shoemakerProtocolSelected == "any" ||
@@ -38,29 +45,37 @@ const DoctorListing = ({
   ) {
     return (
       <div className={styles.listing}>
-        {/* Doctor Ratings */}
-        {/* 
-        <View style={styles.doctorListings.listing.starContainer}>
-          <MaterialCommunityIcons
-            name="star"
-            size={24}
-            style={styles.doctorListings.listing.star}
-          />
-          <MaterialCommunityIcons
-            name="star-half-full"
-            size={24}
-            style={styles.doctorListings.listing.star}
-          />
-          <MaterialCommunityIcons
-            name="star-outline"
-            size={24}
-            style={styles.doctorListings.listing.star}
-          />
-        </View>
-         */}
         {/* Name */}
         <span className={styles.doctorName}>
           {firstName + " " + formatMiddleName(middleName) + " " + lastName}
+        </span>
+
+        {/* Stars */}
+        <span>
+          {[...Array(ratingRounded)].map((value, index) => (
+            <StarIconSolid
+              // colors:
+              // #f5e085
+              // #239EA1
+              // #336765
+              key={index}
+              className="h-12 w-12"
+              stroke="currentColor"
+              style={{
+                height: "25px",
+                width: "25px",
+                color: "#239EA1",
+              }}
+            />
+          ))}
+          {[...Array(5 - ratingRounded)].map((value, index) => (
+            <StarIconOutline
+              key={index}
+              className="h-12 w-12"
+              stroke="currentColor"
+              style={{ height: "25px", width: "25px", color: "#239EA1" }}
+            />
+          ))}
         </span>
 
         {/* Address */}
