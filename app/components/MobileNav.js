@@ -37,6 +37,23 @@ export default function MobileNav() {
         <li>
           <a href="/about">About</a>
         </li>
+        {session ? (
+          <li>
+            <a href="/profile">Profile</a>
+          </li>
+        ) : (
+          <>
+            <li>
+              <a href="/api/auth/signin">Sign In</a>
+            </li>
+            <li>
+              <a href="/signup">Register</a>
+            </li>
+          </>
+        )}
+        <li>
+          <a href="/add-listing">+ Add Listing</a>
+        </li>
       </ul>
     </div>
   );

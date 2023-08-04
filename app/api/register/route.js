@@ -15,6 +15,7 @@ export async function POST(req) {
         name,
         email: email.toLowerCase(),
         password: hashed_password,
+        displayName,
       },
     });
 

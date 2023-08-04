@@ -46,20 +46,23 @@ export default async function Header() {
           <li>
             <a href="/about">About</a>
           </li>
-          {/* {session ? (
+          {session ? (
+            <li>
+              <a href="/profile">Profile</a>
+            </li>
+          ) : (
+            <>
+              <li>
+                <a href="/api/auth/signin">Sign In</a>
+              </li>
+              <li>
+                <a href="/signup">Register</a>
+              </li>
+            </>
+          )}
           <li>
-            <a href="/profile">Profile</a>
+            <a href="/add-listing">+ Add Listing</a>
           </li>
-        ) : (
-          <>
-            <li>
-              <a href="/api/auth/signin">Sign In</a>
-            </li>
-            <li>
-              <a href="/signup">Register</a>
-            </li>
-          </>
-        )} */}
         </ul>
         {/* Mobile Nav Links */}
         <MobileNav />
