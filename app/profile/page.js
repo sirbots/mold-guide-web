@@ -37,14 +37,6 @@ export default async function Profile() {
     ""
   );
 
-  // then, get the doctor name for the review
-
-  // const doctorData = await prisma.doctor.findUnique({
-  //   where: {
-  //     id: "649e432bab70940551ba77f6",
-  //   },
-  // });
-
   return (
     <main className={styles.container}>
       <Header />
