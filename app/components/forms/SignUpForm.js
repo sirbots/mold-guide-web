@@ -19,7 +19,6 @@ export default function SignUpForm() {
   let [formValues, setFormValues] = useState({
     name: "",
     email: "",
-    displayName: "",
     password: "",
   });
 
@@ -88,7 +87,7 @@ export default function SignUpForm() {
           required
         />
       </div>
-      <div className={styles.formRow}>
+      {/* <div className={styles.formRow}>
         <label className={styles.formLabel} htmlFor="displayName">
           Display Name (you can change this later):
         </label>
@@ -100,7 +99,7 @@ export default function SignUpForm() {
           value={formValues.displayName}
           onChange={handleChange}
         />
-      </div>
+      </div> */}
       <div className={styles.formRow}>
         <label className={styles.formLabel} htmlFor="password">
           Password:

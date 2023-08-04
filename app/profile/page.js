@@ -34,10 +34,11 @@ export default async function Profile() {
 
   const userName = JSON.stringify(session.user.name).replaceAll('"', "");
   const userEmail = JSON.stringify(session.user.email).replaceAll('"', "");
-  const userDisplayName = JSON.stringify(session.user.displaName).replaceAll(
+  const userDisplayName = JSON.stringify(session.user.displayName).replaceAll(
     '"',
     ""
   );
+  // const displayName = session.user.displayName;
 
   return (
     <main className={styles.container}>
@@ -47,13 +48,12 @@ export default async function Profile() {
         <h2 className={lora.className}>Your Profile</h2>
 
         <p>Name: {userName}</p>
-        <p>Email: {userEmail}</p>
         <p>Display Name: {userDisplayName}</p>
+        <p>Email: {userEmail}</p>
 
         <h2 className={lora.className}>Your Reviews</h2>
 
         <p>Coming soon.</p>
-        {/* TO DO: Add a listing of a user's reviews here, which they can edit from this screen. */}
 
         <LogoutButton />
       </div>

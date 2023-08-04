@@ -814,7 +814,7 @@
 }
 
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 730px) {
   /*  */
   /* Handling the mobile nav */
   /*  */
@@ -840,6 +840,7 @@
     align-items: flex-end;
     height: 100px;
     padding-top: 10px;
+    z-index: 99;
         
     /* background-color:#CA383A; */
   }

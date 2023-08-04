@@ -16,7 +16,7 @@ const lora = Lora({
 });
 
 export const metadata = {
-  title: "Sign up for an account",
+  title: "Log in to your account",
 };
 
 export default function LoginPage() {

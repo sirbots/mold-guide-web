@@ -45,10 +45,12 @@ export default function LoginForm() {
 
       setLoading(false);
 
-      // console.log(res);
+      console.log(res);
       if (!res?.error) {
         router.push(callbackUrl);
       } else {
+        console.log(error);
+        setError(res.error);
         setError("invalid email or password");
       }
     } catch (error) {
@@ -69,13 +71,13 @@ export default function LoginForm() {
     return (
       <form className={styles.signUpForm} onSubmit={handleSubmit}>
         <div className={styles.formRow}>
-          <label className={styles.formLabel} htmlFor="last">
+          <label className={styles.formLabel} htmlFor="email">
             Email:
           </label>
           <input
             className={styles.formInput}
             type="email"
-            // id="email"
+            id="email"
             name="email"
             value={formValues.email}
             onChange={handleChange}
@@ -83,13 +85,13 @@ export default function LoginForm() {
           />
         </div>
         <div className={styles.formRow}>
-          <label className={styles.formLabel} htmlFor="last">
+          <label className={styles.formLabel} htmlFor="password">
             Password:
           </label>
           <input
             className={styles.formInput}
             type="password"
-            // id="password"
+            id="password"
             name="password"
             value={formValues.password}
             onChange={handleChange}

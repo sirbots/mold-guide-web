@@ -2,6 +2,10 @@
 
 import { useState } from "react";
 
+// Auth
+import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
+
 // Styles & Images
 import styles from "../page.module.css";
 import Image from "next/image";
@@ -15,6 +19,17 @@ export default function MobileNav() {
     if (menuOpen == false) setMenuOpen(true);
     if (menuOpen == true) setMenuOpen(false);
   };
+
+  // Auth
+  const { status } = useSession({
+    required: false,
+    // If the user is not logged in, redirect them to the /signin page.
+    onUnauthenticated() {
+      // redirect("/api/auth/signin");
+      // return nothing instead of redirecting. the status will get updated and can be used for dynamic display of the account links
+      return;
+    },
+  });
 
   return (
     <div className={styles.mobileNav}>
@@ -37,17 +52,19 @@ export default function MobileNav() {
         <li>
           <a href="/about">About</a>
         </li>
-        {session ? (
-          <li>
-            <a href="/profile">Profile</a>
-          </li>
-        ) : (
+        {status == "unauthenticated" ? (
           <>
             <li>
               <a href="/api/auth/signin">Sign In</a>
             </li>
             <li>
               <a href="/signup">Register</a>
+            </li>
+          </>
+        ) : (
+          <>
+            <li>
+              <a href="/profile">Profile</a>
             </li>
           </>
         )}

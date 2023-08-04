@@ -17,6 +17,7 @@ import femaleDoctor6 from "../../public/female-doctor6.png";
 import arrayToCommaString from "../lib/arrayToCommaString";
 import formatMiddleName from "../lib/formatMiddleName";
 import stateNames from "../lib/stateNames";
+import roundTo from "../lib/roundTo";
 
 // Doctor Listing Component
 const DoctorListing = ({
@@ -35,7 +36,7 @@ const DoctorListing = ({
   ratingAverage,
 }) => {
   // Round the ratingAverage double
-  const ratingRounded = roundTo(ratingAverage);
+  const ratingRounded = ratingAverage != undefined ? roundTo(ratingAverage) : 0;
 
   // Filter results based on user-selected filters on page
   if (

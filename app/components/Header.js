@@ -8,6 +8,7 @@ import MobileNav from "../components/MobileNav";
 
 // Auth
 import { authOptions } from "../lib/auth";
+import { getServerSession } from "next-auth";
 
 async function getUserSession() {
   const session = await getServerSession(authOptions);
@@ -22,7 +23,7 @@ async function getUserSession() {
 
 // Create a header component to use in the Navigator
 export default async function Header() {
-  // const session = await getUserSession();
+  const session = await getUserSession();
 
   return (
     <div className={styles.header}>
@@ -46,7 +47,7 @@ export default async function Header() {
           <li>
             <a href="/about">About</a>
           </li>
-          {session ? (
+          {/* {session ? (
             <li>
               <a href="/profile">Profile</a>
             </li>
@@ -59,7 +60,7 @@ export default async function Header() {
                 <a href="/signup">Register</a>
               </li>
             </>
-          )}
+          )} */}
           <li>
             <a href="/add-listing">+ Add Listing</a>
           </li>
