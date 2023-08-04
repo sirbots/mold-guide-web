@@ -198,6 +198,7 @@ export default function DirectoryListings({ directoryType, listingsObject }) {
               profilePhoto="TO DO: insert this dynamically"
               addressStateSelected={filterValues.addressStateSelected}
               shoemakerProtocolSelected={filterValues.shoemakerProtocolSelected}
+              ratingAverage={doc.ratingAverage}
             />
           ))}
       </div>

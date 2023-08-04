@@ -5,16 +5,22 @@ const prisma = new PrismaClient();
 
 async function main() {
   const password = await hash("password123", 12);
-  const user = await prisma.user.upsert({
-    where: { email: "admin@admin.com" },
-    update: {},
-    create: {
-      email: "admin@admin.com",
-      name: "Admin",
+  await prisma.user.create({
+    data: {
+      name: "Test User",
+      email: "test1@test.com",
       password,
+      reviews: {
+        create: {
+          title: "A great doc!",
+          body: "Helped me so much. highly recommended!",
+          rating: 3,
+          doctorId: '64cd4fc9796be0af1421eae5'
+        },
+      },
     },
-  });
-  console.log({ user });
+  })
+  
 }
 main()
   .then(() => prisma.$disconnect())

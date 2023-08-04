@@ -4,6 +4,7 @@
 // Components
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { LogoutButton } from "../components/buttons";
 
 // Auth
 import { getServerSession } from "next-auth";
@@ -25,9 +26,8 @@ const lora = Lora({
   // weight: ["400", "600", "700"],
 });
 
-import { LogoutButton } from "../components/buttons";
-
-// const prisma = new PrismaClient();
+// Database
+import { prisma } from "../lib/prisma";
 
 export default async function Profile() {
   const session = await getServerSession(authOptions);
@@ -38,7 +38,15 @@ export default async function Profile() {
     '"',
     ""
   );
-  // const displayName = session.user.displayName;
+
+  const userReviews = await prisma.user.findUnique({
+    where: {
+      email: "admin@admin.com",
+    },
+    include: {
+      reviews: true, // All posts where authorId == 20
+    },
+  });
 
   return (
     <main className={styles.container}>
@@ -53,7 +61,17 @@ export default async function Profile() {
 
         <h2 className={lora.className}>Your Reviews</h2>
 
-        <p>Coming soon.</p>
+        {userReviews.reviews &&
+          userReviews.reviews.map((rev) => {
+            return (
+              <div key={rev.id}>
+                <p>DoctorId: {rev.doctorId}</p>
+                <p>Rating: {rev.rating}</p>
+                <p>Title: {rev.title}</p>
+                <p>Body: {rev.body}</p>
+              </div>
+            );
+          })}
 
         <LogoutButton />
       </div>

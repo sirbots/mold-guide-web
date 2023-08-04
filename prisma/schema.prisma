@@ -10,29 +10,17 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// model User {
-//   id       String @id @unique @default(auto())  @db.ObjectId
-//   name     String
-//   email    String @unique
-//   password String
-// }
-
-// model User {
-//   id    String @id @default(uuid()) @map("_id")
-//   name  String
-//   email String @unique
-// }
-
 model User {
-  id          String  @id @default(uuid()) @map("_id")
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
   name        String?
-  email       String  @unique
+  email       String   @unique
   password    String
   displayName String?
+  reviews     Review[]
 }
 
 model Doctor {
-  id                String   @id @default(uuid()) @map("_id")
+  id                String   @id @default(auto()) @map("_id") @db.ObjectId
   slug              String   @unique
   firstName         String
   middleName        String?
@@ -56,10 +44,17 @@ model Doctor {
   ratingAverage     Float    @default(0.0)
   createdAt         DateTime
   lastModified      DateTime
+  reviews           Review[]
 }
 
 model Review {
-  id     String @id @default(uuid()) @map("_id")
-  rating Int
-  review String
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  title    String
+  body     String
+  rating   Int
+  author   User   @relation(fields: [authorId], references: [id])
+  authorId String @db.ObjectId
+
+  Doctor   Doctor? @relation(fields: [doctorId], references: [id])
+  doctorId String
 }
