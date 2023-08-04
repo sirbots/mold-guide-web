@@ -7,14 +7,14 @@ async function main() {
   const password = await hash("password123", 12);
   await prisma.user.create({
     data: {
-      name: "Test User",
-      email: "test1@test.com",
+      name: "Test User 2",
+      email: "rbcarter2@yahoo.com",
       password,
       reviews: {
         create: {
-          title: "A great doc!",
-          body: "Helped me so much. highly recommended!",
-          rating: 3,
+          title: "Just lovely.",
+          body: "Cured my illnesses rapidly and with great bedside manner.",
+          rating: 4,
           doctorId: '64cd4fc9796be0af1421eae5'
         },
       },
