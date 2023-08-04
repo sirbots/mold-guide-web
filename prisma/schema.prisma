@@ -24,10 +24,11 @@ datasource db {
 // }
 
 model User {
-  id       String  @id @default(uuid()) @map("_id")
-  name     String?
-  email    String  @unique
-  password String
+  id          String  @id @default(uuid()) @map("_id")
+  name        String?
+  email       String  @unique
+  password    String
+  displayName String
 }
 
 model Doctor {
@@ -55,4 +56,10 @@ model Doctor {
   ratingAverage     Float    @default(0.0)
   createdAt         DateTime
   lastModified      DateTime
+}
+
+model Review {
+  id     String @id @default(uuid()) @map("_id")
+  rating Int
+  review String
 }

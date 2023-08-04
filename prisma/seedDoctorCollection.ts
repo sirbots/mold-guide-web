@@ -27,6 +27,7 @@ const doctorData = [
       bio: ["Robin A. Bernhoft, MD, FACS, DABEM, FAAEM is one of the nation’s leading practitioners of environmental medicine, providing a full gambit of treatments for patients experiencing chronic and undiagnosed ailments in Ojai, California.", "Dr. Bernhoft spent his earlier career as an accomplished and esteemed surgeon, having completed his general surgery residence and fellowship In liver and pancreatic surgery at the Royal Postgraduate Medical School at Hammersmith Hospital in London before continuing on to become a published researcher and established private practitioner.", "However, his life took a turn when he developed skin rashes and sores that prevented him from being able to properly handle surgical tools and safely care for his patients. He soon after began to experience severe GI distress. He fell back into research and discovered environmental medicine. From there he was able to treat, not only his own symptoms, but also the symptoms of underlying disorders developed by his wife and son.","When it comes to “untreatable” chronic conditions, Dr. Bernhoft never gives up. His first hand experience in healing from and treating chronic diseases has instilled within him a passion to discover and treat any ailment that comes to his door. His goal is to understand your health concerns, lifestyle, and history in order to create an individualized diagnosis plan that will allow you to better understand what is happening in your body.", "Once you are aware of what is ailing you and which environmental favors may be impacting your health, Dr. Bernhoft makes it his task to imbue you with all of the knowledge you need to make conscious, healthy decisions that can positively impact your wellbeing for now and always."],
       createdAt: new Date(),
       lastModified: new Date(),
+      ratingAverage: 0,
   },
   {
       firstName: "Lysander",
@@ -51,6 +52,7 @@ const doctorData = [
       bio: ["Dr. Lysander Jim is a Board-certified Physical Medicine and Rehabilitation doctor who specializes in the treatment of low back pain and immunological conditions arising from damp building exposure. He graduated from the University of California, Berkeley with a bachelor’s degree in psychology (2007) and earned his medical doctorate (M.D.) at the Albert Einstein College of Medicine (2011).", "Dr. Jim has always been interested in the connection between the mind, the body, and the environment. He sees patients from all over the world who suffer from Chronic Inflammatory Response Syndrome (CIRS) due to water-damaged buildings (WDB). His approach is to use Shoemaker Protocol to help patients recover from their symptoms. He also uses a functional medicine approach to help patients improve their overall health and wellness.", "When he’s not seeing patients, Dr. Jim enjoys spending time with his family and is a passionate musician who plays multiple instruments."],
       createdAt: new Date(),
       lastModified: new Date(),
+      ratingAverage: 0,
   },
   {
       firstName: "Scott",
@@ -66,6 +68,7 @@ const doctorData = [
       shoemakerProtocol: true,
       createdAt: new Date(),
       lastModified: new Date(),
+      ratingAverage: 0,
       
   },
   {
@@ -84,7 +87,7 @@ const doctorData = [
       shoemakerProtocol: true,
       createdAt: new Date(),
       lastModified: new Date(),
-      
+      ratingAverage: 0,
   },
   {
     firstName: "Margaret",
@@ -99,7 +102,7 @@ const doctorData = [
     shoemakerProtocol: true,
     createdAt: new Date(),
     lastModified: new Date(),
-      
+    ratingAverage: 0,
   },
   {
     firstName: "Kellyn",
@@ -114,7 +117,8 @@ const doctorData = [
     locations: ["MT", "CA"],
     shoemakerProtocol: true,
     createdAt: new Date(),
-      lastModified: new Date(),
+    lastModified: new Date(),
+    ratingAverage: 0,
   },
   {
     firstName: "Lynese",
@@ -129,7 +133,8 @@ const doctorData = [
     certifications: ["D.O.", "ABAARM", "IFMCP"],
     shoemakerProtocol: true,
     createdAt: new Date(),
-      lastModified: new Date(),
+    lastModified: new Date(),
+    ratingAverage: 0,
   },
   {
     firstName: "Michael",
@@ -145,6 +150,7 @@ const doctorData = [
     shoemakerProtocol: true,
     createdAt: new Date(),
     lastModified: new Date(),
+    ratingAverage: 0,
   },
 
   {
@@ -161,6 +167,7 @@ const doctorData = [
     shoemakerProtocol: true,
     createdAt: new Date(),
     lastModified: new Date(),
+    ratingAverage: 0,
   },
   {
     firstName: "Jacki",
@@ -178,7 +185,8 @@ const doctorData = [
     certifications: ["NP"],
     shoemakerProtocol: true,
     createdAt: new Date(),
-      lastModified: new Date(),
+    lastModified: new Date(),
+    ratingAverage: 0,
   },
   {
     firstName: "Karen",
@@ -195,8 +203,8 @@ const doctorData = [
     certifications: ["MD"],
     shoemakerProtocol: true,
     createdAt: new Date(),
-      lastModified: new Date(),
-    
+    lastModified: new Date(),
+    ratingAverage: 0,    
   },
   {
     firstName: "Jennifer",
@@ -213,8 +221,8 @@ const doctorData = [
     certifications: ["NMD"],
     shoemakerProtocol: true,
     createdAt: new Date(),
-      lastModified: new Date(),
-
+    lastModified: new Date(),
+    ratingAverage: 0,
   },
   {
     firstName: "Craig",
@@ -229,7 +237,8 @@ const doctorData = [
     certifications: ["MD", "FACP"],
     shoemakerProtocol: true,
     createdAt: new Date(),
-      lastModified: new Date(),
+    lastModified: new Date(),
+    ratingAverage: 0,
   },
   {
     firstName: "Louise",
@@ -245,7 +254,8 @@ const doctorData = [
     certifications: ["BSc Nutr. Med.", "PgDip"],
     shoemakerProtocol: true,
     createdAt: new Date(),
-      lastModified: new Date(),
+    lastModified: new Date(),
+    ratingAverage: 0,
   },
   {
     firstName: "John",
@@ -262,8 +272,8 @@ const doctorData = [
     certifications: ["MD"],
     shoemakerProtocol: true,
     createdAt: new Date(),
-      lastModified: new Date(),
-    
+    lastModified: new Date(),
+    ratingAverage: 0,
   },
   {
     firstName: "Tamara",
@@ -280,7 +290,8 @@ const doctorData = [
     conditionsTreated: "Mold Illness",
     certifications: ["DO"],
     createdAt: new Date(),
-      lastModified: new Date(),
+    lastModified: new Date(),
+    ratingAverage: 0,
   },
   {
     firstName: "Ming",
@@ -295,7 +306,8 @@ const doctorData = [
     conditionsTreated: "Mold Illness",
     certifications: ["L.Ac"],
     createdAt: new Date(),
-      lastModified: new Date(),
+    lastModified: new Date(),
+    ratingAverage: 0,
   },
   {
     firstName: "Jodie",
@@ -313,8 +325,8 @@ const doctorData = [
     certifications: ["PhD","OTD","BCIP","HHP"],
     shoemakerProtocol: true,
     createdAt: new Date(),
-      lastModified: new Date(),
-    
+    lastModified: new Date(),
+    ratingAverage: 0,
   },
   {
     firstName: "Linda",
@@ -330,7 +342,7 @@ const doctorData = [
     certifications: ["MD"],
     createdAt: new Date(),
     lastModified: new Date(),
-    
+    ratingAverage: 0,
   },
 
 ];
