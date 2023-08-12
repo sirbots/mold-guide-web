@@ -47,7 +47,7 @@ export default async function Header() {
           <li>
             <a href="/about">About</a>
           </li>
-          {/* {session ? (
+          {session ? (
             <li>
               <a href="/profile">Profile</a>
             </li>
@@ -60,7 +60,7 @@ export default async function Header() {
                 <a href="/signup">Register</a>
               </li>
             </>
-          )} */}
+          )}
           <li>
             <a href="/add-listing">+ Add Listing</a>
           </li>
