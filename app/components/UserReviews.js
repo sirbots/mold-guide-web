@@ -1,29 +1,64 @@
 // "use client";
 // Styles & Images
 import styles from "../page.module.css";
+import { StarIcon as StarIconOutline } from "@heroicons/react/24/outline";
+import { StarIcon as StarIconSolid } from "@heroicons/react/24/solid";
 
 // Database
 import { prisma } from "../lib/prisma";
-import { ObjectId } from "mongodb";
 
-const DoctorName = async ({ doctorId }) => {
-  const doctorIdQuery = new ObjectId(doctorId).toString;
+// Helpers
+import formatMiddleName from "../lib/formatMiddleName";
+import roundTo from "../lib/roundTo";
 
+const DoctorMetaData = async ({ doctorId }) => {
   const doctor = await prisma.doctor.findRaw({
     filter: {
       _id: { $eq: { $oid: doctorId } },
     },
   });
 
-  // to do: almost done! just add a link to the doctor's name (to their page) and clean up the formatting for everything
+  const ratingRounded = roundTo(doctor.map((doc) => doc.ratingAverage));
+
   return (
     <div>
       <p>
-        Doctor Name: {doctor.map((doc) => doc.firstName)}{" "}
-        {doctor.map((doc) => doc.middleName)}{" "}
-        {doctor.map((doc) => doc.lastName)}
+        <a href={"/practitioners/" + doctor.map((doc) => doc.slug)}>
+          {doctor.map((doc) => doc.firstName)}{" "}
+          {doctor.map((doc) => formatMiddleName(doc.middleName))}{" "}
+          {doctor.map((doc) => doc.lastName)}
+        </a>
       </p>
-      <p>Link to doctor page: TBD</p>
+      <span>
+        {[...Array(ratingRounded)].map((value, index) => (
+          <StarIconSolid
+            // colors:
+            // #f5e085
+            // #239EA1
+            // #336765
+            key={index}
+            className="h-12 w-12"
+            stroke="currentColor"
+            style={{
+              height: "25px",
+              width: "25px",
+              color: "#239EA1",
+            }}
+          />
+        ))}
+        {[...Array(5 - ratingRounded)].map((value, index) => (
+          <StarIconOutline
+            key={index}
+            className="h-12 w-12"
+            stroke="currentColor"
+            style={{
+              height: "25px",
+              width: "25px",
+              color: "#239EA1",
+            }}
+          />
+        ))}
+      </span>
     </div>
   );
 };
@@ -41,13 +76,13 @@ const UserReviews = async ({ userEmail }) => {
 
   if (userReviews) {
     return (
-      <div>
+      <div className="userReviewsContainer">
         {userReviews &&
           userReviews.map((rev) => {
             return (
               <div key={rev.id}>
-                <DoctorName doctorId={rev.doctorId} />
-                <p>Rating: {rev.rating}</p>
+                <DoctorMetaData doctorId={rev.doctorId} />
+
                 <p>Title: {rev.title}</p>
                 <p>Body: {rev.body}</p>
               </div>

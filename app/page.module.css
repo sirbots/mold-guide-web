@@ -53,8 +53,13 @@
 
   color: #001219; 
   font-size: 16px;
-  margin: 18px 0;
+  margin: 10px 0;
   line-height: 1.4; /* Uncomment if needed */
+}
+
+.container a {
+  color: #0A9396;
+  text-decoration: underline;
 }
 
 /* Header/Nav Styles */
@@ -565,10 +570,6 @@
   color: #EE9B00;
 } 
 
- /* .listing .star-empty {}
-
-.listing .star-full {} */
-
 .doctorListingsImg {
   width: 120px;
   height: 120px;
@@ -720,6 +721,12 @@
   align-self: center;
 }
  */
+
+
+ /* User Profile Page */
+ .userReviewsContainer {
+  margin-bottom: 100px;
+ }
 
 
 /* Global Form Elements */
