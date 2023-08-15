@@ -11,14 +11,13 @@ import { prisma } from "../lib/prisma";
 import formatMiddleName from "../lib/formatMiddleName";
 import roundTo from "../lib/roundTo";
 
+// use the doctorId to find the rest of the doctor's info
 const DoctorMetaData = async ({ doctorId }) => {
   const doctor = await prisma.doctor.findRaw({
     filter: {
       _id: { $eq: { $oid: doctorId } },
     },
   });
-
-  const ratingRounded = roundTo(doctor.map((doc) => doc.ratingAverage));
 
   return (
     <div>
@@ -29,36 +28,6 @@ const DoctorMetaData = async ({ doctorId }) => {
           {doctor.map((doc) => doc.lastName)}
         </a>
       </p>
-      <span>
-        {[...Array(ratingRounded)].map((value, index) => (
-          <StarIconSolid
-            // colors:
-            // #f5e085
-            // #239EA1
-            // #336765
-            key={index}
-            className="h-12 w-12"
-            stroke="currentColor"
-            style={{
-              height: "25px",
-              width: "25px",
-              color: "#239EA1",
-            }}
-          />
-        ))}
-        {[...Array(5 - ratingRounded)].map((value, index) => (
-          <StarIconOutline
-            key={index}
-            className="h-12 w-12"
-            stroke="currentColor"
-            style={{
-              height: "25px",
-              width: "25px",
-              color: "#239EA1",
-            }}
-          />
-        ))}
-      </span>
     </div>
   );
 };
@@ -82,6 +51,36 @@ const UserReviews = async ({ userEmail }) => {
             return (
               <div key={rev.id}>
                 <DoctorMetaData doctorId={rev.doctorId} />
+                <span>
+                  {[...Array(rev.rating)].map((value, index) => (
+                    <StarIconSolid
+                      // colors:
+                      // #f5e085
+                      // #239EA1
+                      // #336765
+                      key={index}
+                      className="h-12 w-12"
+                      stroke="currentColor"
+                      style={{
+                        height: "25px",
+                        width: "25px",
+                        color: "#239EA1",
+                      }}
+                    />
+                  ))}
+                  {[...Array(5 - rev.rating)].map((value, index) => (
+                    <StarIconOutline
+                      key={index}
+                      className="h-12 w-12"
+                      stroke="currentColor"
+                      style={{
+                        height: "25px",
+                        width: "25px",
+                        color: "#239EA1",
+                      }}
+                    />
+                  ))}
+                </span>
 
                 <p>Title: {rev.title}</p>
                 <p>Body: {rev.body}</p>
