@@ -14,6 +14,7 @@ import Footer from "../../components/Footer";
 import arrayToCommaString from "../../lib/arrayToCommaString";
 import capitalizeFirstLetter from "../../lib/capitalizeFirstLetter";
 import formatMiddleName from "../../lib/formatMiddleName";
+import getAvgRating from "../../lib/getAvgRating";
 import roundTo from "../../lib/roundTo";
 
 // Styles & Fonts
@@ -104,10 +105,9 @@ export default async function SinglePractitionerPage({ params }) {
     certifications: certifications,
     seesPatientsIn: seesPatientsIn,
     conditionsTreated: conditionsTreated,
-    ratingAverage: ratingAverage,
   } = doctor;
 
-  const ratingRounded = roundTo(ratingAverage);
+  const ratingsAvgRounded = await getAvgRating(doctor.id);
 
   return (
     <main className={styles.container}>
@@ -126,7 +126,7 @@ export default async function SinglePractitionerPage({ params }) {
             {firstName} {formatMiddleName(middleName)} {lastName}
           </span>
           <span>
-            {[...Array(ratingRounded)].map((value, index) => (
+            {[...Array(ratingsAvgRounded)].map((value, index) => (
               <StarIconSolid
                 // colors:
                 // #f5e085
@@ -142,7 +142,7 @@ export default async function SinglePractitionerPage({ params }) {
                 }}
               />
             ))}
-            {[...Array(5 - ratingRounded)].map((value, index) => (
+            {[...Array(5 - ratingsAvgRounded)].map((value, index) => (
               <StarIconOutline
                 key={index}
                 className="h-12 w-12"

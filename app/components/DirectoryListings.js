@@ -33,10 +33,11 @@ const DoctorListing = ({
   shoemakerProtocol,
   addressStateSelected,
   shoemakerProtocolSelected,
-  ratingAverage,
+  avgRating,
+  testField,
 }) => {
   // Round the ratingAverage double
-  const ratingRounded = ratingAverage != undefined ? roundTo(ratingAverage) : 0;
+  const ratingRounded = avgRating != undefined ? roundTo(avgRating) : 0;
 
   // Filter results based on user-selected filters on page
   if (
@@ -50,6 +51,9 @@ const DoctorListing = ({
         <span className={styles.doctorName}>
           {firstName + " " + formatMiddleName(middleName) + " " + lastName}
         </span>
+
+        <span>avgRating: {avgRating}</span>
+        <span>testField: {testField}</span>
 
         {/* Stars */}
         <span>
@@ -198,7 +202,8 @@ export default function DirectoryListings({ directoryType, listingsObject }) {
               profilePhoto="TO DO: insert this dynamically"
               addressStateSelected={filterValues.addressStateSelected}
               shoemakerProtocolSelected={filterValues.shoemakerProtocolSelected}
-              ratingAverage={doc.ratingAverage}
+              ratingAverage={doc.avgRating}
+              testField={doc.testField}
             />
           ))}
       </div>

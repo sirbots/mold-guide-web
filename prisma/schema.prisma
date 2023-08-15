@@ -41,7 +41,6 @@ model Doctor {
   certifications    String[] @default([""])
   seesPatientsIn    String[] @default([""])
   bio               String[] @default(["Coming soon!"])
-  ratingAverage     Float    @default(0.0)
   createdAt         DateTime
   lastModified      DateTime
   reviews           Review[]
