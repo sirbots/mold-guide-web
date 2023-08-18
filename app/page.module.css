@@ -808,6 +808,42 @@
   color: #FEFEFE;
 }
 
+/* Add New Listing Form */
+.addListingPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.addListingForm {
+  width: 60%;
+  margin-top: 35px;
+}
+.addListingForm .formRow {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 12px;
+}
+
+.addListingForm .formLabel {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  margin-bottom: 10px;
+  width: 30%;
+}
+.addListingForm .formInput {
+  background: transparent;
+  border: 1px solid #001219;
+  border-radius: 3px;
+  color: #001219;
+  font-family: inherit;
+  width: 70%;
+  padding: 0 10px;
+  min-height: 40px;
+}
+
+
+
 
 /* Listing Filter Forms */
 .filterForm .formLabel {

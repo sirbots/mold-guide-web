@@ -27,7 +27,7 @@ const lora = Lora({
   // weight: ["400", "600", "700"],
 });
 
-export default async function Profile() {
+export default async function ProfilePage() {
   const session = await getServerSession(authOptions);
 
   const userName = JSON.stringify(session.user.name).replaceAll('"', "");
