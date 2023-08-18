@@ -52,9 +52,6 @@ const DoctorListing = ({
           {firstName + " " + formatMiddleName(middleName) + " " + lastName}
         </span>
 
-        <span>avgRating: {avgRating}</span>
-        <span>testField: {testField}</span>
-
         {/* Stars */}
         <span>
           {[...Array(ratingRounded)].map((value, index) => (
@@ -166,8 +163,42 @@ const ResultsFilter = ({
   );
 };
 
-export default function DirectoryListings({ directoryType, listingsObject }) {
+export default function DirectoryListings({
+  directoryType,
+  listingsObject,
+  reviewsObject,
+}) {
+  // Let's get an average rating for each doctor
   const practitioners = listingsObject;
+  const reviews = reviewsObject;
+
+  // Go through all the practitioners
+  practitioners.forEach((prac) => {
+    // Create an empty array to hold the ratings for this doctor
+    const allRatings = [];
+
+    // Go through every review and see if the doctor ID matches the current doctor
+    reviews.forEach((rev) => {
+      if (prac.id == rev.doctorId) {
+        allRatings.push(rev.rating);
+      }
+    });
+
+    // Use a reducr to sum up all of the ratings
+    const ratingsSum = parseFloat(
+      allRatings.reduce(
+        (accumulator, currentValue) => accumulator + currentValue,
+        0
+      )
+    );
+
+    // Calculate a rounded average if the rating is higher than 0
+    const roundedAvg =
+      ratingsSum > 0 ? parseInt(roundTo(ratingsSum / allRatings.length)) : 0;
+
+    // Add the average rating to the practitioner object for this particular practitioner
+    prac["avgRating"] = roundedAvg;
+  });
 
   // const [addressStateSelected, setAddressStateSelected] = useState("CH");
   const [filterValues, setFilterValues] = useState({
@@ -202,7 +233,7 @@ export default function DirectoryListings({ directoryType, listingsObject }) {
               profilePhoto="TO DO: insert this dynamically"
               addressStateSelected={filterValues.addressStateSelected}
               shoemakerProtocolSelected={filterValues.shoemakerProtocolSelected}
-              ratingAverage={doc.avgRating}
+              avgRating={doc.avgRating}
               testField={doc.testField}
             />
           ))}

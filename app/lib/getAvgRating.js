@@ -12,6 +12,11 @@ const getAvgRating = async (doctorId) => {
     },
   });
 
+  // Return a 0 rating if there are no reviews
+  if (reviewsOfThisDoctor.length === 0) {
+    return 0;
+  }
+
   // Create a new array with just the doctor's ratings, get a count of total ratings, and then find the average rating
   const allRatings = reviewsOfThisDoctor.map((rev) => parseFloat(rev.rating));
   const ratingsCount = allRatings.length;
