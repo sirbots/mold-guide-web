@@ -49,14 +49,27 @@ export default function NewListingForm() {
     e.preventDefault();
     setSending(true);
 
+    // Before sending the form, add the slug to the form data
+    let data = formValues;
+
+    // Add handing for blank middle name
+    let formattedMiddleName = formValues.middleName;
+    // If the middleName field isn't blank, use the middle name plus a dash
+    if (formValues.middleName != "") {
+      formattedMiddleName = formValues.middleName + "-";
+    }
+    // Format the new slug
+    data[
+      "slug"
+    ] = `${formValues.firstName}-${formattedMiddleName}${formValues.lastName}-${formValues.addressCity}-${formValues.addressState}`;
+
     try {
-      console.log(formValues);
       fetch("/api/doctors", {
         method: "POST",
         headers: {
           "content-type": "application/json",
         },
-        body: JSON.stringify(formValues),
+        body: JSON.stringify(data),
       }).then(async (res) => {
         // console.log(res);
 
@@ -91,8 +104,16 @@ export default function NewListingForm() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
     setFormValues({ ...formValues, [name]: value });
+    console.log(formValues);
+  };
+
+  const updateSlug = () => {
+    // Create the slug from the first name, last name, middle name, city, and state
+
+    console.log("The new slug will be: " + newSlug);
+
+    // setFormValues({ ...formValues, slug: newSlug });
   };
 
   return (
