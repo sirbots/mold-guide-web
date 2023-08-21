@@ -1,7 +1,7 @@
 "use client";
 
 import { ChangeEvent, useState, cache, use } from "react";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 // Styles & Fonts
 import styles from "../../page.module.css";
@@ -29,7 +29,7 @@ export default function NewListingForm() {
     addressState: "MA",
     addressZipcode: "",
     addressCountry: "USA",
-    slug: "my-test-slug-2",
+    slug: "my-test-slug-4",
     // telehealth: "",
     shoemakerProtocol: false,
     // conditionsTreated: "",
@@ -39,6 +39,9 @@ export default function NewListingForm() {
     createdAt: new Date(),
     lastModified: new Date(),
   });
+
+  // Initialize the router because redirect doesn't seem to work in client components
+  const router = useRouter();
 
   // Handles the submit event on form submit.
   const handleSubmit = async (e) => {
@@ -55,21 +58,34 @@ export default function NewListingForm() {
         },
         body: JSON.stringify(formValues),
       }).then(async (res) => {
-        console.log(res);
+        // console.log(res);
 
+        // Reset the button text
+        setSending(false);
+
+        // Check for errors from the API
         if (!res.ok) {
-          alert(res.statusText);
-          // return;
+          // If the statusText == "conflict", it means that the record already exists in the database.
+          if (res.statusText == "Conflict") {
+            alert(
+              "That doctor already exists. If you think this is an error, please contact us."
+            );
+          } else {
+            // Alert with some other error message
+            alert(
+              "Ooops. Received an error with this message: " +
+                res.statusText +
+                "\n\nPlease contact us for help."
+            );
+          }
         }
+        // Redirect to the TY page if the form was submitted successfully.
         if (res.ok) {
-          setSending(false);
-          // add a redirect here to a TY page
-          redirect("/api/auth/signin");
-          // return;
+          router.push("/add-listing/thank-you");
         }
       });
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
@@ -77,7 +93,6 @@ export default function NewListingForm() {
     const { name, value } = e.target;
 
     setFormValues({ ...formValues, [name]: value });
-    // console.log(formValues);
   };
 
   return (
