@@ -29,7 +29,6 @@ export default function NewListingForm() {
     addressState: "MA",
     addressZipcode: "",
     addressCountry: "USA",
-    slug: "my-test-slug-4",
     // telehealth: "",
     shoemakerProtocol: false,
     // conditionsTreated: "",
@@ -63,6 +62,8 @@ export default function NewListingForm() {
       "slug"
     ] = `${formValues.firstName}-${formattedMiddleName}${formValues.lastName}-${formValues.addressCity}-${formValues.addressState}`;
 
+    // console.log("The formatted data object:");
+    // console.log(data);
     try {
       fetch("/api/doctors", {
         method: "POST",
@@ -71,8 +72,6 @@ export default function NewListingForm() {
         },
         body: JSON.stringify(data),
       }).then(async (res) => {
-        // console.log(res);
-
         // Reset the button text
         setSending(false);
 
@@ -106,14 +105,6 @@ export default function NewListingForm() {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
     console.log(formValues);
-  };
-
-  const updateSlug = () => {
-    // Create the slug from the first name, last name, middle name, city, and state
-
-    console.log("The new slug will be: " + newSlug);
-
-    // setFormValues({ ...formValues, slug: newSlug });
   };
 
   return (
