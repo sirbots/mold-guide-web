@@ -1,8 +1,7 @@
 "use client";
 
-// Auth
-import { signIn } from "next-auth/react";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useState, cache, use } from "react";
+import { redirect } from "next/navigation";
 
 // Styles & Fonts
 import styles from "../../page.module.css";
@@ -14,93 +13,69 @@ const merriweather = Merriweather({
   display: "swap",
 });
 
-import { PrismaClient } from "@prisma/client";
-// import { hash } from "bcryptjs";
-
 export default function NewListingForm() {
-  let [loading, setLoading] = useState(false);
+  let [sending, setSending] = useState(false);
   let [formValues, setFormValues] = useState({
-    firstName: "",
+    firstName: "John",
     middleName: "",
-    lastName: "",
+    lastName: "Doe",
     gender: "",
-    email: "",
     practiceName: "",
     phoneNumber: "",
     website: "",
     addressStreet: "",
     addressUnit: "",
-    addressCity: "",
-    addressState: "",
+    addressCity: "Springfield",
+    addressState: "MA",
     addressZipcode: "",
     addressCountry: "USA",
-    telehealth: "",
-    shoemakerProtocol: "",
-    conditionsTreated: "",
-    certifications: "",
-    seesPatientsIn: "",
-    bio: "",
+    slug: "my-test-slug-2",
+    // telehealth: "",
+    shoemakerProtocol: false,
+    // conditionsTreated: "",
+    // certifications: "",
+    // seesPatientsIn: "",
+    // bio: "",
+    createdAt: new Date(),
+    lastModified: new Date(),
   });
-
-  // new doctor upsert
-  async function addRecord() {
-    const prisma = new PrismaClient();
-
-    const newPractitioner = await prisma.doctor.create({
-      data: {
-        slug: "update-this-slug", // TO DO: rewrite this to auto-generate
-        published: false,
-        firstName: formValues.firstName,
-        middleName: formValues.middleName,
-        lastName: formValues.lastName,
-        gender: formValues.gender,
-        practiceName: formValues.practiceName,
-        phoneNumber: formValues.phoneNumber,
-        addressStreet: formValues.addressStreet,
-        addressUnit: formValues.addressUnit,
-        addressCity: formValues.addressCity,
-        addressState: formValues.addressState,
-        addressZipcode: formValues.addressZipcode,
-        addressCountry: formValues.addressCountry,
-        website: formValues.website,
-        telehealth: formValues.telehealth,
-        shoemakerProtocol: formValues.shoemakerProtocol, // TO DO: make this a Boolean on the form
-        conditionsTreated: formValues.conditionsTreated, // TO DO: handle putting this into an array before sending | Array with default of "Mold Illness"
-        certifications: formValues.certifications, // TO DO: handle this Array
-        seesPatientsIn: formValues.seesPatientsIn, // TO DO: handle this Array
-        bio: formValues.bio, // TO DO: handle this Array with default of "Coming Soon!"
-        createdAt: formValues.createdAt, // TO DO: use current time
-        lastModified: formValues.lastModified, // TO DO: use current time
-      },
-    });
-    console.log(`Successfully seeded ${newPractitioner}`);
-  }
 
   // Handles the submit event on form submit.
   const handleSubmit = async (e) => {
     // Stop the form from submitting and refrehsing the page.
     e.preventDefault();
-    setLoading(true);
+    setSending(true);
 
     try {
-      addRecord()
-        .then(() => prisma.$disconnect())
-        .catch(async (e) => {
-          console.error(e);
-          await prisma.$disconnect();
-          process.exit(1);
-        });
+      console.log(formValues);
+      fetch("/api/doctors", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(formValues),
+      }).then(async (res) => {
+        console.log(res);
 
-      setLoading(false);
-      if (!res.ok) {
-        alert((await res.json()).message);
-        return;
-      }
-    } catch (error) {}
+        if (!res.ok) {
+          alert(res.statusText);
+          // return;
+        }
+        if (res.ok) {
+          setSending(false);
+          // add a redirect here to a TY page
+          redirect("/api/auth/signin");
+          // return;
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
     setFormValues({ ...formValues, [name]: value });
     // console.log(formValues);
   };
@@ -157,20 +132,6 @@ export default function NewListingForm() {
           onChange={handleChange}
         />
       </div>
-      <div className={styles.formRow}>
-        <label className={styles.formLabel} htmlFor="email">
-          Email:*
-        </label>
-        <input
-          className={styles.formInput}
-          type="email"
-          // id="email"
-          name="email"
-          value={formValues.email}
-          onChange={handleChange}
-        />
-      </div>
-
       <div className={styles.formRow}>
         <label className={styles.formLabel} htmlFor="practiceName">
           Practice Name:
@@ -357,9 +318,9 @@ export default function NewListingForm() {
           onChange={handleChange}
         />
       </div>
-      <button className={styles.formBtn} type="submit" disabled={loading}>
+      <button className={styles.formBtn} type="submit" disabled={sending}>
         <span style={merriweather.style} className={styles.formBtnText}>
-          {loading ? "Loading..." : "Add Listing"}
+          {sending ? "Sending..." : "Add Listing"}
         </span>
       </button>
     </form>

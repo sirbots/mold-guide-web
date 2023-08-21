@@ -2,6 +2,7 @@
 
 // React
 import { useState } from "react";
+import React, { cache, use } from "react";
 
 // Styles & Design
 import styles from "../page.module.css";
@@ -91,7 +92,7 @@ const DoctorListing = ({
         <Image
           src={gender == "male" ? maleDoctor2 : femaleDoctor6}
           className={styles.doctorListingsImg}
-          alt="Practitioner photo"
+          alt="doctor photo"
         />
 
         {/* Doctor Metadata */}
@@ -100,7 +101,7 @@ const DoctorListing = ({
         </span>
 
         {/* Button */}
-        <a className={styles.listingBtn} href={"/practitioners/" + slug}>
+        <a className={styles.listingBtn} href={"/doctors/" + slug}>
           <span className={styles.listingBtnText}>View Profile</span>
         </a>
       </div>
@@ -163,17 +164,20 @@ const ResultsFilter = ({
   );
 };
 
-export default function DirectoryListings({
-  directoryType,
-  listingsObject,
-  reviewsObject,
-}) {
-  // Let's get an average rating for each doctor
-  const practitioners = listingsObject;
-  const reviews = reviewsObject;
+const getDoctors = cache(() =>
+  fetch("http://localhost:3000/api/doctors").then((res) => res.json())
+);
+const getReviews = cache(() =>
+  fetch("http://localhost:3000/api/reviews").then((res) => res.json())
+);
 
-  // Go through all the practitioners
-  practitioners.forEach((prac) => {
+export default function DirectoryListings({ directoryType }) {
+  // Call the API to get all of the doctors and reviews
+  let reviews = use(getReviews());
+  let doctors = use(getDoctors());
+
+  // Go through all the doctors
+  doctors.forEach((prac) => {
     // Create an empty array to hold the ratings for this doctor
     const allRatings = [];
 
@@ -196,7 +200,7 @@ export default function DirectoryListings({
     const roundedAvg =
       ratingsSum > 0 ? parseInt(roundTo(ratingsSum / allRatings.length)) : 0;
 
-    // Add the average rating to the practitioner object for this particular practitioner
+    // Add the average rating to the doctor object for this particular doctor
     prac["avgRating"] = roundedAvg;
   });
 
@@ -206,7 +210,7 @@ export default function DirectoryListings({
     shoemakerProtocolSelected: "any",
   });
 
-  const addressStatesIncluded = practitioners.map((doc) => doc.addressState);
+  const addressStatesIncluded = doctors.map((doc) => doc.addressState);
 
   return (
     <>
@@ -217,8 +221,8 @@ export default function DirectoryListings({
       />
 
       <div className={styles.listingsContainer}>
-        {practitioners &&
-          practitioners.map((doc) => (
+        {doctors &&
+          doctors.map((doc) => (
             <DoctorListing
               key={doc.id}
               slug={doc.slug}

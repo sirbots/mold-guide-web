@@ -26,14 +26,7 @@ export const metadata = {
   title: "Find Mold Doctors and Treatment",
 };
 
-// Database
-import { prisma } from "../lib/prisma";
-
 export default async function PractitionerListingsPage() {
-  // Query the database for all doctors and reviews
-  const practitioners = await prisma.doctor.findMany();
-  const reviews = await prisma.review.findMany();
-
   return (
     <main className={styles.container}>
       <Header />
@@ -50,13 +43,9 @@ export default async function PractitionerListingsPage() {
       <div className={styles.directoryPage}>
         <h2 className={lora.className}>Browse Doctors</h2>
 
-        <Suspense fallback={"Loading..."}>
-          <DirectoryListings
-            directoryType="doctors"
-            listingsObject={practitioners}
-            reviewsObject={reviews}
-          />
-        </Suspense>
+        {/* TO DO: we may not need this <Suspense> component */}
+
+        <DirectoryListings directoryType="doctors" />
       </div>
 
       <Footer />
