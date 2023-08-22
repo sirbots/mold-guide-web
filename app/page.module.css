@@ -57,9 +57,14 @@
   line-height: 1.4; /* Uncomment if needed */
 }
 
+
 .container a {
   color: #0A9396;
-  text-decoration: underline;
+  
+}
+.container p a {
+  color: #0A9396;
+  /* text-decoration: underline; */
 }
 
 /* Header/Nav Styles */
@@ -96,6 +101,9 @@
   display: flex;
   justify-content: flex-end;
   margin-right: 50px;
+  
+  
+  
 }
 
 .desktopNav li {
@@ -103,7 +111,10 @@
   padding: 0 25px;
   font-size: 1.2rem;
 }
-
+.navLinks li a {
+  color: #336765;
+  text-decoration: none;
+}
 
 .mobileNav {
   display: none;
