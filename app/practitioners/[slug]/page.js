@@ -9,6 +9,7 @@ import { prisma } from "../../lib/prisma";
 // Components
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import StarRatings from "../../components/StarRatings";
 
 // Helpers
 import arrayToCommaString from "../../lib/arrayToCommaString";
@@ -20,8 +21,6 @@ import roundTo from "../../lib/roundTo";
 // Styles & Fonts
 import styles from "../../page.module.css";
 import { Lora } from "next/font/google";
-import { StarIcon as StarIconOutline } from "@heroicons/react/24/outline";
-import { StarIcon as StarIconSolid } from "@heroicons/react/24/solid";
 
 const lora = Lora({
   subsets: ["latin"],
@@ -107,8 +106,6 @@ export default async function SinglePractitionerPage({ params }) {
     conditionsTreated: conditionsTreated,
   } = doctor;
 
-  const ratingsAvgRounded = await getAvgRating(doctor.id);
-
   return (
     <main className={styles.container}>
       <Header />
@@ -125,32 +122,8 @@ export default async function SinglePractitionerPage({ params }) {
           <span className={styles.doctorName}>
             {firstName} {formatMiddleName(middleName)} {lastName}
           </span>
-          <span>
-            {[...Array(ratingsAvgRounded)].map((value, index) => (
-              <StarIconSolid
-                // colors:
-                // #f5e085
-                // #239EA1
-                // #336765
-                key={index}
-                className="h-12 w-12"
-                stroke="currentColor"
-                style={{
-                  height: "25px",
-                  width: "25px",
-                  color: "#239EA1",
-                }}
-              />
-            ))}
-            {[...Array(5 - ratingsAvgRounded)].map((value, index) => (
-              <StarIconOutline
-                key={index}
-                className="h-12 w-12"
-                stroke="currentColor"
-                style={{ height: "25px", width: "25px", color: "#239EA1" }}
-              />
-            ))}
-          </span>
+          <StarRatings doctorId={doctor.id} />
+
           <div className={styles.addressBox}>
             <span className={styles.streetAddress}>{street}</span>
             <span className={styles.unitNumber}>{unitNum}</span>
@@ -171,7 +144,7 @@ export default async function SinglePractitionerPage({ params }) {
       {/* Doctor Info */}
       <div className={styles.singeListingInfoContainer}>
         <h2>About</h2>
-        {/* {bio && convertTextArrayToFormattedString(bio)} */}
+
         {bio &&
           bio.map((paragraph, index) => {
             return <p key={index}>{paragraph}</p>;

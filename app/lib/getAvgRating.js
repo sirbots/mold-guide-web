@@ -1,17 +1,7 @@
-// Database
-import { prisma } from "./prisma";
+// Desc: Function to get the average rating of a doctor
 import roundTo from "./roundTo";
 
-const getAvgRating = async (doctorId) => {
-  // Find the average of the doctor's rating by querying the Reviews model to find all of the reviews with that doctor ID
-  const reviewsOfThisDoctor = await prisma.review.findMany({
-    where: {
-      doctorId: {
-        equals: doctorId,
-      },
-    },
-  });
-
+const getAvgRating = (reviewsOfThisDoctor) => {
   // Return a 0 rating if there are no reviews
   if (reviewsOfThisDoctor.length === 0) {
     return 0;

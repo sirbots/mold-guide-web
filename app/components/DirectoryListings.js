@@ -35,7 +35,6 @@ const DoctorListing = ({
   addressStateSelected,
   shoemakerProtocolSelected,
   avgRating,
-  testField,
 }) => {
   // Round the ratingAverage double
   const ratingRounded = avgRating != undefined ? roundTo(avgRating) : 0;
@@ -101,7 +100,7 @@ const DoctorListing = ({
         </span>
 
         {/* Button */}
-        <a className={styles.listingBtn} href={"/doctors/" + slug}>
+        <a className={styles.listingBtn} href={"/practitioners/" + slug}>
           <span className={styles.listingBtnText}>View Profile</span>
         </a>
       </div>
@@ -164,12 +163,8 @@ const ResultsFilter = ({
   );
 };
 
-const getDoctors = cache(() =>
-  fetch("http://localhost:3000/api/doctors").then((res) => res.json())
-);
-const getReviews = cache(() =>
-  fetch("http://localhost:3000/api/reviews").then((res) => res.json())
-);
+const getDoctors = cache(() => fetch("/api/doctors").then((res) => res.json()));
+const getReviews = cache(() => fetch("/api/reviews").then((res) => res.json()));
 
 export default function DirectoryListings({ directoryType }) {
   // Call the API to get all of the doctors and reviews

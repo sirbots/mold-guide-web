@@ -7,10 +7,6 @@ import WideImage from "../components/WideImage";
 import Footer from "../components/Footer";
 import DirectoryListings from "../components/DirectoryListings";
 
-// Helpers
-import getAvgRating from "../lib/getAvgRating";
-import roundTo from "../lib/roundTo";
-
 // Styles & Fonts
 import styles from "../page.module.css";
 import { Lora } from "next/font/google";
@@ -42,14 +38,10 @@ export default async function PractitionerListingsPage() {
       {/* Page Content */}
       <div className={styles.directoryPage}>
         <h2 className={lora.className}>Browse Doctors</h2>
-
-        {/* TO DO: we may not need this <Suspense> component */}
-
         <DirectoryListings directoryType="doctors" />
       </div>
 
       <Footer />
     </main>
   );
-  // console.log(practitioners);
 }
