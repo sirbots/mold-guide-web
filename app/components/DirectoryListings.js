@@ -163,13 +163,15 @@ const ResultsFilter = ({
   );
 };
 
-const getDoctors = cache(() => fetch("/api/doctors").then((res) => res.json()));
+const getPublishedDoctors = cache(() =>
+  fetch("/api/doctors/published").then((res) => res.json())
+);
 const getReviews = cache(() => fetch("/api/reviews").then((res) => res.json()));
 
 export default function DirectoryListings({ directoryType }) {
   // Call the API to get all of the doctors and reviews
   let reviews = use(getReviews());
-  let doctors = use(getDoctors());
+  let doctors = use(getPublishedDoctors());
 
   // Go through all the doctors
   doctors.forEach((prac) => {

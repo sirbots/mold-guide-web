@@ -15,8 +15,6 @@ import StarRatings from "../../components/StarRatings";
 import arrayToCommaString from "../../lib/arrayToCommaString";
 import capitalizeFirstLetter from "../../lib/capitalizeFirstLetter";
 import formatMiddleName from "../../lib/formatMiddleName";
-import getAvgRating from "../../lib/getAvgRating";
-import roundTo from "../../lib/roundTo";
 
 // Styles & Fonts
 import styles from "../../page.module.css";
@@ -32,7 +30,13 @@ const lora = Lora({
 // Return a list of `params` to populate the [slug] dynamic segment
 export async function generateStaticParams() {
   // First, get all of the documents in the Doctor collection of the database so we can create a page for each one
-  const practitioners = await prisma.doctor.findMany();
+  const practitioners = await prisma.doctor.findMany({
+    where: {
+      published: {
+        equals: true,
+      },
+    },
+  });
 
   // Then, get the slug field of each Doctor and map it. This will get passed as a params prop to the
   // SinglePractitionerPage function so nextjs can build a unique page for each doctor (by looking up
