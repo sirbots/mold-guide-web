@@ -9,7 +9,8 @@ import { prisma } from "../../lib/prisma";
 // Components
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import StarRatings from "../../components/StarRatings";
+import SingleListingStarRatings from "../../components/SingleListingStarRatings";
+import DoctorReviews from "../../components/DoctorReviews";
 
 // Helpers
 import arrayToCommaString from "../../lib/arrayToCommaString";
@@ -128,7 +129,7 @@ export default async function SinglePractitionerPage({ params }) {
           <span className={styles.doctorName}>
             {firstName} {formatMiddleName(middleName)} {lastName}
           </span>
-          <StarRatings doctorId={doctor.id} />
+          <SingleListingStarRatings doctorId={id} />
 
           <div className={styles.addressBox}>
             <span className={styles.streetAddress}>{street}</span>
@@ -180,6 +181,7 @@ export default async function SinglePractitionerPage({ params }) {
         <h3>Certifications</h3>
         <p>{certifications && arrayToCommaString(certifications)}</p>
       </div>
+      <DoctorReviews doctorId={id} />
       <Footer />
     </main>
   );

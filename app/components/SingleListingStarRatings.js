@@ -9,12 +9,9 @@ const getReviewsOfThisDoctor = cache((doctorId) =>
   fetch("/api/reviews/by-doctor-id/" + doctorId).then((res) => res.json())
 );
 
-export default function StarRatings({ doctorId }) {
+export default function SingleListingStarRatings({ doctorId }) {
   let reviewsOfThisDoctor = use(getReviewsOfThisDoctor(doctorId));
   const ratingsAvgRounded = getAvgRating(reviewsOfThisDoctor);
-
-  console.log(ratingsAvgRounded);
-  console.log("doctorId: " + doctorId);
 
   return (
     <div>

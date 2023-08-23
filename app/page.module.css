@@ -730,6 +730,14 @@
 }
  */
 
+ .doctorReviewsContainer {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 100px;
+  align-items: center;
+ }
+
+
 
  /* User Profile Page */
  .userReviewsContainer {
