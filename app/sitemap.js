@@ -4,7 +4,13 @@ import { prisma } from "./lib/prisma";
 const URL = "https://themoldguide.com/";
 
 // Get all of the practitioners
-const practitionersArray = await prisma.doctor.findMany();
+const practitionersArray = await prisma.doctor.findMany({
+  where: {
+    published: {
+      equals: true,
+    },
+  },
+});
 
 // Create an empty array for the doctor data
 const doctorData = [];
