@@ -15,6 +15,7 @@ const merriweather = Merriweather({
 
 export default function NewListingForm() {
   let [sending, setSending] = useState(false);
+  // let [telehealthChecked, setTelehealthChecked] = useState(false);
   let [formValues, setFormValues] = useState({
     firstName: "John",
     middleName: "",
@@ -29,12 +30,12 @@ export default function NewListingForm() {
     addressState: "MA",
     addressZipcode: "",
     addressCountry: "USA",
-    // telehealth: "",
+    telehealth: false,
     shoemakerProtocol: false,
-    // conditionsTreated: "",
-    // certifications: "",
-    // seesPatientsIn: "",
-    // bio: "",
+    conditionsTreated: "", // String[] @default(["Mold Illness"])
+    certifications: "", // String[] @default([""])
+    seesPatientsIn: "", // String[] @default([""])
+    bio: "", // String[] @default(["Coming soon!"])
     createdAt: new Date(),
     lastModified: new Date(),
   });
@@ -279,24 +280,30 @@ export default function NewListingForm() {
         </label>
         <input
           className={styles.formInput}
-          type="text"
+          type="checkbox"
           name="telehealth"
-          value={formValues.telehealth}
-          onChange={handleChange}
+          defaultChecked={false}
+          onChange={() =>
+            setFormValues({ ...formValues, telehealth: !formValues.telehealth })
+          }
         />
-      </div>
-      <div className={styles.formRow}>
         <label className={styles.formLabel} htmlFor="shoemakerProtocol">
           Uses the Shoemaker Protocol?
         </label>
         <input
           className={styles.formInput}
-          type="text"
+          type="checkbox"
           name="shoemakerProtocol"
-          value={formValues.shoemakerProtocol}
-          onChange={handleChange}
+          defaultChecked={false}
+          onChange={() =>
+            setFormValues({
+              ...formValues,
+              shoemakerProtocol: !formValues.shoemakerProtocol,
+            })
+          }
         />
       </div>
+      <div className={styles.formRow}></div>
       <div className={styles.formRow}>
         <label className={styles.formLabel} htmlFor="conditionsTreated">
           Conditions Treated:

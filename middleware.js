@@ -1,6 +1,6 @@
 // here be the middleware.
 
-//Middleware Route Protection
+// Middleware Route Protection
 // The final and most preferable approach to protecting routes is by using middleware. This is the best way because it enables you to protect an entire subdirectory or all pages of your application, rather than adding route protection logic to each individual page.
 
 export { default } from "next-auth/middleware";

@@ -30,6 +30,7 @@ const lora = Lora({
 // Return a list of `params` to populate the [slug] dynamic segment
 export async function generateStaticParams() {
   // First, get all of the documents in the Doctor collection of the database so we can create a page for each one
+
   const practitioners = await prisma.doctor.findMany({
     where: {
       published: {
@@ -158,7 +159,9 @@ export default async function SinglePractitionerPage({ params }) {
         <p>{practiceName}</p>
 
         <h3>Telehealth</h3>
-        <p>{capitalizeFirstLetter(telehealth)}</p>
+        <p>
+          {telehealth === null ? "Unknown" : telehealth === true ? "Yes" : "No"}
+        </p>
 
         <h3>Can See Patients In</h3>
         <p>{seesPatientsIn && arrayToCommaString(seesPatientsIn)}</p>

@@ -36,7 +36,7 @@ model Doctor {
   addressZipcode    String?
   addressCountry    String
   website           String?
-  telehealth        String?
+  telehealth        Boolean?
   shoemakerProtocol Boolean
   conditionsTreated String[] @default(["Mold Illness"])
   certifications    String[] @default([""])

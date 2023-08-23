@@ -169,7 +169,7 @@ const getPublishedDoctors = cache(() =>
 const getReviews = cache(() => fetch("/api/reviews").then((res) => res.json()));
 
 export default function DirectoryListings({ directoryType }) {
-  // Call the API to get all of the doctors and reviews
+  // Call the API to get all of the published doctors and reviews
   let reviews = use(getReviews());
   let doctors = use(getPublishedDoctors());
 

@@ -61,9 +61,9 @@ export default async function Header() {
               </li>
             </>
           )}
-          <li>
+          {/* <li>
             <a href="/add-listing">+ Add Listing</a>
-          </li>
+          </li> */}
         </ul>
         {/* Mobile Nav Links */}
         <MobileNav />

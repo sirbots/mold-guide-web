@@ -68,9 +68,9 @@ export default function MobileNav() {
             </li>
           </>
         )}
-        <li>
+        {/* <li>
           <a href="/add-listing">+ Add Listing</a>
-        </li>
+        </li> */}
       </ul>
     </div>
   );
