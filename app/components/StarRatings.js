@@ -6,10 +6,7 @@ import { StarIcon as StarIconOutline } from "@heroicons/react/24/outline";
 import { StarIcon as StarIconSolid } from "@heroicons/react/24/solid";
 
 const getReviewsOfThisDoctor = cache((doctorId) =>
-  fetch("/api/reviews/by-doctor-id/", {
-    method: "GET",
-    doctorId: doctorId,
-  }).then((res) => res.json())
+  fetch("/api/reviews/by-doctor-id/" + doctorId).then((res) => res.json())
 );
 
 export default function StarRatings({ doctorId }) {
@@ -17,6 +14,7 @@ export default function StarRatings({ doctorId }) {
   const ratingsAvgRounded = getAvgRating(reviewsOfThisDoctor);
 
   console.log(ratingsAvgRounded);
+  console.log("doctorId: " + doctorId);
 
   return (
     <div>

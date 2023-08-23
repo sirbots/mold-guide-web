@@ -13,8 +13,8 @@ import StarRatings from "../../components/StarRatings";
 
 // Helpers
 import arrayToCommaString from "../../lib/arrayToCommaString";
-import capitalizeFirstLetter from "../../lib/capitalizeFirstLetter";
 import formatMiddleName from "../../lib/formatMiddleName";
+// import capitalizeFirstLetter from "../../lib/capitalizeFirstLetter";
 
 // Styles & Fonts
 import styles from "../../page.module.css";
@@ -90,6 +90,7 @@ export default async function SinglePractitionerPage({ params }) {
 
   // Destructure the object to make the names more manageable
   let {
+    id: id,
     firstName: firstName,
     middleName: middleName,
     lastName: lastName,
