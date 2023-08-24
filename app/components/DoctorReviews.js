@@ -3,12 +3,6 @@ import { cache, use } from "react";
 
 // Styles & Images
 import styles from "../page.module.css";
-import { StarIcon as StarIconOutline } from "@heroicons/react/24/outline";
-import { StarIcon as StarIconSolid } from "@heroicons/react/24/solid";
-
-// Helpers
-import formatMiddleName from "../lib/formatMiddleName";
-import roundTo from "../lib/roundTo";
 
 // Components
 import Stars from "./Stars";
@@ -38,7 +32,7 @@ const DoctorReviews = ({ doctorId }) => {
         {reviewsOfThisDoctor &&
           reviewsOfThisDoctor.map((rev) => {
             return (
-              <div key={rev.id}>
+              <div key={rev.id} className={styles.doctorReview}>
                 <h4>{rev.title}</h4>
                 <Stars starCount={rev.rating} />
 

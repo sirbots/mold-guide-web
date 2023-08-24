@@ -734,10 +734,22 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 100px;
+  align-self: center;
   align-items: center;
+  padding: 20px;
+  min-width: 50%;
+  max-width: 70%;
  }
 
+ .doctorReview {
+  width: 100%;
+  margin: 20px 0;
+  padding: 0 40px;
+ }
 
+ .doctorReviewsContainer h3 {
+  margin-bottom: 20px;
+ }
 
  /* User Profile Page */
  .userReviewsContainer {
