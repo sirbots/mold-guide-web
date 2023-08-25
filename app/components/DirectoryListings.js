@@ -211,7 +211,6 @@ export default function DirectoryListings({ directoryType }) {
               addressStateSelected={filterValues.addressStateSelected}
               shoemakerProtocolSelected={filterValues.shoemakerProtocolSelected}
               avgRating={doc.avgRating}
-              testField={doc.testField}
             />
           ))}
       </div>

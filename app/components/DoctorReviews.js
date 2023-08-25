@@ -1,5 +1,5 @@
 "use client";
-import { cache, use } from "react";
+import { useState, useEffect, Suspense, cache, use } from "react";
 
 // Styles & Images
 import styles from "../page.module.css";
@@ -7,43 +7,86 @@ import styles from "../page.module.css";
 // Components
 import Stars from "./Stars";
 
-const getReviewsOfThisDoctor = cache((doctorId) =>
-  fetch("/api/reviews/by-doctor-id/" + doctorId).then((res) => res.json())
-);
+const UserName = (userName) => {
+  return (
+    <>
+      {/* <p>{userName}</p>; */}
+      <p>username here</p>
+    </>
+  );
+};
 
 const DoctorReviews = ({ doctorId }) => {
-  let reviewsOfThisDoctor = use(getReviewsOfThisDoctor(doctorId));
+  const [isLoading, setLoading] = useState(true);
+  const [reviewsWithEmails, setReviewsWithEmails] = useState(null);
 
-  console.log("doctorId: " + doctorId);
-  console.log(reviewsOfThisDoctor);
+  useEffect(() => {
+    let reviews = [];
+    fetch("/api/reviews-with-displayname/by-doctor-id/" + doctorId)
+      .then((res) => res.json())
+      .then((reviewData) => {
+        reviews = reviewData;
+        // review["userEmail"] = "test@test.com";
+        // console.log(data);
+      })
+      // .then(() => {
+      //   // console.log(reviews);
+      //   reviews.forEach((review) => {
+      //     fetch("/api/users/" + review.authorId)
+      //       .then((res) => res.json())
+      //       .then((userData) => {
+      //         // console.log(userData);
+      //         review["userEmail"] = userData.email;
+      //         // console.log(review);
+      //       });
+      //   });
+      // })
+      .then(() => {
+        console.log("here is the state object before updating it:");
+        console.log(reviewsWithEmails);
+        console.log("here are the reviews before pushing to state:");
+        console.log(reviews);
+        setReviewsWithEmails(reviews);
+        setLoading(false);
+      });
+  }, [doctorId]);
 
-  if (reviewsOfThisDoctor.length === 0) {
+  if (isLoading)
+    return (
+      <div className={styles.doctorReviewsContainer}>
+        <h3>Patient Reviews</h3>
+        <p>Loading...</p>
+      </div>
+    );
+
+  if (!reviewsWithEmails) {
     return (
       <div className={styles.doctorReviewsContainer}>
         <h3>Patient Reviews</h3>
         <p>There are no reviews yet for this practitioner.</p>
       </div>
     );
-  } else {
-    return (
-      <div className={styles.doctorReviewsContainer}>
-        <h3>Patient Reviews</h3>
-
-        {reviewsOfThisDoctor &&
-          reviewsOfThisDoctor.map((rev) => {
-            return (
-              <div key={rev.id} className={styles.doctorReview}>
-                <h4>{rev.title}</h4>
-                <Stars starCount={rev.rating} />
-
-                <p>{rev.body}</p>
-                <p>Insert reviewer screenname here.</p>
-              </div>
-            );
-          })}
-      </div>
-    );
   }
+
+  return (
+    <div className={styles.doctorReviewsContainer}>
+      <h3>Patient Reviews</h3>
+
+      {reviewsWithEmails &&
+        reviewsWithEmails.map((rev) => {
+          return (
+            <div key={rev.id} className={styles.doctorReview}>
+              <h4 style={{ marginBottom: "5px" }}>{rev.title}</h4>
+              <Stars starCount={rev.rating} />
+
+              <p style={{ marginTop: "5px" }}>{rev.body}</p>
+
+              <p>{rev.userEmail}</p>
+            </div>
+          );
+        })}
+    </div>
+  );
 };
 
 export default DoctorReviews;

@@ -2,7 +2,8 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["views"]
 }
 
 datasource db {
@@ -57,4 +58,13 @@ model Review {
 
   Doctor   Doctor? @relation(fields: [doctorId], references: [id])
   doctorId String
+}
+
+view EnrichedReviews {
+  id                String @id @default(auto()) @map("_id") @db.ObjectId
+  title             String
+  body              String
+  rating            Int
+  authorId          String @db.ObjectId
+  authorDisplayName String
 }
