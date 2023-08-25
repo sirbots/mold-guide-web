@@ -49,22 +49,24 @@ model Doctor {
 }
 
 model Review {
-  id       String @id @default(auto()) @map("_id") @db.ObjectId
-  title    String
-  body     String
-  rating   Int
-  author   User   @relation(fields: [authorId], references: [id])
-  authorId String @db.ObjectId
-
-  Doctor   Doctor? @relation(fields: [doctorId], references: [id])
-  doctorId String
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  body      String
+  rating    Int
+  author    User     @relation(fields: [authorId], references: [id])
+  authorId  String   @db.ObjectId
+  Doctor    Doctor?  @relation(fields: [doctorId], references: [id])
+  doctorId  String
+  createdAt DateTime @default(now())
 }
 
 view EnrichedReviews {
-  id                String @id @default(auto()) @map("_id") @db.ObjectId
+  id                String   @id @default(auto()) @map("_id") @db.ObjectId
   title             String
   body              String
   rating            Int
-  authorId          String @db.ObjectId
+  authorId          String   @db.ObjectId
   authorDisplayName String
+  doctorId          String
+  createdAt         DateTime
 }

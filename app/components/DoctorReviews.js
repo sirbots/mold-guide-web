@@ -1,5 +1,7 @@
 "use client";
-import { useState, useEffect, Suspense, cache, use } from "react";
+
+// React
+import { cache, use } from "react";
 
 // Styles & Images
 import styles from "../page.module.css";
@@ -7,59 +9,17 @@ import styles from "../page.module.css";
 // Components
 import Stars from "./Stars";
 
-const UserName = (userName) => {
-  return (
-    <>
-      {/* <p>{userName}</p>; */}
-      <p>username here</p>
-    </>
-  );
-};
+// Pulls from a Prisma view that joins the reviews table with the users table (to get the user's display name)
+const getDoctorReviews = cache((doctorId) =>
+  fetch("/api/reviews-with-displayname/by-doctor-id/" + doctorId).then((res) =>
+    res.json()
+  )
+);
 
 const DoctorReviews = ({ doctorId }) => {
-  const [isLoading, setLoading] = useState(true);
-  const [reviewsWithEmails, setReviewsWithEmails] = useState(null);
+  let reviews = use(getDoctorReviews(doctorId));
 
-  useEffect(() => {
-    let reviews = [];
-    fetch("/api/reviews-with-displayname/by-doctor-id/" + doctorId)
-      .then((res) => res.json())
-      .then((reviewData) => {
-        reviews = reviewData;
-        // review["userEmail"] = "test@test.com";
-        // console.log(data);
-      })
-      // .then(() => {
-      //   // console.log(reviews);
-      //   reviews.forEach((review) => {
-      //     fetch("/api/users/" + review.authorId)
-      //       .then((res) => res.json())
-      //       .then((userData) => {
-      //         // console.log(userData);
-      //         review["userEmail"] = userData.email;
-      //         // console.log(review);
-      //       });
-      //   });
-      // })
-      .then(() => {
-        console.log("here is the state object before updating it:");
-        console.log(reviewsWithEmails);
-        console.log("here are the reviews before pushing to state:");
-        console.log(reviews);
-        setReviewsWithEmails(reviews);
-        setLoading(false);
-      });
-  }, [doctorId]);
-
-  if (isLoading)
-    return (
-      <div className={styles.doctorReviewsContainer}>
-        <h3>Patient Reviews</h3>
-        <p>Loading...</p>
-      </div>
-    );
-
-  if (!reviewsWithEmails) {
+  if (reviews.length === 0) {
     return (
       <div className={styles.doctorReviewsContainer}>
         <h3>Patient Reviews</h3>
@@ -72,8 +32,16 @@ const DoctorReviews = ({ doctorId }) => {
     <div className={styles.doctorReviewsContainer}>
       <h3>Patient Reviews</h3>
 
-      {reviewsWithEmails &&
-        reviewsWithEmails.map((rev) => {
+      {reviews &&
+        reviews.map((rev) => {
+          // Format the review createdAt date
+          const date = new Date(rev.createdAt);
+          const formattedDate = date.toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          });
+
           return (
             <div key={rev.id} className={styles.doctorReview}>
               <h4 style={{ marginBottom: "5px" }}>{rev.title}</h4>
@@ -81,7 +49,9 @@ const DoctorReviews = ({ doctorId }) => {
 
               <p style={{ marginTop: "5px" }}>{rev.body}</p>
 
-              <p>{rev.userEmail}</p>
+              <p>
+                posted by <b>{rev.authorDisplayName}</b> on {formattedDate}
+              </p>
             </div>
           );
         })}
