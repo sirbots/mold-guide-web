@@ -1,7 +1,7 @@
 "use client";
 
 // React
-import { cache, use } from "react";
+import { cache, use, useState } from "react";
 
 // Styles & Images
 import styles from "../page.module.css";
@@ -16,7 +16,29 @@ const getDoctorReviews = cache((doctorId) =>
   )
 );
 
+const ReviewForm = ({ reviewMode, setReviewMode }) => {
+  if (reviewMode == "hidden") {
+    return (
+      <a className={styles.heroBtn} onClick={() => setReviewMode("display")}>
+        <span className={styles.heroBtnText}>Add a Review</span>
+      </a>
+    );
+  }
+
+  if (reviewMode == "display") {
+    return (
+      // left off here. build out the review form now!
+      <div>
+        <p>here goes the review form</p>
+        <p>reviewMode: {reviewMode}</p>
+      </div>
+    );
+  }
+};
+
 const DoctorReviews = ({ doctorId }) => {
+  const [reviewMode, setReviewMode] = useState("hidden");
+
   let reviews = use(getDoctorReviews(doctorId));
 
   if (reviews.length === 0) {
@@ -31,6 +53,8 @@ const DoctorReviews = ({ doctorId }) => {
   return (
     <div className={styles.doctorReviewsContainer}>
       <h3>Patient Reviews</h3>
+
+      <ReviewForm reviewMode={reviewMode} setReviewMode={setReviewMode} />
 
       {reviews &&
         reviews.map((rev) => {
