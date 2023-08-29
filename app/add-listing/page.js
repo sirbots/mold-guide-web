@@ -33,10 +33,6 @@ export default async function AddListingPage() {
 
   //   const userName = JSON.stringify(session.user.name).replaceAll('"', "");
   //   const userEmail = JSON.stringify(session.user.email).replaceAll('"', "");
-  //   const userDisplayName = JSON.stringify(session.user.displayName).replaceAll(
-  //     '"',
-  //     ""
-  //   );
 
   return (
     <main className={styles.container}>

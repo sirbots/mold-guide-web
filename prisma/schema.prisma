@@ -12,12 +12,11 @@ datasource db {
 }
 
 model User {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  name        String?
-  email       String   @unique
-  password    String
-  displayName String?
-  reviews     Review[]
+  id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  name     String?
+  email    String   @unique
+  password String
+  reviews  Review[]
 }
 
 model Doctor {
@@ -61,12 +60,12 @@ model Review {
 }
 
 view EnrichedReviews {
-  id                String   @id @default(auto()) @map("_id") @db.ObjectId
-  title             String
-  body              String
-  rating            Int
-  authorId          String   @db.ObjectId
-  authorDisplayName String
-  doctorId          String
-  createdAt         DateTime
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  title      String
+  body       String
+  rating     Int
+  authorId   String   @db.ObjectId
+  authorName String
+  doctorId   String
+  createdAt  DateTime
 }

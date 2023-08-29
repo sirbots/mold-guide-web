@@ -60,12 +60,11 @@ export default function SignUpForm() {
     <form className={styles.signUpForm} onSubmit={handleSubmit}>
       <div className={styles.formRow}>
         <label className={styles.formLabel} htmlFor="name">
-          Name:
+          Display Name:
         </label>
         <input
           className={styles.formInput}
           type="text"
-          // id="name"
           name="name"
           value={formValues.name}
           onChange={handleChange}

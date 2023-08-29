@@ -11,7 +11,7 @@ import Stars from "./Stars";
 
 // Pulls from a Prisma view that joins the reviews table with the users table (to get the user's display name)
 const getDoctorReviews = cache((doctorId) =>
-  fetch("/api/reviews-with-displayname/by-doctor-id/" + doctorId).then((res) =>
+  fetch("/api/reviews-with-name/by-doctor-id/" + doctorId).then((res) =>
     res.json()
   )
 );
@@ -50,7 +50,7 @@ const DoctorReviews = ({ doctorId }) => {
               <p style={{ marginTop: "5px" }}>{rev.body}</p>
 
               <p>
-                posted by <b>{rev.authorDisplayName}</b> on {formattedDate}
+                posted by <b>{rev.authorName}</b> on {formattedDate}
               </p>
             </div>
           );

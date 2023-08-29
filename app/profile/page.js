@@ -32,10 +32,6 @@ export default async function ProfilePage() {
 
   const userName = JSON.stringify(session.user.name).replaceAll('"', "");
   const userEmail = JSON.stringify(session.user.email).replaceAll('"', "");
-  const userDisplayName = JSON.stringify(session.user.displayName).replaceAll(
-    '"',
-    ""
-  );
 
   return (
     <main className={styles.container}>
@@ -44,8 +40,7 @@ export default async function ProfilePage() {
       <div className={styles.pageContent}>
         <h2 className={lora.className}>Your Profile</h2>
 
-        <p>Name: {userName}</p>
-        <p>Display Name: {userDisplayName}</p>
+        <p>Display Name: {userName}</p>
         <p>Email: {userEmail}</p>
 
         <h2 className={lora.className}>Your Reviews</h2>
