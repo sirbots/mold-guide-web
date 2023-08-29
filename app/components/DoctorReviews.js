@@ -54,7 +54,7 @@ const DoctorReviews = ({ doctorId }) => {
     <div className={styles.doctorReviewsContainer}>
       <h3>Patient Reviews</h3>
 
-      <ReviewForm reviewMode={reviewMode} setReviewMode={setReviewMode} />
+      {/* <ReviewForm reviewMode={reviewMode} setReviewMode={setReviewMode} /> */}
 
       {reviews &&
         reviews.map((rev) => {

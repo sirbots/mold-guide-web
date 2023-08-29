@@ -44,11 +44,3 @@ export const LogoutButton = () => {
 export const ProfileButton = () => {
   return <Link href="/profile">Profile</Link>;
 };
-
-export const AddReviewButton = ({ onClickFn }) => {
-  return (
-    <a className={styles.heroBtn} onClick={() => onClickFn()}>
-      <span className={styles.heroBtnText}>Add a Review</span>
-    </a>
-  );
-};
