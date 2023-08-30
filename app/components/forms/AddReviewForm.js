@@ -87,7 +87,7 @@ export default function AddReviewForm({ doctorId }) {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
-    console.log(formValues);
+    // console.log(formValues);
   };
 
   // If the user is not logged in, display a message telling them to sign in or register in order to leave a review

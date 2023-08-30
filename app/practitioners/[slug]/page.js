@@ -155,15 +155,14 @@ export default async function SinglePractitionerPage({ params }) {
 
       {/* Doctor Info */}
       <div className={styles.singeListingInfoContainer}>
-        <h2>About</h2>
+        <h3>Practice Name</h3>
+        <p>{practiceName}</p>
 
+        <h3>About the Practitioner</h3>
         {bio &&
           bio.map((paragraph, index) => {
             return <p key={index}>{paragraph}</p>;
           })}
-
-        <h3>Practice Name</h3>
-        <p>{practiceName}</p>
 
         <h3>Telehealth</h3>
         <p>
