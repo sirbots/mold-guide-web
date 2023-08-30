@@ -33,7 +33,7 @@ export default function AddReviewForm({ doctorId }) {
   // Get the user from the cache
   let user = use(getUser());
   // Get the user's ID
-  let userId = user.session.user.id;
+  let userId = user?.session?.user?.id;
 
   // Handles the submit event on form submit.
   const handleSubmit = async (e) => {
@@ -90,6 +90,27 @@ export default function AddReviewForm({ doctorId }) {
     console.log(formValues);
   };
 
+  // If the user is not logged in, display a message telling them to sign in or register in order to leave a review
+  if (user.status === "fail") {
+    return (
+      <div className={styles.addReviewSubmitted}>
+        <h3 className={styles.addReviewTitle}>
+          Leave a Review of this Practitioner
+        </h3>
+        <p
+          style={{
+            marginTop: "15px",
+            padding: "0 8%",
+          }}
+        >
+          You need to <a href="/api/auth/signin">sign in</a> to your account
+          before you can leave a review. If you don&rsquo;t have an account yet,
+          you can <a href="/signup">register here</a>.
+        </p>
+      </div>
+    );
+  }
+
   if (reviewPublished === false) {
     return (
       // Has an id so the Add Review button can link to this location on the page
@@ -101,6 +122,7 @@ export default function AddReviewForm({ doctorId }) {
         <h3 className={styles.addReviewTitle}>
           Leave a Review of this Practitioner
         </h3>
+
         <p className={styles.addReviewP}>
           Try to leave a review that provides helpful information for others who
           are looking for help.

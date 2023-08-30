@@ -28,6 +28,11 @@ export default function LoginForm() {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") || "/profile";
 
+  // console.log("searchParams: " + searchParams);
+  // console.log("The callbackUrl is: " + callbackUrl);
+
+  console.log("document.referrer: " + document.referrer);
+
   // Handles the submit event on form submit.
   const handleSubmit = async (e) => {
     // Stop the form from submitting and refrehsing the page.
@@ -47,7 +52,12 @@ export default function LoginForm() {
 
       console.log(res);
       if (!res?.error) {
-        router.push(callbackUrl);
+        if (document.referrer !== "") {
+          // Send the user back to the previous page (e.g. if they clicked the "sign in" link from a doctor page)
+          router.push(document.referrer);
+        } else {
+          router.push(callbackUrl);
+        }
       } else {
         console.log(error);
         setError(res.error);
