@@ -1,7 +1,7 @@
 "use client";
 
 // React
-import { cache, use, useState } from "react";
+import { cache, use } from "react";
 
 // Styles & Images
 import styles from "../page.module.css";

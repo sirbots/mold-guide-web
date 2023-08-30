@@ -8,6 +8,9 @@ export async function GET(request, { params }) {
       doctorId: {
         equals: doctorId,
       },
+      published: {
+        equals: true,
+      },
     },
   });
 
