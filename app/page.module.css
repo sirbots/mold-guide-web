@@ -200,6 +200,7 @@
   font-size: 20px;
   font-weight: bold;
 }
+
   
 
 /* Wide Page Images */
@@ -650,6 +651,61 @@
 
 .singleListingHero .star {
   color: #EE9B00;
+}
+
+/* Single Listing Add Review Btn */ 
+.addReviewBtn {
+  display: flex;
+  height: 28px;
+  width: 110px;
+
+  border-radius: 20px;
+  margin-top: 14px;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #CA383A;
+  border: 1px solid #CA383A;
+  box-shadow: 1px 2px #E4705F;
+
+}  
+.addReviewBtnTxt {
+  color: #FEFEFE;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+/* Add Review Form */
+.addReviewForm {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  width: 56%;
+  margin-top: 15px;
+  margin-bottom: 100px;
+}
+.addReviewForm .formRow {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 12px;
+}
+
+.addReviewForm .formLabel {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  margin-bottom: 10px;
+  width: 30%;
+}
+.addReviewForm .formInput {
+  background: transparent;
+  border: 1px solid #001219;
+  border-radius: 3px;
+  color: #001219;
+  font-family: inherit;
+  width: 70%;
+  padding: 0 10px;
+  min-height: 40px;
 }
 
 /* Hero box rules */

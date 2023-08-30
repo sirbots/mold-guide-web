@@ -11,6 +11,7 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import SingleListingStarRatings from "../../components/SingleListingStarRatings";
 import DoctorReviews from "../../components/DoctorReviews";
+import AddReviewForm from "../../components/forms/AddReviewForm";
 
 // Helpers
 import arrayToCommaString from "../../lib/arrayToCommaString";
@@ -131,6 +132,10 @@ export default async function SinglePractitionerPage({ params }) {
           </span>
           <SingleListingStarRatings doctorId={id} />
 
+          <a className={styles.addReviewBtn} href={"#review-form"}>
+            <span className={styles.addReviewBtnTxt}>Add a Review</span>
+          </a>
+
           <div className={styles.addressBox}>
             <span className={styles.streetAddress}>{street}</span>
             <span className={styles.unitNumber}>{unitNum}</span>
@@ -181,7 +186,12 @@ export default async function SinglePractitionerPage({ params }) {
         <h3>Certifications</h3>
         <p>{certifications && arrayToCommaString(certifications)}</p>
       </div>
+
+      {/* Reviews */}
       <DoctorReviews doctorId={id} />
+
+      <AddReviewForm />
+
       <Footer />
     </main>
   );
