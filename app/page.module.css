@@ -676,14 +676,26 @@
 }
 
 /* Add Review Form */
+.addReviewSubmitted {
+  text-align: center;
+
+}
 .addReviewForm {
   display: flex;
   flex-direction: column;
   align-self: center;
-  width: 56%;
-  margin-top: 15px;
+  width: 50%;
+  /* margin-top: 15px; */
   margin-bottom: 100px;
 }
+
+.addReviewTitle {
+ text-align: center;
+}
+.addReviewForm .addReviewP  {
+  margin-bottom: 15px;
+}
+
 .addReviewForm .formRow {
   display: flex;
   flex-direction: row;
@@ -707,6 +719,47 @@
   padding: 0 10px;
   min-height: 40px;
 }
+
+.addReviewForm .formInputTextArea {
+  background: transparent;
+  border: 1px solid #001219;
+  border-radius: 3px;
+  color: #001219;
+  font-family: inherit;
+  width: 70%;
+  min-width: 70%;
+  max-width: 70%;
+  padding: 10px;
+  min-height: 140px;
+}
+
+.addReviewForm .formBtn { 
+  display: flex;
+  height: 50px;
+  width: 50%;
+
+  border-radius: 10px;
+  margin-top: 22px;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  background-color: #005F73;
+  border: 1px solid #005F73;
+  box-shadow: 1px 2px #0A9396;
+  
+  }  
+
+/* Commented out for now. TO DO: come back and format this nicely using stars. */
+/* .addReviewForm datalist {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  writing-mode: vertical-lr;
+  width: 200px;   
+}*/
+
 
 /* Hero box rules */
 .singleListingHero .textBox {
@@ -789,7 +842,7 @@
  .doctorReviewsContainer {
   display: flex;
   flex-direction: column;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
   align-self: center;
   align-items: center;
   padding: 20px;

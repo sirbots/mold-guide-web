@@ -189,8 +189,7 @@ export default async function SinglePractitionerPage({ params }) {
 
       {/* Reviews */}
       <DoctorReviews doctorId={id} />
-
-      <AddReviewForm />
+      <AddReviewForm doctorId={id} />
 
       <Footer />
     </main>

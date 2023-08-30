@@ -49,6 +49,7 @@ model Doctor {
 
 model Review {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  published Boolean  @default(true)
   title     String
   body      String
   rating    Int
