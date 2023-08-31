@@ -72,31 +72,46 @@ export default function NewListingForm() {
           "content-type": "application/json",
         },
         body: JSON.stringify(data),
-      }).then(async (res) => {
-        // Reset the button text
-        setSending(false);
+      })
+        .then(async (res) => {
+          // Reset the button text
+          setSending(false);
 
-        // Check for errors from the API
-        if (!res.ok) {
-          // If the statusText == "conflict", it means that the record already exists in the database.
-          if (res.statusText == "Conflict") {
-            alert(
-              "That doctor already exists. If you think this is an error, please contact us."
-            );
-          } else {
-            // Alert with some other error message
-            alert(
-              "Ooops. Received an error with this message: " +
-                res.statusText +
-                "\n\nPlease contact us for help."
-            );
+          // Check for errors from the API
+          if (!res.ok) {
+            // If the statusText == "conflict", it means that the record already exists in the database.
+            if (res.statusText == "Conflict") {
+              alert(
+                "That doctor already exists. If you think this is an error, please contact us."
+              );
+            } else {
+              // Alert with some other error message
+              alert(
+                "Ooops. Received an error with this message: " +
+                  res.statusText +
+                  "\n\nPlease contact us for help."
+              );
+            }
           }
-        }
-        // Redirect to the TY page if the form was submitted successfully.
-        if (res.ok) {
-          router.push("/add-listing/thank-you");
-        }
-      });
+          // Redirect to the TY page if the form was submitted successfully.
+          if (res.ok) {
+            router.push("/add-listing/thank-you");
+          }
+        })
+        .then(() => {
+          // Send an email notification to let you know that a new doctor was submitted
+          try {
+            fetch("/api/email/notifications", {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify({ formSubmitted: "Doctor Listing" }),
+            });
+          } catch (error) {
+            console.log(error);
+          }
+        });
     } catch (error) {
       // console.log(error);
     }
