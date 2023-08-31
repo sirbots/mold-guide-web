@@ -62,23 +62,38 @@ export default function AddReviewForm({ doctorId }) {
           "content-type": "application/json",
         },
         body: JSON.stringify(data),
-      }).then(async (res) => {
-        // Reset the button text
-        setSending(false);
+      })
+        .then(async (res) => {
+          // Reset the button text
+          setSending(false);
 
-        // Check for errors from the API
-        if (!res.ok) {
-          alert(
-            "Ooops. Received an error with this message: " +
-              res.statusText +
-              "\n\nPlease contact us for help."
-          );
-        }
-        // Display a success message if successful
-        if (res.ok) {
-          setPublished(true);
-        }
-      });
+          // Check for errors from the API
+          if (!res.ok) {
+            alert(
+              "Ooops. Received an error with this message: " +
+                res.statusText +
+                "\n\nPlease contact us for help."
+            );
+          }
+          // Display a success message if successful
+          if (res.ok) {
+            setPublished(true);
+          }
+        })
+        .then(() => {
+          // Send an email notification to let you know that a review was submitted
+          try {
+            fetch("/api/email/notifications", {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify({ formSubmitted: "Doctor Review" }),
+            });
+          } catch (error) {
+            console.log(error);
+          }
+        });
     } catch (error) {
       // console.log(error);
     }

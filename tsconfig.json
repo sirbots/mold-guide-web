@@ -28,7 +28,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-, "app/lib/auth.js"  ],
+, "app/lib/auth.js", "app/api/email/send/route.js"  ],
   "exclude": [
     "node_modules"
   ]
