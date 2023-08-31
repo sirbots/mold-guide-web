@@ -3,10 +3,12 @@
 // Auth
 import { signIn } from "next-auth/react";
 import { ChangeEvent, useState } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 
 // Styles & Fonts
 import styles from "../../page.module.css";
 import { Lora, Merriweather } from "next/font/google";
+import { UserGroupIcon } from "@heroicons/react/24/outline";
 
 const merriweather = Merriweather({
   weight: ["400", "700"],
@@ -22,6 +24,9 @@ export default function SignUpForm() {
     password: "",
   });
 
+  // We may not need these. Copied over from LoginForm.js
+  const router = useRouter();
+
   // Handles the submit event on form submit.
   const handleSubmit = async (e) => {
     // Stop the form from submitting and refrehsing the page.
@@ -29,7 +34,7 @@ export default function SignUpForm() {
     setLoading(true);
 
     try {
-      const res = await fetch("/api/register", {
+      const registerRes = await fetch("/api/register", {
         method: "POST",
         body: JSON.stringify(formValues),
         headers: {
@@ -37,13 +42,22 @@ export default function SignUpForm() {
         },
       });
 
-      setLoading(false);
-      if (!res.ok) {
+      if (!registerRes.ok) {
         alert((await res.json()).message);
         return;
       }
 
-      signIn(undefined, { callbackUrl: "/" });
+      // Sign the user in
+      const signInRes = await signIn("credentials", {
+        redirect: false,
+        email: formValues.email,
+        password: formValues.password,
+      });
+
+      // If the user signs in successfully, redirect to the profile page.
+      if (!signInRes?.error) {
+        router.push("/profile");
+      }
     } catch (error) {
       setLoading(false);
       console.error(error);
