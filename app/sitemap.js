@@ -40,16 +40,16 @@ const staticUrls = [
     url: URL + "practitioners",
     lastModified: new Date(),
   },
-  // {
-  //   // Login Page
-  //   url: URL + "login",
-  //   lastModified: new Date(),
-  // },
-  // {
-  //   // Signup Page
-  //   url: URL + "signup",
-  //   lastModified: new Date(),
-  // },
+  {
+    // Login Page
+    url: URL + "login",
+    lastModified: new Date(),
+  },
+  {
+    // Signup Page
+    url: URL + "signup",
+    lastModified: new Date(),
+  },
   // TO DO: insert other status pages here as you create them
 ];
 

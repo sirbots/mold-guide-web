@@ -118,7 +118,7 @@ export default function AddReviewForm({ doctorId }) {
             padding: "0 8%",
           }}
         >
-          You need to <a href="/api/auth/signin">sign in</a> to your account
+          You need to <a href="/api/auth/signin">log in</a> to your account
           before you can leave a review. If you don&rsquo;t have an account yet,
           you can <a href="/signup">register here</a>.
         </p>

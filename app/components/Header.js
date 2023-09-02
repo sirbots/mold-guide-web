@@ -55,7 +55,7 @@ export default async function Header() {
           ) : (
             <>
               <li>
-                <a href="/api/auth/signin">Sign In</a>
+                <a href="/api/auth/signin">Login</a>
               </li>
               <li>
                 <a href="/signup">Register</a>
