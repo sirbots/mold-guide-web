@@ -40,3 +40,4 @@ next-env.d.ts
 
 
 mongoConnect.js
+netlify-auth.js

@@ -48,8 +48,6 @@ export const authOptions = {
           email: user.email,
           name: user.name,
           // displayName: user.displayName,
-          // TO DO: randomize this key
-          randomKey: "Hey cool",
         };
       },
     }),
