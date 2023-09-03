@@ -61,18 +61,6 @@ model Review {
   createdAt DateTime @default(now())
 }
 
-// model Article {
-//   id           String   @id @default(auto()) @map("_id") @db.ObjectId
-//   published    Boolean  @default(false)
-//   title        String
-//   categories   String[] @default([""])
-//   body         String
-//   author       User     @relation(fields: [authorId], references: [id])
-//   authorId     String   @db.ObjectId
-//   createdAt    DateTime @default(now())
-//   lastModified DateTime @default(now())
-// }
-
 view EnrichedReviews {
   id         String   @id @default(auto()) @map("_id") @db.ObjectId
   title      String
