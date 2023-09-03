@@ -50,6 +50,9 @@ export default function MobileNav() {
           <a href="/practitioners">Find Mold Doctors</a>
         </li>
         <li>
+          <a href="/resources">Resources</a>
+        </li>
+        <li>
           <a href="/about">About</a>
         </li>
         {status == "unauthenticated" ? (

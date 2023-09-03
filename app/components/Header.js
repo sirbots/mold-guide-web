@@ -45,6 +45,9 @@ export default async function Header() {
             <a href="/practitioners">Find Mold Doctors</a>
           </li>
           <li>
+            <a href="/resources">Resources</a>
+          </li>
+          <li>
             <a href="/about">About</a>
           </li>
 

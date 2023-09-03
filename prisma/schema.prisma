@@ -12,11 +12,12 @@ datasource db {
 }
 
 model User {
-  id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  id       String    @id @default(auto()) @map("_id") @db.ObjectId
   name     String?
-  email    String   @unique
+  email    String    @unique
   password String
   reviews  Review[]
+  articles Article[]
 }
 
 model Doctor {
@@ -59,6 +60,18 @@ model Review {
   doctorId  String
   createdAt DateTime @default(now())
 }
+
+// model Article {
+//   id           String   @id @default(auto()) @map("_id") @db.ObjectId
+//   published    Boolean  @default(false)
+//   title        String
+//   categories   String[] @default([""])
+//   body         String
+//   author       User     @relation(fields: [authorId], references: [id])
+//   authorId     String   @db.ObjectId
+//   createdAt    DateTime @default(now())
+//   lastModified DateTime @default(now())
+// }
 
 view EnrichedReviews {
   id         String   @id @default(auto()) @map("_id") @db.ObjectId

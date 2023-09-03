@@ -675,6 +675,30 @@
   font-weight: bold;
 }
 
+
+/* Resource Pages */
+.resourcesPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.resourcesPage h2 {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.articleContent {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+
+  margin: 100px 0 50px 0;
+  max-width: 63%;
+
+}
+
+
 /* Add Review Form */
 .addReviewSubmitted {
   align-self: center;
@@ -997,7 +1021,7 @@
 }
 
 
-@media screen and (max-width: 730px) {
+@media screen and (max-width: 950px) {
   /*  */
   /* Handling the mobile nav */
   /*  */
