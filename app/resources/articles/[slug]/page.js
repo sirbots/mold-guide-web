@@ -67,13 +67,13 @@ export default async function SingleArticlePage({ params }) {
 
         {/* Map out the article content from Contentful */}
         {contentArray &&
-          contentArray.map((contentItem) => {
+          contentArray.map((contentItem, key) => {
             if (contentItem.nodeType == "paragraph") {
-              return <p>{contentItem.content[0].value}</p>;
+              return <p key={key}>{contentItem.content[0].value}</p>;
             } else if (contentItem.nodeType == "heading-2") {
-              return <h2>{contentItem.content[0].value}</h2>;
+              return <h2 key={key}>{contentItem.content[0].value}</h2>;
             } else if (contentItem.nodeType == "heading-3") {
-              return <h3>{contentItem.content[0].value}</h3>;
+              return <h3 key={key}>{contentItem.content[0].value}</h3>;
             }
           })}
       </div>

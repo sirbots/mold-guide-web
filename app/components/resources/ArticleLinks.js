@@ -5,7 +5,7 @@ import { getArticles } from "../../lib/contentful";
 
 export default async function ArticleLinks({}) {
   const articles = await getArticles();
-  console.log(articles);
+  // console.log(articles);
 
   return (
     <div>
