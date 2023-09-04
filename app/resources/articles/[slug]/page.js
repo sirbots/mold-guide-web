@@ -50,6 +50,7 @@ export default async function SingleArticlePage({ params }) {
   // Destructure the object to make the names more manageable
   let { articleTitle: title } = article.fields;
 
+  // Move the contents of the object into a new array
   let contentArray = article.fields.articleBody.content;
 
   return (
@@ -67,13 +68,105 @@ export default async function SingleArticlePage({ params }) {
 
         {/* Map out the article content from Contentful */}
         {contentArray &&
-          contentArray.map((contentItem, key) => {
-            if (contentItem.nodeType == "paragraph") {
-              return <p key={key}>{contentItem.content[0].value}</p>;
-            } else if (contentItem.nodeType == "heading-2") {
-              return <h2 key={key}>{contentItem.content[0].value}</h2>;
-            } else if (contentItem.nodeType == "heading-3") {
-              return <h3 key={key}>{contentItem.content[0].value}</h3>;
+          contentArray.map((contentBlock, key) => {
+            switch (contentBlock.nodeType) {
+              // Handle contentBlock that is a paragrah
+              case "paragraph": {
+                return (
+                  // Start with an opening p tag
+                  <p>
+                    {/* Some paragraphs will have multiple items, depending on formatting. Bolded text is in its own item, as is italic text, and hyperlinks */}
+                    {contentBlock.content.map((contentItem, key) => {
+                      // Handle hyperlinks
+                      if (contentItem.nodeType == "hyperlink") {
+                        return (
+                          <a key={key} href={contentItem.data.uri}>
+                            {contentItem.content[0].value}
+                          </a>
+                        );
+                      }
+
+                      // Handle bold, italic text
+                      // TO DO: handle underlined, highlighted and other cases
+
+                      // Create an array of the marks for each content item. This makes them much easier to work with, so you don't have to iterate through an array of objects.
+                      let marksArray = [];
+                      for (const mark of contentItem.marks) {
+                        marksArray.push(mark.type);
+                      }
+
+                      // Handle bold and italic text
+                      if (marksArray.includes("bold" && "italic")) {
+                        return (
+                          <span key={key}>
+                            <b>
+                              <i>{contentItem.value}</i>
+                            </b>
+                          </span>
+                        );
+                        // Handle just bold text
+                      } else if (marksArray.includes("bold")) {
+                        return (
+                          <span key={key}>
+                            <b>{contentItem.value}</b>
+                          </span>
+                        );
+                        // Handle just italic text
+                      } else if (marksArray.includes("italic")) {
+                        return (
+                          <span key={key}>
+                            <i>{contentItem.value}</i>
+                          </span>
+                        );
+                        // Handle all cases without marks
+                      } else {
+                        return <span key={key}>{contentItem.value}</span>;
+                      }
+                    })}
+                  </p>
+                );
+              }
+
+              // Handle headings
+              case "heading-1":
+                return <h1 key={key}>{contentBlock.content[0].value}</h1>;
+              case "heading-2":
+                return <h2>{contentBlock.content[0].value}</h2>;
+              case "heading-3":
+                return <h3 key={key}>{contentBlock.content[0].value}</h3>;
+              case "heading-4":
+                return <h3 key={key}>{contentBlock.content[0].value}</h3>;
+              // Handle unordered lists
+              case "unordered-list":
+                return (
+                  <ul>
+                    {contentBlock.content.map((contentItem, key) => {
+                      return (
+                        <li key={key}>
+                          {contentItem.content[0].content[0].value}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                );
+              // Handle ordered lists
+              case "ordered-list":
+                return (
+                  <ol>
+                    {contentBlock.content.map((contentItem, key) => {
+                      return (
+                        <li key={key}>
+                          {contentItem.content[0].content[0].value}
+                        </li>
+                      );
+                    })}
+                  </ol>
+                );
+              // Leave a default for unhandled cases
+              // TO DO: come back to these later. Check the contentful API for other potential content types
+              default:
+                console.log("handling the default case");
+                return <p key={key}>Unhandled Content Style</p>;
             }
           })}
       </div>

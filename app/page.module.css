@@ -67,6 +67,27 @@
   /* text-decoration: underline; */
 }
 
+.container p i {
+  font-style: italic;
+  font-weight: 400;
+}
+
+.container ul, .container ol { 
+  margin: 15px 0;
+}
+
+.container li {
+  margin-left: 35px;
+  margin-bottom: 8px;
+}
+.container ul li {
+  list-style-type: disc;
+}
+.container ol li {
+  list-style-type: decimal;
+}
+
+
 /* Header/Nav Styles */
 .header {
   width: 100%;
