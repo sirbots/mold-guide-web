@@ -1,7 +1,7 @@
 "use client";
 
 // Contentful
-import { getArticles, getArticleBySlug } from "../../lib/contentful";
+import { getArticles } from "../../lib/contentful";
 
 export default async function ArticleLinks({}) {
   // Get all the articles from Contentful
