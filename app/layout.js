@@ -1,6 +1,6 @@
 import "./globals.css";
 import AnalyticsScripts from "./components/AnalyticsScripts";
-import GiveFeedbackForm from "./components/forms/GiveFeedbackForm";
+import FeedbackForm from "./components/forms/FeedbackForm";
 
 // Auth
 import { NextAuthProvider } from "./components/Providers";
@@ -25,7 +25,7 @@ export default async function RootLayout({ children }) {
       <AnalyticsScripts />
       <body className={merriweather.className}>
         <NextAuthProvider>{children}</NextAuthProvider>
-        <GiveFeedbackForm />
+        <FeedbackForm />
       </body>
     </html>
   );

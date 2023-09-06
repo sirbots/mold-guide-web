@@ -1,7 +1,7 @@
 "use client";
 
 // Auth
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 // Styles & Fonts
 import styles from "../../page.module.css";
@@ -13,7 +13,7 @@ const merriweather = Merriweather({
   display: "swap",
 });
 
-export default function GiveFeedbackForm() {
+export default function FeedbackForm() {
   const [cookieExists, setCookieExists] = useState(true);
   const [formStatus, setStatus] = useState("hidden");
   const [formValues, setFormValues] = useState({
