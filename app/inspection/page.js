@@ -19,7 +19,7 @@ const lora = Lora({
 });
 
 export const metadata = {
-  title: "Find Mold Doctors and Treatment",
+  title: "Mold Inspectors and Inspection Services",
 };
 
 export default async function PractitionerListingsPage() {

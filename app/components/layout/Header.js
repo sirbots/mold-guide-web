@@ -42,7 +42,13 @@ export default async function Header() {
         {/* Desktop Nav Links */}
         <ul className={styles.desktopNav}>
           <li>
-            <a href="/practitioners">Find Mold Doctors</a>
+            <a href="/practitioners">Mold Doctors</a>
+          </li>
+          <li>
+            <a href="/inspection">Inspectors</a>
+          </li>
+          <li>
+            <a href="/remediation">Remediation</a>
           </li>
           <li>
             <a href="/resources">Resources</a>

@@ -47,7 +47,13 @@ export default function MobileNav() {
         className={menuOpen ? styles.mobileListOpen : styles.mobileListClosed}
       >
         <li>
-          <a href="/practitioners">Find Mold Doctors</a>
+          <a href="/practitioners">Mold Doctors</a>
+        </li>
+        <li>
+          <a href="/inspection">Mold Inspectors</a>
+        </li>
+        <li>
+          <a href="/remediation">Mold Remediation</a>
         </li>
         <li>
           <a href="/resources">Resources</a>
