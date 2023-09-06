@@ -1,4 +1,4 @@
-import styles from "../page.module.css";
+import styles from "../../page.module.css";
 
 const WideImage = ({ backgroundImage }) => {
   if (backgroundImage === "doctor-patient1")

@@ -3,13 +3,13 @@
 import { useState } from "react";
 
 // Auth
+// import { redirect } from "next/navigation";
 import { useSession } from "next-auth/react";
-import { redirect } from "next/navigation";
 
 // Styles & Images
-import styles from "../page.module.css";
+import styles from "../../page.module.css";
 import Image from "next/image";
-import hamburgerIcon from "../../public/hamburger_icon.png";
+import hamburgerIcon from "../../../public/hamburger_icon.png";
 
 export default function MobileNav() {
   const [menuOpen, setMenuOpen] = useState(false);

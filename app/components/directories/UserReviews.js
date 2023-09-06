@@ -1,15 +1,15 @@
 // "use client";
 // Styles & Images
-import styles from "../page.module.css";
+import styles from "../../page.module.css";
 
 // Components
 import Stars from "./Stars";
 
 // Database
-import { prisma } from "../lib/prisma";
+import { prisma } from "../../lib/prisma";
 
 // Helpers
-import formatMiddleName from "../lib/formatMiddleName";
+import formatMiddleName from "../../lib/formatMiddleName";
 
 // use the doctorId to find the rest of the doctor's info
 const DoctorMetaData = async ({ doctorId }) => {

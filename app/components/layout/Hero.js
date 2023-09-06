@@ -1,5 +1,5 @@
 import { Merriweather, Lora } from "next/font/google";
-import styles from "../page.module.css";
+import styles from "../../page.module.css";
 
 const lora = Lora({
   subsets: ["latin"],

@@ -1,13 +1,13 @@
 // Styes & Images
-import styles from "../page.module.css";
+import styles from "../../page.module.css";
 import Image from "next/image";
-import logo from "../../public/logos/logo_with_text.png";
+import logo from "../../../public/logos/logo_with_text.png";
 
 // Components
-import MobileNav from "../components/MobileNav";
+import MobileNav from "./MobileNav";
 
 // Auth
-import { authOptions } from "../lib/auth";
+import { authOptions } from "../../lib/auth";
 import { getServerSession } from "next-auth";
 
 async function getUserSession() {

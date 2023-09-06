@@ -2,10 +2,10 @@
 // see examples in same dir for how to do client- and server-side route protection in a single component.
 
 // Components
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import Header from "../components/layout/Header";
+import Footer from "../components/layout/Footer";
 import { LogoutButton } from "../components/buttons";
-import UserReviews from "../components/UserReviews";
+import UserReviews from "../components/directories/UserReviews";
 
 // Auth
 import { getServerSession } from "next-auth";

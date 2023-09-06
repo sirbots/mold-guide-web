@@ -1,10 +1,10 @@
 import Image from "next/image";
 
 // Components
-import Header from "../components/Header";
-import Hero from "../components/Hero";
-import WideImage from "../components/WideImage";
-import Footer from "../components/Footer";
+import Header from "../components/layout/Header";
+import Hero from "../components/layout/Hero";
+import WideImage from "../components/layout/WideImage";
+import Footer from "../components/layout/Footer";
 
 // Styles & Fonts
 import styles from "../page.module.css";

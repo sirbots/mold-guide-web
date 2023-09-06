@@ -1,7 +1,7 @@
 "use client";
 
 import { cache, use } from "react";
-import getAvgRating from "../lib/getAvgRating";
+import getAvgRating from "../../lib/getAvgRating";
 import { StarIcon as StarIconOutline } from "@heroicons/react/24/outline";
 import { StarIcon as StarIconSolid } from "@heroicons/react/24/solid";
 

@@ -1,8 +1,8 @@
 // this route is protected in the middleware.
 
 // Components
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
+import Header from "../../components/layout/Header";
+import Footer from "../../components/layout/Footer";
 
 // SEO
 export const metadata = {

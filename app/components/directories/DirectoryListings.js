@@ -8,18 +8,18 @@ import React, { cache, use } from "react";
 import Stars from "./Stars";
 
 // Styles & Design
-import styles from "../page.module.css";
+import styles from "../../page.module.css";
 
 // Images
 import Image from "next/image";
-import maleDoctor2 from "../../public/male-doctor2.png";
-import femaleDoctor6 from "../../public/female-doctor6.png";
+import maleDoctor2 from "../../../public/male-doctor2.png";
+import femaleDoctor6 from "../../../public/female-doctor6.png";
 
 // Helpers
-import arrayToCommaString from "../lib/arrayToCommaString";
-import formatMiddleName from "../lib/formatMiddleName";
-import stateNames from "../lib/stateNames";
-import roundTo from "../lib/roundTo";
+import arrayToCommaString from "../../lib/arrayToCommaString";
+import formatMiddleName from "../../lib/formatMiddleName";
+import stateNames from "../../lib/stateNames";
+import roundTo from "../../lib/roundTo";
 
 // Doctor Listing Component
 const DoctorListing = ({
