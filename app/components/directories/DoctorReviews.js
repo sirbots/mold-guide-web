@@ -11,13 +11,14 @@ import Stars from "./Stars";
 
 // Pulls from a Prisma view that joins the reviews table with the users table (to get the user's display name)
 const getDoctorReviews = cache((doctorId) =>
-  fetch("/api/reviews-with-name/by-doctor-id/" + doctorId).then((res) =>
-    res.json()
+  fetch("/api/reviews/doctors/reviews-with-name/by-doctor-id/" + doctorId).then(
+    (res) => res.json()
   )
 );
 
 const DoctorReviews = ({ doctorId }) => {
   let reviews = use(getDoctorReviews(doctorId));
+  console.log(reviews);
 
   if (reviews.length === 0) {
     return (

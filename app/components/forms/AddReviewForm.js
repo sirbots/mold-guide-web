@@ -56,7 +56,7 @@ export default function AddReviewForm({ doctorId }) {
     // console.log("The formatted data object:");
     // console.log(data);
     try {
-      fetch("/api/reviews", {
+      fetch("/api/reviews/doctors", {
         method: "POST",
         headers: {
           "content-type": "application/json",

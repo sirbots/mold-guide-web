@@ -1,16 +1,16 @@
-import { prisma } from "../../lib/prisma";
+import { prisma } from "../../../lib/prisma";
 import { NextResponse } from "next/server";
 
 export async function GET(request) {
-  const reviews = await prisma.review.findMany();
-  return NextResponse.json(reviews);
+  const doctorReviews = await prisma.doctorReview.findMany();
+  return NextResponse.json(doctorReviews);
 }
 
 export async function POST(request) {
   try {
     const json = await request.json();
 
-    const review = await prisma.review.create({
+    const review = await prisma.doctorReview.create({
       data: json,
     });
 

@@ -35,7 +35,7 @@ export default function AboutPage() {
         // buttonText="Find Doctors"
       />
 
-      <WideImage backgroundImage="inspection2" />
+      <WideImage backgroundImage="inspection1" />
 
       {/* Page Content */}
       <div className={styles.pageContent}>

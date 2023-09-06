@@ -6,7 +6,9 @@ import { StarIcon as StarIconOutline } from "@heroicons/react/24/outline";
 import { StarIcon as StarIconSolid } from "@heroicons/react/24/solid";
 
 const getReviewsOfThisDoctor = cache((doctorId) =>
-  fetch("/api/reviews/by-doctor-id/" + doctorId).then((res) => res.json())
+  fetch("/api/reviews/doctors/by-doctor-id/" + doctorId).then((res) =>
+    res.json()
+  )
 );
 
 export default function SingleListingStarRatings({ doctorId }) {

@@ -33,7 +33,7 @@ const DoctorMetaData = async ({ doctorId }) => {
 };
 
 const UserReviews = async ({ userEmail }) => {
-  const userReviews = await prisma.review.findMany({
+  const userReviews = await prisma.doctorReview.findMany({
     where: {
       author: {
         email: {

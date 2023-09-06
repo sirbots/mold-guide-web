@@ -5,7 +5,7 @@ import Header from "../components/layout/Header";
 import Hero from "../components/layout/Hero";
 import WideImage from "../components/layout/WideImage";
 import Footer from "../components/layout/Footer";
-import DirectoryListings from "../components/directories/DirectoryListings";
+import RemediationListings from "../components/directories/RemediationListings";
 
 // Styles & Fonts
 import styles from "../page.module.css";
@@ -38,7 +38,7 @@ export default async function PractitionerListingsPage() {
       {/* Page Content */}
       <div className={styles.directoryPage}>
         <h2 className={lora.className}>Browse Doctors</h2>
-        <DirectoryListings directoryType="doctors" />
+        <RemediationListings />
       </div>
 
       <Footer />

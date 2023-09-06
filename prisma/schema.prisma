@@ -12,17 +12,19 @@ datasource db {
 }
 
 model User {
-  id       String   @id @default(auto()) @map("_id") @db.ObjectId
-  name     String?
-  email    String   @unique
-  password String
-  reviews  Review[]
+  id               String             @id @default(auto()) @map("_id") @db.ObjectId
+  name             String?
+  email            String             @unique
+  password         String
+  doctorReviews    DoctorReview[]
+  inspectorReviews InspectorReview[]
+  RemediatorReview RemediatorReview[]
 }
 
 model Doctor {
-  id                String   @id @default(auto()) @map("_id") @db.ObjectId
-  slug              String   @unique
-  published         Boolean  @default(false)
+  id                String         @id @default(auto()) @map("_id") @db.ObjectId
+  slug              String         @unique
+  published         Boolean        @default(false)
   firstName         String
   middleName        String?
   lastName          String
@@ -38,16 +40,56 @@ model Doctor {
   website           String?
   telehealth        Boolean?
   shoemakerProtocol Boolean
-  conditionsTreated String[] @default(["Mold Illness"])
-  certifications    String[] @default([""])
-  seesPatientsIn    String[] @default([""])
-  bio               String[] @default(["Coming soon!"])
+  conditionsTreated String[]       @default(["Mold Illness"])
+  certifications    String[]       @default([""])
+  seesPatientsIn    String[]       @default([""])
+  bio               String[]       @default(["Coming soon!"])
   createdAt         DateTime
   lastModified      DateTime
-  reviews           Review[]
+  reviews           DoctorReview[]
 }
 
-model Review {
+model Inspector {
+  id             String            @id @default(auto()) @map("_id") @db.ObjectId
+  slug           String            @unique
+  published      Boolean           @default(false)
+  companyName    String
+  phoneNumber    String?
+  addressStreet  String?
+  addressUnit    String?
+  addressCity    String
+  addressState   String
+  addressZipcode String?
+  addressCountry String
+  website        String?
+  certifications String[]          @default([""])
+  bio            String[]          @default(["Coming soon!"])
+  createdAt      DateTime
+  lastModified   DateTime
+  reviews        InspectorReview[]
+}
+
+model Remediator {
+  id             String             @id @default(auto()) @map("_id") @db.ObjectId
+  slug           String             @unique
+  published      Boolean            @default(false)
+  companyName    String
+  phoneNumber    String?
+  addressStreet  String?
+  addressUnit    String?
+  addressCity    String
+  addressState   String
+  addressZipcode String?
+  addressCountry String
+  website        String?
+  certifications String[]           @default([""])
+  bio            String[]           @default(["Coming soon!"])
+  createdAt      DateTime
+  lastModified   DateTime
+  reviews        RemediatorReview[]
+}
+
+model DoctorReview {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   published Boolean  @default(true)
   title     String
@@ -60,7 +102,33 @@ model Review {
   createdAt DateTime @default(now())
 }
 
-view EnrichedReviews {
+model InspectorReview {
+  id          String     @id @default(auto()) @map("_id") @db.ObjectId
+  published   Boolean    @default(true)
+  title       String
+  body        String
+  rating      Int
+  author      User       @relation(fields: [authorId], references: [id])
+  authorId    String     @db.ObjectId
+  createdAt   DateTime   @default(now())
+  Inspector   Inspector? @relation(fields: [inspectorId], references: [id])
+  inspectorId String?    @db.ObjectId
+}
+
+model RemediatorReview {
+  id           String      @id @default(auto()) @map("_id") @db.ObjectId
+  published    Boolean     @default(true)
+  title        String
+  body         String
+  rating       Int
+  author       User        @relation(fields: [authorId], references: [id])
+  authorId     String      @db.ObjectId
+  createdAt    DateTime    @default(now())
+  Remediator   Remediator? @relation(fields: [remediatorId], references: [id])
+  remediatorId String?     @db.ObjectId
+}
+
+view EnrichedDoctorReviews {
   id         String   @id @default(auto()) @map("_id") @db.ObjectId
   title      String
   body       String

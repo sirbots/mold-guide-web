@@ -9,8 +9,8 @@ import { prisma } from "../../lib/prisma";
 // Components
 import Header from "../../components/layout/Header";
 import Footer from "../../components/layout/Footer";
-import SingleListingStarRatings from "../../components/SingleListingStarRatings";
-import DoctorReviews from "../../components/DoctorReviews";
+import SingleListingStarRatings from "../../components/directories/SingleListingStarRatings";
+import DoctorReviews from "../../components/directories/DoctorReviews";
 import AddReviewForm from "../../components/forms/AddReviewForm";
 
 // Helpers

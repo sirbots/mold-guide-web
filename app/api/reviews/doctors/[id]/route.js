@@ -1,9 +1,9 @@
-import { prisma } from "../../../lib/prisma";
+import { prisma } from "../../../../lib/prisma";
 import { NextResponse } from "next/server";
 
 export async function GET(request, { params }) {
   const id = params.id;
-  const review = await prisma.review.findUnique({
+  const review = await prisma.doctorReview.findUnique({
     where: {
       id,
     },
@@ -20,7 +20,7 @@ export async function PATCH(request, { params }) {
   const id = params.id;
   let json = await request.json();
 
-  const updated_review = await prisma.review.update({
+  const updated_review = await prisma.doctorReview.update({
     where: { id },
     data: json,
   });
@@ -35,7 +35,7 @@ export async function PATCH(request, { params }) {
 export async function DELETE(request, { params }) {
   try {
     const id = params.id;
-    await prisma.review.delete({
+    await prisma.doctorReview.delete({
       where: { id },
     });
 

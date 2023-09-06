@@ -10,7 +10,7 @@ async function main() {
       name: "Test User 2",
       email: "rbcarter2@yahoo.com",
       password,
-      reviews: {
+      doctorReviews: {
         create: {
           title: "Just lovely.",
           body: "Cured my illnesses rapidly and with great bedside manner.",
