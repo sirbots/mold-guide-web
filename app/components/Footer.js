@@ -1,4 +1,5 @@
-import GiveFeedbackForm from "/forms/GiveFeedbackForm";
+// import GiveFeedbackForm from "/forms/GiveFeedbackForm";
+import GiveFeedbackForm from "../components/forms/GiveFeedbackForm";
 
 import styles from "../page.module.css";
 
