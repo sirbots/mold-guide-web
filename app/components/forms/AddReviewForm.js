@@ -83,7 +83,7 @@ export default function AddReviewForm({ doctorId }) {
         .then(() => {
           // Send an email notification to let you know that a review was submitted
           try {
-            fetch("/api/email/notifications", {
+            fetch("/api/email/content-submission-notification", {
               method: "POST",
               headers: {
                 "content-type": "application/json",

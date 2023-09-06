@@ -1,8 +1,11 @@
+import GiveFeedbackForm from "./forms/GIveFeedbackForm";
+
 import styles from "../page.module.css";
 
 export default function Footer() {
   return (
     <footer className={styles.footer}>
+      <GiveFeedbackForm />
       <p>
         This site is for informational purposes only. Nothing on this site
         should be construed as medical advice.

@@ -101,7 +101,7 @@ export default function NewListingForm() {
         .then(() => {
           // Send an email notification to let you know that a new doctor was submitted
           try {
-            fetch("/api/email/notifications", {
+            fetch("/api/email/content-submission-notification", {
               method: "POST",
               headers: {
                 "content-type": "application/json",

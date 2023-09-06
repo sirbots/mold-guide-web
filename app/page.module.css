@@ -993,6 +993,60 @@
   color: #FEFEFE;
 }
 
+/* Give Feedback Form */
+.giveFeedbackFormModal {
+  position: fixed;
+  bottom: 0px;
+  right: 3%;
+  z-index: 3;
+
+  background-color: #FEFEFE;
+  
+  
+}
+
+.giveFeedbackForm {  
+  box-shadow: #005F73 0px 0px 5px 0px;
+  border-radius: 5px;
+  padding: 10px 25px;
+  max-width: 270px;
+  display: flex;
+  flex-direction: column;
+}
+
+.giveFeedbackForm h3 {  
+  text-align: center;
+}
+
+.giveFeedbackForm .formInput {
+  border: 1px lightgray solid;
+  /* padding-top */
+}
+
+.giveFeedbackForm .formInputTextArea {
+  background: transparent;
+  border: 1px solid lightgray;
+  border-radius: 3px;
+  color: #001219;
+  font-family: inherit;
+  font-size: 13px;
+
+  min-width: 100%;
+  
+  padding: 10px;
+  min-height: 140px;
+}
+
+.xButton {
+  width: 20px;
+  align-self: end;
+  color: #001219;
+  background-color: #FEFEFE;
+  border: none;
+  font-size: 20px;
+
+}
+
 /* Add New Listing Form */
 .addListingPage {
   display: flex;
