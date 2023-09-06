@@ -998,18 +998,30 @@
   position: fixed;
   bottom: 0px;
   right: 3%;
-  z-index: 3;
-
-  background-color: #FEFEFE;
   
+  z-index: 99;
+  
+  max-width: 270px;
+  background-color: #FEFEFE;
+
+  box-shadow: #005F73 0px 0px 5px 0px;
+  border-radius: 5px;
+  
+}
+.giveFeedbackFormModal p {
+font-size: 14px;
+}
+.giveFeedbackFormModal .thankYouMsg {
+  font-size: 16px;
+  padding: 60px 25px;
+  text-align: center;
   
 }
 
 .giveFeedbackForm {  
-  box-shadow: #005F73 0px 0px 5px 0px;
-  border-radius: 5px;
+  
   padding: 10px 25px;
-  max-width: 270px;
+  
   display: flex;
   flex-direction: column;
 }
