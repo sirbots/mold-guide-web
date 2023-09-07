@@ -774,7 +774,7 @@ Single Listing Pages
   align-items: center;
   padding: 20px;
   min-width: 50%;
-  max-width: 70%;
+  max-width: 50%;
  }
 
  .review {
@@ -786,7 +786,6 @@ Single Listing Pages
  .reviewsContainer h3 {
   margin-bottom: 20px;
  }
-
 
 
  /**********
@@ -980,8 +979,7 @@ font-size: 14px;
   display: flex;
   flex-direction: column;
   align-self: center;
-  width: 50%;
-  /* margin-top: 15px; */
+  width: 30%;
   margin-bottom: 100px;
 }
 

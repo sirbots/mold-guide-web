@@ -4,8 +4,22 @@ import { getArticles } from "./lib/contentful";
 // Define the base URL
 const URL = "https://themoldguide.com/";
 
-// Get all of the practitioners from MongoDB
+// Get all of the practitioners, inspectors, and remediators from MongoDB
 const practitionersArray = await prisma.doctor.findMany({
+  where: {
+    published: {
+      equals: true,
+    },
+  },
+});
+const inspectorsArray = await prisma.inspector.findMany({
+  where: {
+    published: {
+      equals: true,
+    },
+  },
+});
+const remediatorsArray = await prisma.remediator.findMany({
   where: {
     published: {
       equals: true,
@@ -18,13 +32,27 @@ const articlesArray = await getArticles();
 
 // Create empty arrays for the doctor and article data
 const doctorData = [];
+const inspectorData = [];
+const remediatorData = [];
 const articleData = [];
 
-// Iterate through the practitionersArray and push an object with the slug and lastModified data for each practitioner
+// Iterate through the directory listing arrays and push an object with the slug and lastModified data for each practitioner
 practitionersArray.forEach((practitioner) =>
   doctorData.push({
     url: URL + "practitioners/" + practitioner.slug,
     lastModified: practitioner.lastModified,
+  })
+);
+inspectorsArray.forEach((inspector) =>
+  doctorData.push({
+    url: URL + "inspection/" + inspector.slug,
+    lastModified: inspector.lastModified,
+  })
+);
+remediatorsArray.forEach((remediator) =>
+  doctorData.push({
+    url: URL + "remediation/" + remediator.slug,
+    lastModified: remediator.lastModified,
   })
 );
 
@@ -54,6 +82,16 @@ const staticUrls = [
     lastModified: new Date(),
   },
   {
+    // Inspectors Page
+    url: URL + "inspection",
+    lastModified: new Date(),
+  },
+  {
+    // Remediators Page
+    url: URL + "remediation",
+    lastModified: new Date(),
+  },
+  {
     // Login Page
     url: URL + "login",
     lastModified: new Date(),
@@ -71,7 +109,12 @@ const staticUrls = [
   // TO DO: insert other status pages here as you create them
 ];
 
-const combinedUrls = staticUrls.concat(doctorData, articleData);
+const combinedUrls = staticUrls.concat(
+  doctorData,
+  inspectorData,
+  remediatorData,
+  articleData
+);
 
 export default async function sitemap() {
   // Return the combinedUrls array of objects to Nextjs sitemap() function
