@@ -22,19 +22,17 @@ import stateNames from "../../lib/stateNames";
 import roundTo from "../../lib/roundTo";
 
 // Doctor Listing Component
-const DoctorListing = ({
+const RemediatorListing = ({
   slug,
-  firstName,
-  middleName,
-  lastName,
-  gender,
+  // firstName,
+  // middleName,
+  // lastName,
+
   addressCity,
   addressState,
   certifications,
   profilePhoto,
-  shoemakerProtocol,
   addressStateSelected,
-  shoemakerProtocolSelected,
   avgRating,
 }) => {
   // Round the ratingAverage double
@@ -121,42 +119,32 @@ const ResultsFilter = ({
                 }
               })}
           </select>
-
-          {/* Filter by Protocol */}
-          <select
-            className={styles.formInput}
-            name="shoemakerProtocolSelected"
-            id="shoemakerProtocolSelected"
-            onChange={handleChange}
-          >
-            <option value="any">Any Protocol</option>
-            <option value="true">Shoemaker Protocol</option>
-            <option value="false">Not Shoemaker Protocol</option>
-          </select>
         </div>
       </form>
     </>
   );
 };
 
-const getPublishedDoctors = cache(() =>
-  fetch("/api/doctors/published").then((res) => res.json())
+const getPublishedRemediators = cache(() =>
+  fetch("/api/remediators/published").then((res) => res.json())
 );
-const getReviews = cache(() => fetch("/api/reviews").then((res) => res.json()));
+const getReviews = cache(() =>
+  fetch("/api/reviews/remediators").then((res) => res.json())
+);
 
-export default function DoctorListings({}) {
+export default function RemediatorListings({}) {
   // Call the API to get all of the published doctors and reviews
   let reviews = use(getReviews());
-  let doctors = use(getPublishedDoctors());
+  let remediators = use(getPublishedRemediators());
 
-  // Go through all the doctors
-  doctors.forEach((prac) => {
-    // Create an empty array to hold the ratings for this doctor
+  // Go through all the remediators
+  remediators.forEach((remediator) => {
+    // Create an empty array to hold the ratings for this remediator
     const allRatings = [];
 
     // Go through every review and see if the doctor ID matches the current doctor
     reviews.forEach((rev) => {
-      if (prac.id == rev.doctorId) {
+      if (remediator.id == rev.remediatorId) {
         allRatings.push(rev.rating);
       }
     });
@@ -173,17 +161,18 @@ export default function DoctorListings({}) {
     const roundedAvg =
       ratingsSum > 0 ? parseInt(roundTo(ratingsSum / allRatings.length)) : 0;
 
-    // Add the average rating to the doctor object for this particular doctor
-    prac["avgRating"] = roundedAvg;
+    // Add the average rating to the remediator object for this particular remediator
+    remediator["avgRating"] = roundedAvg;
   });
 
   // const [addressStateSelected, setAddressStateSelected] = useState("CH");
   const [filterValues, setFilterValues] = useState({
     addressStateSelected: "CH",
-    shoemakerProtocolSelected: "any",
   });
 
-  const addressStatesIncluded = doctors.map((doc) => doc.addressState);
+  const addressStatesIncluded = remediators.map(
+    (remediator) => remediator.addressState
+  );
 
   return (
     <>
@@ -194,23 +183,18 @@ export default function DoctorListings({}) {
       />
 
       <div className={styles.listingsContainer}>
-        {doctors &&
-          doctors.map((doc) => (
-            <DoctorListing
-              key={doc.id}
-              slug={doc.slug}
-              firstName={doc.firstName}
-              middleName={doc.middleName}
-              lastName={doc.lastName}
-              addressCity={doc.addressCity}
-              addressState={doc.addressState}
-              certifications={doc.certifications}
-              gender={doc.gender}
-              shoemakerProtocol={doc.shoemakerProtocol}
+        {remediators &&
+          remediators.map((remediator) => (
+            <RemediatorListing
+              key={remediator.id}
+              slug={remediator.slug}
+              companyName={remediator.companyName}
+              addressCity={remediator.addressCity}
+              addressState={remediator.addressState}
+              certifications={remediator.certifications}
               profilePhoto="TO DO: insert this dynamically"
               addressStateSelected={filterValues.addressStateSelected}
-              shoemakerProtocolSelected={filterValues.shoemakerProtocolSelected}
-              avgRating={doc.avgRating}
+              avgRating={remediator.avgRating}
             />
           ))}
       </div>

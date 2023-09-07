@@ -5,7 +5,7 @@ import Header from "../components/layout/Header";
 import Hero from "../components/layout/Hero";
 import WideImage from "../components/layout/WideImage";
 import Footer from "../components/layout/Footer";
-import RemediationListings from "../components/directories/RemediationListings";
+import RemediatorListings from "../components/directories/RemediatorListings";
 
 // Styles & Fonts
 import styles from "../page.module.css";
@@ -22,14 +22,14 @@ export const metadata = {
   title: "Mold Remediation and Removal Services",
 };
 
-export default async function PractitionerListingsPage() {
+export default async function RemediationListingsPage() {
   return (
     <main className={styles.container}>
       <Header />
       <Hero
         orientation="left"
-        headline="Find Mold Doctors and Practitioners Near You"
-        subHead="Finding a trained medical practitioner is essential to diagnosis & treatment."
+        headline="Find Mold Remediation Companies Near You"
+        subHead="Professional mold removal requires specialized service."
         // useBtn
         // btnLink=""
         // buttonText=""
@@ -37,8 +37,8 @@ export default async function PractitionerListingsPage() {
       <WideImage backgroundImage="doctor-patient1" />
       {/* Page Content */}
       <div className={styles.directoryPage}>
-        <h2 className={lora.className}>Browse Doctors</h2>
-        <RemediationListings />
+        <h2 className={lora.className}>Browse Remediation Companies</h2>
+        <RemediatorListings />
       </div>
 
       <Footer />

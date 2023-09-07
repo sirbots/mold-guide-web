@@ -12,44 +12,40 @@ import styles from "../../page.module.css";
 
 // Images
 import Image from "next/image";
+import inspection1 from "../../../public/inspection1.png";
 
 // Helpers
 import arrayToCommaString from "../../lib/arrayToCommaString";
 import stateNames from "../../lib/stateNames";
 import roundTo from "../../lib/roundTo";
 
-// Doctor Listing Component
+// Inspector Listing Component
 const InspectorListing = ({
-  // TO DO: rewrite this based on the database
+  id,
   slug,
-  firstName,
-  middleName,
-  lastName,
-  gender,
+  companyName,
+  phoneNumber,
+  addressStreet,
+  addressUnit,
   addressCity,
   addressState,
+  addressZipcode,
+  addressCountry,
+  website,
   certifications,
-  profilePhoto,
-  shoemakerProtocol,
-  addressStateSelected,
-  shoemakerProtocolSelected,
+  bio,
   avgRating,
+  addressStateSelected,
 }) => {
   // Round the ratingAverage double
   const ratingRounded = avgRating != undefined ? roundTo(avgRating) : 0;
 
   // Filter results based on user-selected filters on page
-  if (
-    (addressStateSelected == "CH" || addressStateSelected == addressState) &&
-    (shoemakerProtocolSelected == "any" ||
-      shoemakerProtocolSelected == shoemakerProtocol.toString())
-  ) {
+  if (addressStateSelected == "CH" || addressStateSelected == addressState) {
     return (
       <div className={styles.listing}>
-        {/* Name */}
-        <span className={styles.doctorName}>
-          {firstName + " " + formatMiddleName(middleName) + " " + lastName}
-        </span>
+        {/* Company Name */}
+        <span className={styles.doctorName}>{companyName}</span>
 
         {/* Stars */}
         <Stars starCount={ratingRounded} />
@@ -63,9 +59,9 @@ const InspectorListing = ({
         {/* Doctor Photo */}
         {/* TO DO: Pull this in from MongoDB */}
         <Image
-          src={gender == "male" ? maleDoctor2 : femaleDoctor6}
+          src={inspection1}
           className={styles.doctorListingsImg}
-          alt="doctor photo"
+          alt="inspector photo"
         />
 
         {/* Doctor Metadata */}
@@ -74,7 +70,7 @@ const InspectorListing = ({
         </span>
 
         {/* Button */}
-        <a className={styles.listingBtn} href={"/practitioners/" + slug}>
+        <a className={styles.listingBtn} href={"/inspection/" + slug}>
           <span className={styles.listingBtnText}>View Profile</span>
         </a>
       </div>
@@ -119,42 +115,32 @@ const ResultsFilter = ({
                 }
               })}
           </select>
-
-          {/* Filter by Protocol */}
-          <select
-            className={styles.formInput}
-            name="shoemakerProtocolSelected"
-            id="shoemakerProtocolSelected"
-            onChange={handleChange}
-          >
-            <option value="any">Any Protocol</option>
-            <option value="true">Shoemaker Protocol</option>
-            <option value="false">Not Shoemaker Protocol</option>
-          </select>
         </div>
       </form>
     </>
   );
 };
 
-const getPublishedDoctors = cache(() =>
-  fetch("/api/doctors/published").then((res) => res.json())
+const getPublishedInspectors = cache(() =>
+  fetch("/api/inspectors/published").then((res) => res.json())
 );
-const getReviews = cache(() => fetch("/api/reviews").then((res) => res.json()));
+const getReviews = cache(() =>
+  fetch("/api/reviews/doctors").then((res) => res.json())
+);
 
 export default function DoctorListings({}) {
   // Call the API to get all of the published doctors and reviews
   let reviews = use(getReviews());
-  let doctors = use(getPublishedDoctors());
+  let inspectors = use(getPublishedInspectors());
 
   // Go through all the doctors
-  doctors.forEach((prac) => {
+  inspectors.forEach((inspector) => {
     // Create an empty array to hold the ratings for this doctor
     const allRatings = [];
 
     // Go through every review and see if the doctor ID matches the current doctor
     reviews.forEach((rev) => {
-      if (prac.id == rev.doctorId) {
+      if (inspector.id == rev.doctorId) {
         allRatings.push(rev.rating);
       }
     });
@@ -172,16 +158,18 @@ export default function DoctorListings({}) {
       ratingsSum > 0 ? parseInt(roundTo(ratingsSum / allRatings.length)) : 0;
 
     // Add the average rating to the doctor object for this particular doctor
-    prac["avgRating"] = roundedAvg;
+    inspector["avgRating"] = roundedAvg;
   });
 
-  // const [addressStateSelected, setAddressStateSelected] = useState("CH");
+  // Set the initial filter values
   const [filterValues, setFilterValues] = useState({
     addressStateSelected: "CH",
-    shoemakerProtocolSelected: "any",
   });
+  console.log(filterValues.addressStateSelected);
 
-  const addressStatesIncluded = doctors.map((doc) => doc.addressState);
+  const addressStatesIncluded = inspectors.map(
+    (inspector) => inspector.addressState
+  );
 
   return (
     <>
@@ -192,23 +180,18 @@ export default function DoctorListings({}) {
       />
 
       <div className={styles.listingsContainer}>
-        {doctors &&
-          doctors.map((doc) => (
+        {inspectors &&
+          inspectors.map((inspector) => (
             <InspectorListing
-              key={doc.id}
-              slug={doc.slug}
-              firstName={doc.firstName}
-              middleName={doc.middleName}
-              lastName={doc.lastName}
-              addressCity={doc.addressCity}
-              addressState={doc.addressState}
-              certifications={doc.certifications}
-              gender={doc.gender}
-              shoemakerProtocol={doc.shoemakerProtocol}
-              profilePhoto="TO DO: insert this dynamically"
+              key={inspector.id}
+              slug={inspector.slug}
+              companyName={inspector.companyName}
+              lastName={inspector.lastName}
+              addressCity={inspector.addressCity}
+              addressState={inspector.addressState}
+              certifications={inspector.certifications}
               addressStateSelected={filterValues.addressStateSelected}
-              shoemakerProtocolSelected={filterValues.shoemakerProtocolSelected}
-              avgRating={doc.avgRating}
+              avgRating={inspector.avgRating}
             />
           ))}
       </div>

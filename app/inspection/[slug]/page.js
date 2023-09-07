@@ -10,13 +10,11 @@ import { prisma } from "../../lib/prisma";
 import Header from "../../components/layout/Header";
 import Footer from "../../components/layout/Footer";
 import SingleListingStarRatings from "../../components/directories/SingleListingStarRatings";
-import DoctorReviews from "../../components/directories/DoctorReviews";
+import InspectorReviews from "../../components/directories/InspectorReviews";
 import AddReviewForm from "../../components/forms/AddReviewForm";
 
 // Helpers
 import arrayToCommaString from "../../lib/arrayToCommaString";
-import formatMiddleName from "../../lib/formatMiddleName";
-// import capitalizeFirstLetter from "../../lib/capitalizeFirstLetter";
 
 // Styles & Fonts
 import styles from "../../page.module.css";
@@ -33,7 +31,7 @@ const lora = Lora({
 export async function generateStaticParams() {
   // First, get all of the documents in the Doctor collection of the database so we can create a page for each one
 
-  const practitioners = await prisma.doctor.findMany({
+  const inspectors = await prisma.inspector.findMany({
     where: {
       published: {
         equals: true,
@@ -44,47 +42,37 @@ export async function generateStaticParams() {
   // Then, get the slug field of each Doctor and map it. This will get passed as a params prop to the
   // SinglePractitionerPage function so nextjs can build a unique page for each doctor (by looking up
   // the unique slug)
-  return practitioners.map((doc) => ({
-    slug: doc.slug,
+  return inspectors.map((inspector) => ({
+    slug: inspector.slug,
   }));
 }
 
 // SEO: generate dynamic metadata
 export async function generateMetadata({ params }) {
-  const doctor = await prisma.doctor.findUnique({
+  const inspector = await prisma.inspector.findUnique({
     where: {
       slug: params.slug,
     },
   });
 
   let {
-    firstName: firstName,
-    middleName: middleName,
-    lastName: lastName,
+    companyName: companyName,
     addressCity: city,
     addressState: stateName,
-  } = doctor;
+  } = inspector;
 
   return {
     title:
-      firstName +
-      " " +
-      formatMiddleName(middleName) +
-      " " +
-      lastName +
-      " | Mold Illness Treatment in " +
-      city +
-      ", " +
-      stateName,
+      companyName + " | Mold Illness Treatment in " + city + ", " + stateName,
   };
 }
 
-export default async function SinglePractitionerPage({ params }) {
+export default async function SingleInspectorPage({ params }) {
   // Get the slug from the params generated in generateStaticParams()
   const slug = params.slug;
 
   // Find the unique doctor in the database
-  const doctor = await prisma.doctor.findUnique({
+  const inspector = await prisma.inspector.findUnique({
     where: {
       slug: slug,
     },
@@ -93,10 +81,7 @@ export default async function SinglePractitionerPage({ params }) {
   // Destructure the object to make the names more manageable
   let {
     id: id,
-    firstName: firstName,
-    middleName: middleName,
-    lastName: lastName,
-    gender: gender,
+    companyName: companyName,
     addressStreet: street,
     addressUnit: unitNum,
     addressCity: city,
@@ -106,31 +91,24 @@ export default async function SinglePractitionerPage({ params }) {
     website: website,
     phoneNumber: phoneNumber,
     bio: bio,
-    practiceName: practiceName,
-    telehealth: telehealth,
-    shoemakerProtocol: shoemakerProtocol,
     certifications: certifications,
-    seesPatientsIn: seesPatientsIn,
-    conditionsTreated: conditionsTreated,
-  } = doctor;
+  } = inspector;
 
   return (
     <main className={styles.container}>
       <Header />
 
-      <div className={styles.singleListingHero}>
+      {/* <div className={styles.singleListingHero}>
         <Image
           src={gender == "male" ? maleDoctor2 : femaleDoctor6}
           className={styles.img}
           // TO DO: update to make auto-generated alt tag
-          alt="Doctor photo."
+          alt="Inspector photo."
         />
 
         <div className={styles.textBox}>
-          <span className={styles.doctorName}>
-            {firstName} {formatMiddleName(middleName)} {lastName}
-          </span>
-          <SingleListingStarRatings doctorId={id} />
+          <span className={styles.doctorName}>{companyName}</span>
+          <SingleListingStarRatings inspectorId={id} />
 
           <a className={styles.addReviewBtn} href={"#review-form"}>
             <span className={styles.addReviewBtnTxt}>Add a Review</span>
@@ -151,12 +129,12 @@ export default async function SinglePractitionerPage({ params }) {
             </a>
           )}
         </div>
-      </div>
+      </div> */}
 
-      {/* Doctor Info */}
+      {/* Inspector Info */}
       <div className={styles.singeListingInfoContainer}>
         <h3>Practice Name</h3>
-        <p>{practiceName}</p>
+        {/* <p>{practiceName}</p> */}
 
         <h3>About the Practitioner</h3>
         {bio &&
@@ -164,31 +142,13 @@ export default async function SinglePractitionerPage({ params }) {
             return <p key={index}>{paragraph}</p>;
           })}
 
-        <h3>Telehealth</h3>
-        <p>
-          {telehealth === null ? "Unknown" : telehealth === true ? "Yes" : "No"}
-        </p>
-
-        <h3>Can See Patients In</h3>
-        <p>{seesPatientsIn && arrayToCommaString(seesPatientsIn)}</p>
-
-        <h3>Conditions Treated</h3>
-        {conditionsTreated &&
-          conditionsTreated.map((condition) => {
-            return <p key={condition}>{condition}</p>;
-          })}
-
-        <h3>Shoemaker Protocol?</h3>
-        {shoemakerProtocol == true && <p>Yes</p>}
-        {shoemakerProtocol == false && <p>No</p>}
-
         <h3>Certifications</h3>
         <p>{certifications && arrayToCommaString(certifications)}</p>
       </div>
 
       {/* Reviews */}
-      <DoctorReviews doctorId={id} />
-      <AddReviewForm doctorId={id} />
+      <InspectorReviews inspectorId={id} />
+      <AddReviewForm inspectorId={id} />
 
       <Footer />
     </main>
