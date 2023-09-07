@@ -100,7 +100,7 @@ export default async function SinglePractitionerPage({ params }) {
     addressStreet: street,
     addressUnit: unitNum,
     addressCity: city,
-    adddressState: stateName,
+    addressState: stateName,
     addressZipcode: zipcode,
     addressCountry: country,
     website: website,

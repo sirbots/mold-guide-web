@@ -10,7 +10,7 @@ import { prisma } from "../../lib/prisma";
 import Header from "../../components/layout/Header";
 import Footer from "../../components/layout/Footer";
 import SingleListingStarRatings from "../../components/directories/SingleListingStarRatings";
-import DoctorReviews from "../../components/directories/DoctorReviews";
+import ListingReviews from "../../components/directories/ListingReviews";
 import AddReviewForm from "../../components/forms/AddReviewForm";
 
 // Helpers
@@ -187,7 +187,7 @@ export default async function SinglePractitionerPage({ params }) {
       </div>
 
       {/* Reviews */}
-      <DoctorReviews doctorId={id} />
+      <ListingReviews id={id} listingType="doctor" />
       <AddReviewForm doctorId={id} />
 
       <Footer />

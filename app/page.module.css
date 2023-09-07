@@ -814,8 +814,9 @@
   flex-direction: column;
   justify-content: center;
   flex-wrap: wrap;
-  max-width: 300px;
+  max-width: 400px;
   padding-top: 30px;
+  margin-left: 50px;
 }
 
 .singleListingHero .img {

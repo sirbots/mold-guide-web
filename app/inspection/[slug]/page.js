@@ -1,7 +1,6 @@
 // Images
 import Image from "next/image";
-import maleDoctor2 from "../../../public/male-doctor2.png";
-import femaleDoctor6 from "../../../public/female-doctor6.png";
+import inspection1 from "../../../public/inspection1.png";
 
 // Database
 import { prisma } from "../../lib/prisma";
@@ -10,7 +9,7 @@ import { prisma } from "../../lib/prisma";
 import Header from "../../components/layout/Header";
 import Footer from "../../components/layout/Footer";
 import SingleListingStarRatings from "../../components/directories/SingleListingStarRatings";
-import InspectorReviews from "../../components/directories/InspectorReviews";
+import ListingReviews from "../../components/directories/ListingReviews";
 import AddReviewForm from "../../components/forms/AddReviewForm";
 
 // Helpers
@@ -85,7 +84,7 @@ export default async function SingleInspectorPage({ params }) {
     addressStreet: street,
     addressUnit: unitNum,
     addressCity: city,
-    adddressState: stateName,
+    addressState: stateName,
     addressZipcode: zipcode,
     addressCountry: country,
     website: website,
@@ -98,9 +97,9 @@ export default async function SingleInspectorPage({ params }) {
     <main className={styles.container}>
       <Header />
 
-      {/* <div className={styles.singleListingHero}>
+      <div className={styles.singleListingHero}>
         <Image
-          src={gender == "male" ? maleDoctor2 : femaleDoctor6}
+          src={inspection1}
           className={styles.img}
           // TO DO: update to make auto-generated alt tag
           alt="Inspector photo."
@@ -129,14 +128,11 @@ export default async function SingleInspectorPage({ params }) {
             </a>
           )}
         </div>
-      </div> */}
+      </div>
 
       {/* Inspector Info */}
       <div className={styles.singeListingInfoContainer}>
-        <h3>Practice Name</h3>
-        {/* <p>{practiceName}</p> */}
-
-        <h3>About the Practitioner</h3>
+        <h3>About this Inspector</h3>
         {bio &&
           bio.map((paragraph, index) => {
             return <p key={index}>{paragraph}</p>;
@@ -147,7 +143,8 @@ export default async function SingleInspectorPage({ params }) {
       </div>
 
       {/* Reviews */}
-      <InspectorReviews inspectorId={id} />
+      <ListingReviews id={id} listingType="inspector" />
+
       <AddReviewForm inspectorId={id} />
 
       <Footer />

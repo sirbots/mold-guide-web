@@ -2,7 +2,6 @@
 
 import { useState, cache, use } from "react";
 import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
 
 // Styles & Fonts
 import styles from "../../page.module.css";
@@ -17,7 +16,7 @@ const merriweather = Merriweather({
 // Cache the user session data so we can send it to the API with the form data
 const getUser = cache(() => fetch("/api/session/").then((res) => res.json()));
 
-export default function AddReviewForm({ doctorId }) {
+export default function AddReviewForm({ id }) {
   let [reviewPublished, setPublished] = useState(false);
   let [sending, setSending] = useState(false);
 
