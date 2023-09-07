@@ -200,22 +200,19 @@
   color: #001219;
 }
 
-
 .heroBtn {
   display: flex;
   height: 50px;
   width: 185px;
-
   border-radius: 20px;
   margin-top: 22px;
   justify-content: center;
   align-items: center;
-
   background-color: #CA383A;
   border: 1px solid #CA383A;
   box-shadow: 1px 2px #E4705F;
-
 }  
+
 .heroBtnText {
   color: #FEFEFE;
   font-size: 20px;
@@ -223,7 +220,6 @@
 }
 
   
-
 /* Wide Page Images */
 .wideImgDoctorPatient1 {
   background:  url("../public/doctor-patient1.png") no-repeat center center;
@@ -599,57 +595,50 @@ Directory Pages
   flex-direction: column;
   position: relative;
   align-items: center;
-  width: 280px;
-  height: 280px;
+  width: 290px;
+  height: 290px;
   margin-right: 20px;
   margin-left: 20px;
   margin-bottom: 55px;
-  padding: 10px 15px 0 15px;
+  padding: 20px 15px 0 15px;
   background-color: #FEFEFE;
   border: 1.5px solid #94D2BD;
   border-radius: 9px;
   box-shadow: 2px 3px #0A9396;
 }
 
-.listing .star-container {
+.listing .starContainer {
+  position: absolute;
+  top: -15px;
   display: flex;
   flex-direction: row;
-  align-self: center;
+  background-color: #FEFEFE;
+  z-index: 99;
 }
-
 .listing .star {
   color: #EE9B00;
 } 
 
-.listingImg {
-  width: 120px;
-  height: 120px;
-  align-self: center;
-  margin-bottom: 10px;
-}
-
-.name {
+.listingName {
+  min-height: 50px;
   font-size: 17px;
   text-align: center;
 }
 
 .location {
   font-size: 15px;
-  margin-bottom: 20px;
+  margin-bottom: 6px;
   text-align: center;
 } 
- 
-.certification {
-  font-size: 14px;
-  text-align: center;
-  margin-top: 7px;
-  margin-bottom: 7px;
+
+.listingImg {
+  width: 140px;
+  height: 140px;
+  align-self: center;
 }
 
-.listingWebsite {
-  font-size: 16px;
-  margin-bottom: 16px;
-  color: #0A9396;
+.certification {
+  font-size: 14px;
   text-align: center;
 }
 
@@ -657,21 +646,16 @@ Directory Pages
   display: flex;
   justify-content: center;
   align-items: center;
-
   position: absolute;
   bottom: -23px;
-
-  min-height: 45px;
-  width: 180px;
+  min-height: 40px;
+  width: 160px;
   border-radius: 20px;
-  
   text-align: center; 
-
   background-color: #0A9396;
   border: 1px solid #94D2BD;
   box-shadow: 1px 2px #94D2BD;
 }
-
 .listingBtnText {
   font-weight: bold;
   color: #FEFEFE;

@@ -9,7 +9,7 @@ import { prisma } from "../../lib/prisma";
 import Header from "../../components/layout/Header";
 import Footer from "../../components/layout/Footer";
 import SingleListingStarRatings from "../../components/directories/SingleListingStarRatings";
-import RemediatorReviews from "../../components/directories/RemediatorReviews";
+import ListingReviews from "../../components/directories/ListingReviews";
 import AddReviewForm from "../../components/forms/AddReviewForm";
 
 // Helpers
@@ -50,31 +50,16 @@ export async function generateStaticParams() {
 
 // SEO: generate dynamic metadata
 export async function generateMetadata({ params }) {
-  const remediator = await prisma.remediation.findUnique({
+  const remediator = await prisma.remediator.findUnique({
     where: {
       slug: params.slug,
     },
   });
 
-  let {
-    // firstName: firstName,
-    // middleName: middleName,
-    // lastName: lastName,
-    addressCity: city,
-    addressState: stateName,
-  } = remediator;
+  let { addressCity: city, addressState: stateName, companyName } = remediator;
 
   return {
-    title:
-      firstName +
-      " " +
-      formatMiddleName(middleName) +
-      " " +
-      lastName +
-      " | Mold Illness Treatment in " +
-      city +
-      ", " +
-      stateName,
+    title: companyName + " | Mold Remediation in " + city + ", " + stateName,
   };
 }
 
@@ -92,10 +77,6 @@ export default async function SinglePractitionerPage({ params }) {
   // Destructure the object to make the names more manageable
   let {
     id: id,
-    // firstName: firstName,
-    // middleName: middleName,
-    // lastName: lastName,
-    // gender: gender,
     companyName: companyName,
     addressStreet: street,
     addressUnit: unitNum,
@@ -106,12 +87,7 @@ export default async function SinglePractitionerPage({ params }) {
     website: website,
     phoneNumber: phoneNumber,
     bio: bio,
-    practiceName: practiceName,
-    telehealth: telehealth,
-    shoemakerProtocol: shoemakerProtocol,
     certifications: certifications,
-    seesPatientsIn: seesPatientsIn,
-    conditionsTreated: conditionsTreated,
   } = remediator;
 
   return (
@@ -154,19 +130,10 @@ export default async function SinglePractitionerPage({ params }) {
 
       {/* Remediator Info */}
       <div className={styles.singleListingInfoContainer}>
-        <h3>Practice Name</h3>
-        <p>{companyName}</p>
-
-        <h3>About the Remediation Company</h3>
+        <h3>About this Remediation Company</h3>
         {bio &&
           bio.map((paragraph, index) => {
             return <p key={index}>{paragraph}</p>;
-          })}
-
-        <h3>Conditions Treated</h3>
-        {conditionsTreated &&
-          conditionsTreated.map((condition) => {
-            return <p key={condition}>{condition}</p>;
           })}
 
         <h3>Certifications</h3>
@@ -174,8 +141,8 @@ export default async function SinglePractitionerPage({ params }) {
       </div>
 
       {/* Reviews */}
-      <RemediatorReviews remediatorId={id} />
-      <AddReviewForm remediatorId={id} />
+      <ListingReviews listingId={id} listingType="remediator" />
+      <AddReviewForm listingId={id} listingType="remediator" />
 
       <Footer />
     </main>

@@ -32,6 +32,6 @@
     "typescript": "^5.1.6"
   },
   "prisma": {
-    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seedInspectorCollection.ts"
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seedRemediatorCollection.ts"
   }
 }

@@ -22,11 +22,9 @@ import roundTo from "../../lib/roundTo";
 
 // remediator Listing Component
 const RemediatorListing = ({
+  id,
   slug,
-  // firstName,
-  // middleName,
-  // lastName,
-
+  companyName,
   addressCity,
   addressState,
   certifications,
@@ -38,20 +36,14 @@ const RemediatorListing = ({
   const ratingRounded = avgRating != undefined ? roundTo(avgRating) : 0;
 
   // Filter results based on user-selected filters on page
-  if (
-    (addressStateSelected == "CH" || addressStateSelected == addressState) &&
-    (shoemakerProtocolSelected == "any" ||
-      shoemakerProtocolSelected == shoemakerProtocol.toString())
-  ) {
+  if (addressStateSelected == "CH" || addressStateSelected == addressState) {
     return (
       <div className={styles.listing}>
-        {/* Name */}
-        <span className={styles.name}>
-          {firstName + " " + formatMiddleName(middleName) + " " + lastName}
-        </span>
-
         {/* Stars */}
         <Stars starCount={ratingRounded} />
+
+        {/* Name */}
+        <span className={styles.listingName}>{companyName}</span>
 
         {/* Address */}
         <span className={styles.location}>

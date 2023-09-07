@@ -45,7 +45,7 @@ const InspectorListing = ({
     return (
       <div className={styles.listing}>
         {/* Company Name */}
-        <span className={styles.name}>{companyName}</span>
+        <span className={styles.listingName}>{companyName}</span>
 
         {/* Stars */}
         <Stars starCount={ratingRounded} />

@@ -49,7 +49,7 @@ const DoctorListing = ({
     return (
       <div className={styles.listing}>
         {/* Name */}
-        <span className={styles.name}>
+        <span className={styles.listingName}>
           {firstName + " " + formatMiddleName(middleName) + " " + lastName}
         </span>
 

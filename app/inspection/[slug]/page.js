@@ -61,8 +61,7 @@ export async function generateMetadata({ params }) {
   } = inspector;
 
   return {
-    title:
-      companyName + " | Mold Illness Treatment in " + city + ", " + stateName,
+    title: companyName + " | Mold Inspections in " + city + ", " + stateName,
   };
 }
 
