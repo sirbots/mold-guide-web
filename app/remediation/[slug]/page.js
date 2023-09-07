@@ -153,7 +153,7 @@ export default async function SinglePractitionerPage({ params }) {
       </div>
 
       {/* Remediator Info */}
-      <div className={styles.singeListingInfoContainer}>
+      <div className={styles.singleListingInfoContainer}>
         <h3>Practice Name</h3>
         <p>{companyName}</p>
 

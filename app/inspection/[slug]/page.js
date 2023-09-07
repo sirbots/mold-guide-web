@@ -132,7 +132,7 @@ export default async function SingleInspectorPage({ params }) {
       </div>
 
       {/* Inspector Info */}
-      <div className={styles.singeListingInfoContainer}>
+      <div className={styles.singleListingInfoContainer}>
         <h3>About this Inspector</h3>
         {bio &&
           bio.map((paragraph, index) => {
