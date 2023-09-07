@@ -19,13 +19,9 @@ const ListingReviews = ({ listingId, listingType }) => {
   const apiUrl = `/api/reviews/${listingType}s/reviews-with-name/by-${listingType}-id/${listingId}`;
   let reviews = use(getListingReviews(apiUrl));
 
-  console.log(listingType);
-  console.log(listingId);
-  console.log(apiUrl);
-
   if (reviews.length === 0) {
     return (
-      <div className={styles.doctorReviewsContainer}>
+      <div className={styles.reviewsContainer}>
         <h3>Reviews</h3>
         <p>There are no reviews yet for this listing.</p>
       </div>
@@ -33,7 +29,7 @@ const ListingReviews = ({ listingId, listingType }) => {
   }
 
   return (
-    <div className={styles.doctorReviewsContainer}>
+    <div className={styles.reviewsContainer}>
       <h3>Reviews</h3>
 
       {reviews &&
@@ -47,7 +43,7 @@ const ListingReviews = ({ listingId, listingType }) => {
           });
 
           return (
-            <div key={rev.id} className={styles.doctorReview}>
+            <div key={rev.id} className={styles.review}>
               <h4 style={{ marginBottom: "5px" }}>{rev.title}</h4>
               <Stars starCount={rev.rating} />
 

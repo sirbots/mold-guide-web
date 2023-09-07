@@ -28,7 +28,7 @@ const lora = Lora({
 
 // Return a list of `params` to populate the [slug] dynamic segment
 export async function generateStaticParams() {
-  // First, get all of the documents in the Doctor collection of the database so we can create a page for each one
+  // First, get all of the documents in the Inspector collection of the database so we can create a page for each one
 
   const inspectors = await prisma.inspector.findMany({
     where: {
@@ -38,8 +38,8 @@ export async function generateStaticParams() {
     },
   });
 
-  // Then, get the slug field of each Doctor and map it. This will get passed as a params prop to the
-  // SinglePractitionerPage function so nextjs can build a unique page for each doctor (by looking up
+  // Then, get the slug field of each Inspector and map it. This will get passed as a params prop to the
+  // SinglePractitionerPage function so nextjs can build a unique page for each inspector (by looking up
   // the unique slug)
   return inspectors.map((inspector) => ({
     slug: inspector.slug,
@@ -70,7 +70,7 @@ export default async function SingleInspectorPage({ params }) {
   // Get the slug from the params generated in generateStaticParams()
   const slug = params.slug;
 
-  // Find the unique doctor in the database
+  // Find the unique inspector in the database
   const inspector = await prisma.inspector.findUnique({
     where: {
       slug: slug,
@@ -106,8 +106,9 @@ export default async function SingleInspectorPage({ params }) {
         />
 
         <div className={styles.textBox}>
-          <span className={styles.doctorName}>{companyName}</span>
-          <SingleListingStarRatings inspectorId={id} />
+          <span className={styles.name}>{companyName}</span>
+
+          <SingleListingStarRatings listingId={id} listingType="inspector" />
 
           <a className={styles.addReviewBtn} href={"#review-form"}>
             <span className={styles.addReviewBtnTxt}>Add a Review</span>

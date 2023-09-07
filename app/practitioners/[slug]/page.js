@@ -127,10 +127,11 @@ export default async function SinglePractitionerPage({ params }) {
         />
 
         <div className={styles.textBox}>
-          <span className={styles.doctorName}>
+          <span className={styles.name}>
             {firstName} {formatMiddleName(middleName)} {lastName}
           </span>
-          <SingleListingStarRatings doctorId={id} />
+
+          <SingleListingStarRatings listingId={id} listingType="doctor" />
 
           <a className={styles.addReviewBtn} href={"#review-form"}>
             <span className={styles.addReviewBtnTxt}>Add a Review</span>
@@ -154,7 +155,7 @@ export default async function SinglePractitionerPage({ params }) {
       </div>
 
       {/* Doctor Info */}
-      <div className={styles.singeListingInfoContainer}>
+      <div className={styles.singleListingInfoContainer}>
         <h3>Practice Name</h3>
         <p>{practiceName}</p>
 

@@ -45,27 +45,27 @@ const InspectorListing = ({
     return (
       <div className={styles.listing}>
         {/* Company Name */}
-        <span className={styles.doctorName}>{companyName}</span>
+        <span className={styles.name}>{companyName}</span>
 
         {/* Stars */}
         <Stars starCount={ratingRounded} />
 
         {/* Address */}
-        <span className={styles.doctorLocation}>
+        <span className={styles.location}>
           {addressCity ? addressCity + ", " : ""}{" "}
           {addressState ? addressState : ""}
         </span>
 
-        {/* Doctor Photo */}
+        {/*  Photo */}
         {/* TO DO: Pull this in from MongoDB */}
         <Image
           src={inspection1}
-          className={styles.doctorListingsImg}
+          className={styles.listingImg}
           alt="inspector photo"
         />
 
-        {/* Doctor Metadata */}
-        <span className={styles.doctorCertification}>
+        {/* Metadata */}
+        <span className={styles.certification}>
           {certifications ? arrayToCommaString(certifications) : " "}
         </span>
 
@@ -125,25 +125,27 @@ const getPublishedInspectors = cache(() =>
   fetch("/api/inspectors/published").then((res) => res.json())
 );
 const getReviews = cache(() =>
-  fetch("/api/reviews/doctors").then((res) => res.json())
+  fetch("/api/reviews/inspectors").then((res) => res.json())
 );
 
-export default function DoctorListings({}) {
-  // Call the API to get all of the published doctors and reviews
+export default function InspectorListings({}) {
+  // Call the API to get all of the published inspectors and reviews
   let reviews = use(getReviews());
   let inspectors = use(getPublishedInspectors());
 
-  // Go through all the doctors
+  // Go through all the listings
   inspectors.forEach((inspector) => {
-    // Create an empty array to hold the ratings for this doctor
+    // Create an empty array to hold the ratings for this inspector
     const allRatings = [];
 
-    // Go through every review and see if the doctor ID matches the current doctor
+    // Go through every review and see if the inspector ID matches the current inspector
     reviews.forEach((rev) => {
-      if (inspector.id == rev.doctorId) {
+      if (inspector.id == rev.inspectorId) {
         allRatings.push(rev.rating);
       }
     });
+
+    // console.log(allRatings);
 
     // Use a reducr to sum up all of the ratings
     const ratingsSum = parseFloat(
@@ -157,7 +159,7 @@ export default function DoctorListings({}) {
     const roundedAvg =
       ratingsSum > 0 ? parseInt(roundTo(ratingsSum / allRatings.length)) : 0;
 
-    // Add the average rating to the doctor object for this particular doctor
+    // Add the average rating to the inspector object for this particular inspector
     inspector["avgRating"] = roundedAvg;
   });
 
@@ -165,7 +167,6 @@ export default function DoctorListings({}) {
   const [filterValues, setFilterValues] = useState({
     addressStateSelected: "CH",
   });
-  console.log(filterValues.addressStateSelected);
 
   const addressStatesIncluded = inspectors.map(
     (inspector) => inspector.addressState

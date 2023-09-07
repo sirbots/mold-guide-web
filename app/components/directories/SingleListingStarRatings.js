@@ -5,15 +5,14 @@ import getAvgRating from "../../lib/getAvgRating";
 import { StarIcon as StarIconOutline } from "@heroicons/react/24/outline";
 import { StarIcon as StarIconSolid } from "@heroicons/react/24/solid";
 
-const getReviewsOfThisDoctor = cache((doctorId) =>
-  fetch("/api/reviews/doctors/by-doctor-id/" + doctorId).then((res) =>
-    res.json()
-  )
+const getReviewsOfThisListing = cache((apiUrl) =>
+  fetch(apiUrl).then((res) => res.json())
 );
 
-export default function SingleListingStarRatings({ doctorId }) {
-  let reviewsOfThisDoctor = use(getReviewsOfThisDoctor(doctorId));
-  const ratingsAvgRounded = getAvgRating(reviewsOfThisDoctor);
+export default function SingleListingStarRatings({ listingId, listingType }) {
+  const apiUrl = `/api/reviews/${listingType}s/by-${listingType}-id/${listingId}`;
+  let reviewsOfThisListing = use(getReviewsOfThisListing(apiUrl));
+  const ratingsAvgRounded = getAvgRating(reviewsOfThisListing);
 
   return (
     <div>

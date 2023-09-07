@@ -49,7 +49,7 @@ const DoctorListing = ({
     return (
       <div className={styles.listing}>
         {/* Name */}
-        <span className={styles.doctorName}>
+        <span className={styles.name}>
           {firstName + " " + formatMiddleName(middleName) + " " + lastName}
         </span>
 
@@ -57,21 +57,21 @@ const DoctorListing = ({
         <Stars starCount={ratingRounded} />
 
         {/* Address */}
-        <span className={styles.doctorLocation}>
+        <span className={styles.location}>
           {addressCity ? addressCity + ", " : ""}{" "}
           {addressState ? addressState : ""}
         </span>
 
-        {/* Doctor Photo */}
+        {/* Photo */}
         {/* TO DO: Pull this in from MongoDB */}
         <Image
           src={gender == "male" ? maleDoctor2 : femaleDoctor6}
-          className={styles.doctorListingsImg}
+          className={styles.listingImg}
           alt="doctor photo"
         />
 
-        {/* Doctor Metadata */}
-        <span className={styles.doctorCertification}>
+        {/* Metadata */}
+        <span className={styles.certification}>
           {certifications ? arrayToCommaString(certifications) : " "}
         </span>
 

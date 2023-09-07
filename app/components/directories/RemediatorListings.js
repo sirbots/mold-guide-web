@@ -12,8 +12,7 @@ import styles from "../../page.module.css";
 
 // Images
 import Image from "next/image";
-import maleDoctor2 from "../../../public/male-doctor2.png";
-import femaleDoctor6 from "../../../public/female-doctor6.png";
+import remediation1 from "../../../public/remediation1.png";
 
 // Helpers
 import arrayToCommaString from "../../lib/arrayToCommaString";
@@ -21,7 +20,7 @@ import formatMiddleName from "../../lib/formatMiddleName";
 import stateNames from "../../lib/stateNames";
 import roundTo from "../../lib/roundTo";
 
-// Doctor Listing Component
+// remediator Listing Component
 const RemediatorListing = ({
   slug,
   // firstName,
@@ -47,7 +46,7 @@ const RemediatorListing = ({
     return (
       <div className={styles.listing}>
         {/* Name */}
-        <span className={styles.doctorName}>
+        <span className={styles.name}>
           {firstName + " " + formatMiddleName(middleName) + " " + lastName}
         </span>
 
@@ -55,26 +54,26 @@ const RemediatorListing = ({
         <Stars starCount={ratingRounded} />
 
         {/* Address */}
-        <span className={styles.doctorLocation}>
+        <span className={styles.location}>
           {addressCity ? addressCity + ", " : ""}{" "}
           {addressState ? addressState : ""}
         </span>
 
-        {/* Doctor Photo */}
+        {/* Photo */}
         {/* TO DO: Pull this in from MongoDB */}
         <Image
-          src={gender == "male" ? maleDoctor2 : femaleDoctor6}
-          className={styles.doctorListingsImg}
-          alt="doctor photo"
+          src={remediation1}
+          className={styles.listingImg}
+          alt="Remediator photo"
         />
 
-        {/* Doctor Metadata */}
-        <span className={styles.doctorCertification}>
+        {/* Metadata */}
+        <span className={styles.certification}>
           {certifications ? arrayToCommaString(certifications) : " "}
         </span>
 
         {/* Button */}
-        <a className={styles.listingBtn} href={"/practitioners/" + slug}>
+        <a className={styles.listingBtn} href={"/remediation/" + slug}>
           <span className={styles.listingBtnText}>View Profile</span>
         </a>
       </div>
@@ -133,7 +132,7 @@ const getReviews = cache(() =>
 );
 
 export default function RemediatorListings({}) {
-  // Call the API to get all of the published doctors and reviews
+  // Call the API to get all of the published remediators and reviews
   let reviews = use(getReviews());
   let remediators = use(getPublishedRemediators());
 
@@ -142,7 +141,7 @@ export default function RemediatorListings({}) {
     // Create an empty array to hold the ratings for this remediator
     const allRatings = [];
 
-    // Go through every review and see if the doctor ID matches the current doctor
+    // Go through every review and see if the remediator ID matches the current remediator
     reviews.forEach((rev) => {
       if (remediator.id == rev.remediatorId) {
         allRatings.push(rev.rating);

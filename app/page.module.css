@@ -469,11 +469,6 @@
   background-size: cover; 
 }
 
-
-
-
-
-
 /* Footer */
 .footer {
   display: flex;
@@ -493,6 +488,10 @@
   margin: 8px;
 }
 
+
+/********************
+PAGE LAYOUT & STYLING
+********************/
 
 /* Basic Content Page Styles */
 .pageContent {
@@ -544,7 +543,37 @@
   color: #FEFEFE;
 }
 
-/* Directory Pages */
+/* Resource Pages */
+.resourcesPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.resourcesPage h2 {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.articleContent {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  margin: 100px 0 50px 0;
+  max-width: 63%;
+}
+
+ /* User Profile Page */
+ .userReviewsContainer {
+  margin-bottom: 100px;
+ }
+
+
+/****************
+Directory Pages 
+****************/
+
+/* Directory Listings Pages */
 .directoryPage {
   display: flex;
   flex-direction: column;
@@ -561,30 +590,22 @@
   flex-direction: row;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  
   margin-top: 50px;
   max-width: 80%;
-  
 }
 
 .listing {
   display: flex;
   flex-direction: column;
   position: relative;
-
   align-items: center;
-
   width: 280px;
   height: 280px;
-  
-
   margin-right: 20px;
   margin-left: 20px;
   margin-bottom: 55px;
-  
   padding: 10px 15px 0 15px;
   background-color: #FEFEFE;
-  
   border: 1.5px solid #94D2BD;
   border-radius: 9px;
   box-shadow: 2px 3px #0A9396;
@@ -600,25 +621,25 @@
   color: #EE9B00;
 } 
 
-.doctorListingsImg {
+.listingImg {
   width: 120px;
   height: 120px;
   align-self: center;
   margin-bottom: 10px;
 }
 
-.doctorName {
+.name {
   font-size: 17px;
   text-align: center;
 }
 
-.doctorLocation {
+.location {
   font-size: 15px;
   margin-bottom: 20px;
   text-align: center;
 } 
  
-.doctorCertification {
+.certification {
   font-size: 14px;
   text-align: center;
   margin-top: 7px;
@@ -658,7 +679,11 @@
 
 
 
-/* Single Listing Pages */
+/*******************
+Single Listing Pages
+*******************/
+
+/* General Rules that apply to all single listing pages */
 .singleListingHero {
   display: flex;
   flex-direction: row;
@@ -674,139 +699,24 @@
   color: #EE9B00;
 }
 
-/* Single Listing Add Review Btn */ 
 .addReviewBtn {
   display: flex;
   height: 28px;
   width: 110px;
-
   border-radius: 20px;
   margin-top: 14px;
   justify-content: center;
   align-items: center;
-
   background-color: #CA383A;
   border: 1px solid #CA383A;
   box-shadow: 1px 2px #E4705F;
-
 }  
+
 .addReviewBtnTxt {
   color: #FEFEFE;
   font-size: 13px;
   font-weight: bold;
 }
-
-
-/* Resource Pages */
-.resourcesPage {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.resourcesPage h2 {
-  margin-top: 30px;
-  text-align: center;
-}
-
-.articleContent {
-  display: flex;
-  flex-direction: column;
-  align-self: center;
-
-  margin: 100px 0 50px 0;
-  max-width: 63%;
-
-}
-
-
-/* Add Review Form */
-.addReviewSubmitted {
-  align-self: center;
-  text-align: center;
-  max-width: 75%;
-
-}
-.addReviewForm {
-  display: flex;
-  flex-direction: column;
-  align-self: center;
-  width: 50%;
-  /* margin-top: 15px; */
-  margin-bottom: 100px;
-}
-
-.addReviewTitle {
- text-align: center;
-}
-.addReviewForm .addReviewP  {
-  margin-bottom: 15px;
-}
-
-.addReviewForm .formRow {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 12px;
-}
-
-.addReviewForm .formLabel {
-  display: flex;
-  align-items: center;
-  font-weight: 700;
-  margin-bottom: 10px;
-  width: 30%;
-}
-.addReviewForm .formInput {
-  background: transparent;
-  border: 1px solid #001219;
-  border-radius: 3px;
-  color: #001219;
-  font-family: inherit;
-  width: 70%;
-  padding: 0 10px;
-  min-height: 40px;
-}
-
-.addReviewForm .formInputTextArea {
-  background: transparent;
-  border: 1px solid #001219;
-  border-radius: 3px;
-  color: #001219;
-  font-family: inherit;
-  width: 70%;
-  min-width: 70%;
-  max-width: 70%;
-  padding: 10px;
-  min-height: 140px;
-}
-
-.addReviewForm .formBtn { 
-  display: flex;
-  height: 50px;
-  width: 50%;
-
-  border-radius: 10px;
-  margin-top: 22px;
-  justify-content: center;
-  align-items: center;
-
-  text-align: center;
-
-  background-color: #005F73;
-  border: 1px solid #005F73;
-  box-shadow: 1px 2px #0A9396;
-  
-  }  
-
-/* Commented out for now. TO DO: come back and format this nicely using stars. */
-/* .addReviewForm datalist {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  writing-mode: vertical-lr;
-  width: 200px;   
-}*/
-
 
 /* Hero box rules */
 .singleListingHero .textBox {
@@ -818,30 +728,19 @@
   padding-top: 30px;
   margin-left: 50px;
 }
-
 .singleListingHero .img {
   height: 300px;
   width: 300px;
 }
-
-
-.singleListingHero .doctorName {
+.singleListingHero .name {
   font-size: 28px;
   margin-bottom: 3px;
 }
-
-.singleListingHero .doctorLocation {
-  
-  font-size: 15px;
-  margin-top: 21px;
-}
-
 .singleListingHero .addressBox {
   display: flex;
   flex-direction: column;
   margin-top: 25px;
 }
-
 .singleListingHero .streetAddress,
 .singleListingHero .unitNumber {
   font-size: 16px;
@@ -853,21 +752,18 @@
   font-size: 16px;
 }
 .singleListingHero .phoneNumber { margin-top: 15px;}
-
 .singleListingHero .website {
   font-size: 16px;
   color: #0A9396;
   margin-top: 15px;
 }
-
-
 .singleListingHero .starContainer {
   display: flex;
   flex-direction: row;
 }
 
-/* DoctorInfo rules */
-.singeListingInfoContainer {
+/* Listing Info Container */
+.singleListingInfoContainer {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -876,7 +772,6 @@
   max-width: 800px;
   margin: 50px 0;
   padding: 0 70px;
-  /* background-color: #E2D4AC; */
 }
 
 /* .spacer {
@@ -885,10 +780,9 @@
   width: 60%;
   margin-bottom: 45px;
   align-self: center;
-}
- */
+} */
 
- .doctorReviewsContainer {
+ .reviewsContainer {
   display: flex;
   flex-direction: column;
   margin-bottom: 50px;
@@ -899,21 +793,21 @@
   max-width: 70%;
  }
 
- .doctorReview {
+ .review {
   width: 100%;
   margin: 20px 0;
   padding: 0 40px;
  }
 
- .doctorReviewsContainer h3 {
+ .reviewsContainer h3 {
   margin-bottom: 20px;
  }
 
- /* User Profile Page */
- .userReviewsContainer {
-  margin-bottom: 100px;
- }
 
+
+ /**********
+ FORMS
+ **********/
 
 /* Global Form Elements */
 .formRow {
@@ -1016,13 +910,10 @@ font-size: 14px;
   font-size: 16px;
   padding: 60px 25px;
   text-align: center;
-  
 }
 
 .giveFeedbackForm {  
-  
   padding: 10px 25px;
-  
   display: flex;
   flex-direction: column;
 }
@@ -1033,7 +924,6 @@ font-size: 14px;
 
 .giveFeedbackForm .formInput {
   border: 1px lightgray solid;
-  /* padding-top */
 }
 
 .giveFeedbackForm .formInputTextArea {
@@ -1095,6 +985,92 @@ font-size: 14px;
 }
 
 
+/* Add Review Form */
+.addReviewSubmitted {
+  align-self: center;
+  text-align: center;
+  max-width: 75%;
+
+}
+.addReviewForm {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  width: 50%;
+  /* margin-top: 15px; */
+  margin-bottom: 100px;
+}
+
+.addReviewTitle {
+ text-align: center;
+}
+.addReviewForm .addReviewP  {
+  margin-bottom: 15px;
+}
+
+.addReviewForm .formRow {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 12px;
+}
+
+.addReviewForm .formLabel {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  margin-bottom: 10px;
+  width: 30%;
+}
+.addReviewForm .formInput {
+  background: transparent;
+  border: 1px solid #001219;
+  border-radius: 3px;
+  color: #001219;
+  font-family: inherit;
+  width: 70%;
+  padding: 0 10px;
+  min-height: 40px;
+}
+
+.addReviewForm .formInputTextArea {
+  background: transparent;
+  border: 1px solid #001219;
+  border-radius: 3px;
+  color: #001219;
+  font-family: inherit;
+  width: 70%;
+  min-width: 70%;
+  max-width: 70%;
+  padding: 10px;
+  min-height: 140px;
+}
+
+.addReviewForm .formBtn { 
+  display: flex;
+  height: 50px;
+  width: 50%;
+
+  border-radius: 10px;
+  margin-top: 22px;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  background-color: #005F73;
+  border: 1px solid #005F73;
+  box-shadow: 1px 2px #0A9396;
+  
+  }  
+
+/* Commented out for now. TO DO: come back and format this nicely using stars. */
+/* .addReviewForm datalist {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  writing-mode: vertical-lr;
+  width: 200px;   
+}*/
 
 
 /* Listing Filter Forms */

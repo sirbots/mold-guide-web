@@ -1,7 +1,6 @@
 // Images
 import Image from "next/image";
-import maleDoctor2 from "../../../public/male-doctor2.png";
-import femaleDoctor6 from "../../../public/female-doctor6.png";
+import remediation1 from "../../../public/remediation1.png";
 
 // Database
 import { prisma } from "../../lib/prisma";
@@ -97,6 +96,7 @@ export default async function SinglePractitionerPage({ params }) {
     // middleName: middleName,
     // lastName: lastName,
     // gender: gender,
+    companyName: companyName,
     addressStreet: street,
     addressUnit: unitNum,
     addressCity: city,
@@ -120,17 +120,16 @@ export default async function SinglePractitionerPage({ params }) {
 
       <div className={styles.singleListingHero}>
         <Image
-          src={gender == "male" ? maleDoctor2 : femaleDoctor6}
+          src={remediation1}
           className={styles.img}
           // TO DO: update to make auto-generated alt tag
           alt="Remediator photo."
         />
 
         <div className={styles.textBox}>
-          <span className={styles.doctorName}>
-            {firstName} {formatMiddleName(middleName)} {lastName}
-          </span>
-          <SingleListingStarRatings remediatorId={id} />
+          <span className={styles.name}>{companyName}</span>
+
+          <SingleListingStarRatings listingId={id} listingType="remediator" />
 
           <a className={styles.addReviewBtn} href={"#review-form"}>
             <span className={styles.addReviewBtnTxt}>Add a Review</span>
@@ -153,12 +152,12 @@ export default async function SinglePractitionerPage({ params }) {
         </div>
       </div>
 
-      {/* Doctor Info */}
+      {/* Remediator Info */}
       <div className={styles.singeListingInfoContainer}>
         <h3>Practice Name</h3>
-        <p>{practiceName}</p>
+        <p>{companyName}</p>
 
-        <h3>About the Practitioner</h3>
+        <h3>About the Remediation Company</h3>
         {bio &&
           bio.map((paragraph, index) => {
             return <p key={index}>{paragraph}</p>;
