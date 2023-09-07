@@ -30,12 +30,12 @@ export default function NewListingForm() {
     addressState: "MA",
     addressZipcode: "",
     addressCountry: "USA",
-    telehealth: false,
-    shoemakerProtocol: false,
-    conditionsTreated: "", // String[] @default(["Mold Illness"])
-    certifications: "", // String[] @default([""])
-    seesPatientsIn: "", // String[] @default([""])
-    bio: "", // String[] @default(["Coming soon!"])
+    telehealth: false, // Boolean
+    shoemakerProtocol: false, // Boolean
+    conditionsTreated: [], // Array
+    certifications: [], // Array
+    seesPatientsIn: [], // Array
+    bio: [], // Array
     createdAt: new Date(),
     lastModified: new Date(),
   });
@@ -118,7 +118,7 @@ export default function NewListingForm() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
-    console.log(formValues);
+    console.log(formValues.conditionsTreated);
   };
 
   return (
@@ -292,7 +292,7 @@ export default function NewListingForm() {
           Telehealth offered?
         </label>
         <input
-          className={styles.formInput}
+          className={styles.checkboxInput}
           type="checkbox"
           name="telehealth"
           defaultChecked={false}
@@ -304,7 +304,7 @@ export default function NewListingForm() {
           Uses the Shoemaker Protocol?
         </label>
         <input
-          className={styles.formInput}
+          className={styles.checkboxInput}
           type="checkbox"
           name="shoemakerProtocol"
           defaultChecked={false}
@@ -321,14 +321,133 @@ export default function NewListingForm() {
         <label className={styles.formLabel} htmlFor="conditionsTreated">
           Conditions Treated:
         </label>
-        <input
-          className={styles.formInput}
-          type="text"
-          name="conditionsTreated"
-          value={formValues.conditionsTreated}
-          onChange={handleChange}
-        />
+
+        <fieldset className={styles.multipleCheckboxSection}>
+          <div className={styles.checkboxContainer}>
+            <label className={styles.checkboxLabel} htmlFor="conditionsTreated">
+              Mold Illness
+            </label>
+            <input
+              className={styles.checkboxInput}
+              type="checkbox"
+              name="conditionsTreated"
+              value="Mold Illness"
+              onChange={() =>
+                setFormValues({
+                  ...formValues,
+                  conditionsTreated: [
+                    ...formValues.conditionsTreated,
+                    "Mold Illness",
+                  ],
+                })
+              }
+            />
+          </div>
+
+          <div className={styles.checkboxContainer}>
+            <label className={styles.checkboxLabel} htmlFor="conditionsTreated">
+              CIRS
+            </label>
+            <input
+              className={styles.checkboxInput}
+              type="checkbox"
+              name="conditionsTreated"
+              value="CIRS"
+              onChange={() =>
+                setFormValues({
+                  ...formValues,
+                  conditionsTreated: [...formValues.conditionsTreated, "CIRS"],
+                })
+              }
+            />
+          </div>
+
+          <div className={styles.checkboxContainer}>
+            <label className={styles.checkboxLabel} htmlFor="conditionsTreated">
+              Heavy Metals
+            </label>
+            <input
+              className={styles.checkboxInput}
+              type="checkbox"
+              name="conditionsTreated"
+              value="Heavy Metals"
+              onChange={() =>
+                setFormValues({
+                  ...formValues,
+                  conditionsTreated: [
+                    ...formValues.conditionsTreated,
+                    "Heavy Metals",
+                  ],
+                })
+              }
+            />
+          </div>
+
+          <div className={styles.checkboxContainer}>
+            <label className={styles.checkboxLabel} htmlFor="conditionsTreated">
+              Lyme Disease
+            </label>
+            <input
+              className={styles.checkboxInput}
+              type="checkbox"
+              name="conditionsTreated"
+              value="Lyme Disease"
+              onChange={() =>
+                setFormValues({
+                  ...formValues,
+                  conditionsTreated: [
+                    ...formValues.conditionsTreated,
+                    "Lyme Disease",
+                  ],
+                })
+              }
+            />
+          </div>
+
+          <div className={styles.checkboxContainer}>
+            <label className={styles.checkboxLabel} htmlFor="conditionsTreated">
+              Gut Issues
+            </label>
+            <input
+              className={styles.checkboxInput}
+              type="checkbox"
+              name="conditionsTreated"
+              value="Gut Issues"
+              onChange={() =>
+                setFormValues({
+                  ...formValues,
+                  conditionsTreated: [
+                    ...formValues.conditionsTreated,
+                    "Gut Issues",
+                  ],
+                })
+              }
+            />
+          </div>
+
+          <div className={styles.checkboxContainer}>
+            <label className={styles.checkboxLabel} htmlFor="conditionsTreated">
+              Thyroid Issues
+            </label>
+            <input
+              className={styles.checkboxInput}
+              type="checkbox"
+              name="conditionsTreated"
+              value="Thyroid Issues"
+              onChange={() =>
+                setFormValues({
+                  ...formValues,
+                  conditionsTreated: [
+                    ...formValues.conditionsTreated,
+                    "Thyroid Issues",
+                  ],
+                })
+              }
+            />
+          </div>
+        </fieldset>
       </div>
+
       <div className={styles.formRow}>
         <label className={styles.formLabel} htmlFor="certifications">
           Certifications:

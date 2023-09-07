@@ -20,6 +20,7 @@ export async function POST(request) {
       headers: { "Content-Type": "application/json" },
     });
   } catch (error) {
+    console.log(error);
     if (error.code === "P2002") {
       return new NextResponse("Doctor already exists", {
         status: 409,
