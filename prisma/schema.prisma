@@ -112,7 +112,7 @@ model InspectorReview {
   authorId    String     @db.ObjectId
   createdAt   DateTime   @default(now())
   Inspector   Inspector? @relation(fields: [inspectorId], references: [id])
-  inspectorId String?    @db.ObjectId
+  inspectorId String
 }
 
 model RemediatorReview {
@@ -125,7 +125,7 @@ model RemediatorReview {
   authorId     String      @db.ObjectId
   createdAt    DateTime    @default(now())
   Remediator   Remediator? @relation(fields: [remediatorId], references: [id])
-  remediatorId String?     @db.ObjectId
+  remediatorId String
 }
 
 view EnrichedDoctorReviews {
@@ -138,3 +138,72 @@ view EnrichedDoctorReviews {
   doctorId   String
   createdAt  DateTime
 }
+
+view EnrichedInspectorReviews {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  body        String
+  rating      Int
+  authorId    String   @db.ObjectId
+  authorName  String
+  inspectorId String
+  createdAt   DateTime
+}
+
+view EnrichedRemediatorReviews {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  title        String
+  body         String
+  rating       Int
+  authorId     String   @db.ObjectId
+  authorName   String
+  remediatorId String
+  createdAt    DateTime
+}
+
+// lookup
+// /**
+//  * from: The target collection.
+//  * localField: The local join field.
+//  * foreignField: The target join field.
+//  * as: The name for the results.
+//  * pipeline: Optional pipeline to run on the foreign collection.
+//  * let: Optional variables to use in the pipeline field stages.
+//  */
+// {
+//   from: "User",
+//   localField: "authorId",
+//   foreignField: "_id",
+//   as: "UserData",
+// }
+
+// $project
+
+// /**
+//  * specifications: The fields to
+//  *   include or exclude.
+//  */
+// {
+//   _id: 1,
+//   authorId: 1,
+//   title: 1,
+//   body: 1,
+//   createdAt: 1,
+//   doctorId: 1,
+//   rating: 1,
+//   authorName: "$UserData.name",
+// }
+
+// $unwind
+
+// /**
+//  * path: Path to the array field.
+//  * includeArrayIndex: Optional name for index.
+//  * preserveNullAndEmptyArrays: Optional
+//  *   toggle to unwind null and empty values.
+//  */
+// {
+//   path: "$authorName",
+//   // includeArrayIndex: 'string',
+//   // preserveNullAndEmptyArrays: boolean
+// }

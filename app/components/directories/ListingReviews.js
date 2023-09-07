@@ -15,19 +15,19 @@ const getListingReviews = cache((apiUrl) =>
   fetch(apiUrl).then((res) => res.json())
 );
 
-const ListingReviews = ({ id, listingType }) => {
-  const apiUrl = `/api/reviews/${listingType}s/reviews-with-name/by-${listingType}-id/${id}`;
+const ListingReviews = ({ listingId, listingType }) => {
+  const apiUrl = `/api/reviews/${listingType}s/reviews-with-name/by-${listingType}-id/${listingId}`;
   let reviews = use(getListingReviews(apiUrl));
 
-  // console.log(listingType);
-  // console.log(id);
-  // console.log(apiUrl);
+  console.log(listingType);
+  console.log(listingId);
+  console.log(apiUrl);
 
   if (reviews.length === 0) {
     return (
       <div className={styles.doctorReviewsContainer}>
         <h3>Reviews</h3>
-        <p>There are no reviews yet for this practitioner.</p>
+        <p>There are no reviews yet for this listing.</p>
       </div>
     );
   }

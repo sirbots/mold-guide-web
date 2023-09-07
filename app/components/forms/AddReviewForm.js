@@ -16,7 +16,7 @@ const merriweather = Merriweather({
 // Cache the user session data so we can send it to the API with the form data
 const getUser = cache(() => fetch("/api/session/").then((res) => res.json()));
 
-export default function AddReviewForm({ id }) {
+export default function AddReviewForm({ listingId, listingType }) {
   let [reviewPublished, setPublished] = useState(false);
   let [sending, setSending] = useState(false);
 
@@ -50,12 +50,23 @@ export default function AddReviewForm({ id }) {
     data["rating"] = parseInt(formValues.rating); // Convert the rating to an int
     data["createdAt"] = new Date(); // Set the createdAt date to the current date
     data["authorId"] = userId; // Set the authorId to the currently logged-in user
-    data["doctorId"] = doctorId; // Set the doctorId to the doctorId of the current page
+
+    switch (listingType) {
+      case "doctor":
+        data["doctorId"] = listingId; // Set the doctorId to the doctorId of the current page
+        break;
+      case "inspector":
+        data["inspectorId"] = listingId; // Set the inspectorId to the inspectorId of the current page
+        break;
+      case "remediator":
+        data["remediatorId"] = listingId; // Set the remediatorId to the remediatorId of the current page
+    }
 
     // console.log("The formatted data object:");
     // console.log(data);
     try {
-      fetch("/api/reviews/doctors", {
+      const apiUrl = `/api/reviews/${listingType}s`;
+      fetch(apiUrl, {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -87,29 +98,50 @@ export default function AddReviewForm({ id }) {
               headers: {
                 "content-type": "application/json",
               },
-              body: JSON.stringify({ formSubmitted: "Doctor Review" }),
+              body: JSON.stringify({ formSubmitted: "New Review" }),
             });
           } catch (error) {
             console.log(error);
           }
         });
     } catch (error) {
-      // console.log(error);
+      console.log(error);
     }
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
-    // console.log(formValues);
   };
+
+  // Customize the display text based on the type of listing
+  let listingName = "Practitioner";
+  if (listingType === "inspector") {
+    listingName = "Inspector";
+  }
+  if (listingType === "remediator") {
+    listingName = "Remediation Company";
+  }
+
+  let reviewHelpText =
+    "What did you see this practitioner for? What Were they able to successfully diagnose and treat your issue? Were they transparent about their prices? Would you recommend them to a friend suffering from a similar condition?";
+
+  if (listingType === "inspector") {
+    reviewHelpText =
+      "Did the inspector provide a thorough inspection? Were they transparent about their prices? Did they correctly identify potential problem areas? Would you recommend them to a friend?";
+  }
+
+  if (listingType === "remediator") {
+    reviewHelpText =
+      "Did the remediation company successfully remediate your mold problem? Did they take the proper safety precautions to prevent any cross-contamination? Did your home test negative for mold after the remediation? Was their pricing transparent?";
+  }
 
   // If the user is not logged in, display a message telling them to sign in or register in order to leave a review
   if (user.status === "fail") {
     return (
       <div className={styles.addReviewSubmitted}>
         <h3 className={styles.addReviewTitle}>
-          Leave a Review of this Practitioner
+          Leave a Review of this {listingName}
         </h3>
         <p
           style={{
@@ -134,19 +166,14 @@ export default function AddReviewForm({ id }) {
         onSubmit={handleSubmit}
       >
         <h3 className={styles.addReviewTitle}>
-          Leave a Review of this Practitioner
+          Leave a Review of this {listingName}
         </h3>
 
         <p className={styles.addReviewP}>
           Try to leave a review that provides helpful information for others who
           are looking for help.
         </p>
-        <p className={styles.addReviewP}>
-          What did you see this practitioner for? What Were they able to
-          successfully diagnose and treat your issue? Were they transparent
-          about their prices? Would you recommend them to a friend suffering
-          from a similar condition?
-        </p>
+        <p className={styles.addReviewP}>{reviewHelpText}</p>
         <p className={styles.addReviewP}></p>
 
         <div className={styles.formRow}>

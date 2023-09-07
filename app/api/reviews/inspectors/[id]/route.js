@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 export async function GET(request, { params }) {
   const id = params.id;
-  const review = await prisma.doctorReview.findUnique({
+  const review = await prisma.inspectorReview.findUnique({
     where: {
       id,
     },
@@ -20,7 +20,7 @@ export async function PATCH(request, { params }) {
   const id = params.id;
   let json = await request.json();
 
-  const updated_review = await prisma.doctorReview.update({
+  const updated_review = await prisma.inspectorReview.update({
     where: { id },
     data: json,
   });
@@ -35,7 +35,7 @@ export async function PATCH(request, { params }) {
 export async function DELETE(request, { params }) {
   try {
     const id = params.id;
-    await prisma.doctorReview.delete({
+    await prisma.inspectorReview.delete({
       where: { id },
     });
 

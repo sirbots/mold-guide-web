@@ -2,18 +2,20 @@ import { prisma } from "../../../../../../lib/prisma";
 import { NextResponse } from "next/server";
 
 export async function GET(request, { params }) {
-  const doctorId = params.id;
-  const reviewsOfThisDoctor = await prisma.EnrichedDoctorReviews.findMany({
-    where: {
-      doctorId: {
-        equals: doctorId,
+  const inspectorId = params.id;
+  const reviewsOfThisInspector = await prisma.EnrichedInspectorReviews.findMany(
+    {
+      where: {
+        inspectorId: {
+          equals: inspectorId,
+        },
       },
-    },
-  });
+    }
+  );
 
-  if (!reviewsOfThisDoctor) {
+  if (!reviewsOfThisInspector) {
     return new NextResponse("No review with ID found", { status: 404 });
   }
 
-  return NextResponse.json(reviewsOfThisDoctor);
+  return NextResponse.json(reviewsOfThisInspector);
 }

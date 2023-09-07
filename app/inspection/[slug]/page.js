@@ -143,9 +143,8 @@ export default async function SingleInspectorPage({ params }) {
       </div>
 
       {/* Reviews */}
-      <ListingReviews id={id} listingType="inspector" />
-
-      <AddReviewForm inspectorId={id} />
+      <ListingReviews listingId={id} listingType="inspector" />
+      <AddReviewForm listingId={id} listingType="inspector" />
 
       <Footer />
     </main>
