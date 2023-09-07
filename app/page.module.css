@@ -1006,6 +1006,7 @@ font-size: 14px;
   flex-direction: row;
   align-items: center;
   height: 65%;
+  min-height: 22px;
 }
 
 .addListingForm .checkboxLabel {

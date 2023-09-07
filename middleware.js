@@ -10,7 +10,9 @@ export const config = {
   // Protect the /profile page from users who are not logged in.
   matcher: ["/profile"],
   matcher: ["/add-listing"],
-  matcher: ["/add-listing/thank-you"],
+  matcher: ["/add-listing/thank-you-doctor"],
+  matcher: ["/add-listing/thank-you-inspector"],
+  matcher: ["/add-listing/thank-you-remediator"],
   // This would protect any route other than those for the register, login, and api directories:
   //   matcher: ["/((?!register|api|login).*)"],
 };
