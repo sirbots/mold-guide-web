@@ -940,7 +940,7 @@ font-size: 14px;
   align-items: center;
 }
 .addListingForm {
-  width: 60%;
+  width: 50%;
   margin-top: 35px;
 }
 .addListingForm .formRow {
@@ -954,7 +954,7 @@ font-size: 14px;
   align-items: center;
   font-weight: 700;
   margin-bottom: 10px;
-  width: 30%;
+  width: 35%;
 }
 .addListingForm .formInput {
   background: transparent;
@@ -962,47 +962,62 @@ font-size: 14px;
   border-radius: 3px;
   color: #001219;
   font-family: inherit;
-  width: 70%;
+  width: 65%;
   padding: 0 10px;
   min-height: 40px;
 }
 
+.addListingForm .formInputTextArea {
+  background: transparent;
+  border: 1px solid #001219;
+  border-radius: 3px;
+  color: #001219;
+  font-size: 14px;
+  font-family: inherit;
+  width: 65%;
+  min-width: 65%;
+  max-width: 65%;
+  padding: 10px;
+  min-height: 140px;
+}
+
+/* for the "other" fields next to checkboxes */
+.addListingForm .formInputOther {
+  background: transparent;
+  border: 1px solid #001219;
+  border-radius: 3px;
+  color: #001219;
+  font-family: inherit;
+  width: 40%;
+  padding: 0 10px;
+  min-height: 27px;
+  margin-left: 35px;
+}
+
 .addListingForm .multipleCheckboxSection {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   border: none;
-  align-items: center;
+  width: 65%;
 }
 
 .addListingForm .checkboxContainer {
   display: flex;
   flex-direction: row;
-  padding: 5px 15px;
+  align-items: center;
+  height: 65%;
 }
 
 .addListingForm .checkboxLabel {
-
+  font-size: 14px;
+  align-self: center;
+  min-width: 28%;
 }
-
-/* Hide the built-in checkboxes so we can replace them with something nice */
-.addListingForm input[type=checkbox] {
-  /* visibility: hidden; */
-  /* background-color: red; */
-  outline: 2px solid yellow;
-  background: #0de281;
-}
-.addListingForm .checkboxInput [type="checkbox"]:checked {
-  background-color: red;
-
+.addListingForm input:disabled  {
+  visibility: hidden;
 }
 
 
-
-.addListingForm .checkboxInput {
-    /* background: transparent; */
-    background-color: #005F73;
-
-} 
 
 
 /* Add Review Form */

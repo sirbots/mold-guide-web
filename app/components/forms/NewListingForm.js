@@ -15,29 +15,37 @@ const merriweather = Merriweather({
 
 export default function NewListingForm() {
   let [sending, setSending] = useState(false);
-  // let [telehealthChecked, setTelehealthChecked] = useState(false);
+  let [conditionsTreatedOtherDisabled, setConditionsTreatedOtherDisabled] =
+    useState(true);
+  let [certificationsOtherDisabled, setCertificationsOtherDisabled] =
+    useState(true);
+
   let [formValues, setFormValues] = useState({
-    firstName: "John",
+    firstName: "",
     middleName: "",
-    lastName: "Doe",
+    lastName: "",
     gender: "",
     practiceName: "",
     phoneNumber: "",
     website: "",
     addressStreet: "",
     addressUnit: "",
-    addressCity: "Springfield",
-    addressState: "MA",
+    addressCity: "",
+    addressState: "",
     addressZipcode: "",
     addressCountry: "USA",
     telehealth: false, // Boolean
     shoemakerProtocol: false, // Boolean
     conditionsTreated: [], // Array
     certifications: [], // Array
-    seesPatientsIn: [], // Array
     bio: [], // Array
     createdAt: new Date(),
     lastModified: new Date(),
+
+    // These are in the form, but get merged with other fields or manipulated before being sent to the API
+    conditionsTreatedOther: "", // String
+    certificationsOther: "", // String
+    seesPatientsIn: "", // Take input as a string, reformat as array before sending to API
   });
 
   // Initialize the router because redirect doesn't seem to work in client components
@@ -59,9 +67,38 @@ export default function NewListingForm() {
       formattedMiddleName = formValues.middleName + "-";
     }
     // Format the new slug
-    data[
-      "slug"
-    ] = `${formValues.firstName}-${formattedMiddleName}${formValues.lastName}-${formValues.addressCity}-${formValues.addressState}`;
+    data["slug"] =
+      `${formValues.firstName}-${formattedMiddleName}${formValues.lastName}-${formValues.addressCity}-${formValues.addressState}`.toLowerCase();
+
+    // Add any "other" conditions treated to the conditionsTreated array. Delete the "other" field.
+    data["conditionsTreated"] = [
+      ...formValues.conditionsTreated,
+      formValues.conditionsTreatedOther,
+    ];
+    delete data["conditionsTreatedOther"];
+
+    // Add any "other" certifications to the certifications array. Delete the "other" field.
+    data["certifications"] = [
+      ...formValues.certifications,
+      formValues.certificationsOther,
+    ];
+    delete data["certificationsOther"];
+
+    // Handle the seesPatientsIn field. This won't be a perfect cleanup function, but it covers the basic cases.
+    if (formValues.seesPatientsIn != "") {
+      let seesPatientsInArray = formValues.seesPatientsIn
+        .replaceAll(",", " ")
+        .split(" ")
+        .filter((item) => item != "");
+      data["seesPatientsIn"] = seesPatientsInArray;
+    } else {
+      data["seesPatientsIn"] = [];
+    }
+
+    // Arrange bio into an array
+    if (formValues.bio != "") {
+      data["bio"] = formValues.bio.split("\n\n");
+    }
 
     try {
       fetch("/api/doctors", {
@@ -118,7 +155,6 @@ export default function NewListingForm() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
-    console.log(formValues.conditionsTreated);
   };
 
   return (
@@ -209,10 +245,10 @@ export default function NewListingForm() {
           onChange={handleChange}
         />
       </div>
-      <p>Address</p>
+
       <div className={styles.formRow}>
         <label className={styles.formLabel} htmlFor="addressStreet">
-          Street:
+          Street Address:
         </label>
         <input
           className={styles.formInput}
@@ -287,36 +323,51 @@ export default function NewListingForm() {
           required
         />
       </div>
+
       <div className={styles.formRow}>
         <label className={styles.formLabel} htmlFor="telehealth">
           Telehealth offered?
         </label>
-        <input
-          className={styles.checkboxInput}
-          type="checkbox"
-          name="telehealth"
-          defaultChecked={false}
-          onChange={() =>
-            setFormValues({ ...formValues, telehealth: !formValues.telehealth })
-          }
-        />
-        <label className={styles.formLabel} htmlFor="shoemakerProtocol">
-          Uses the Shoemaker Protocol?
-        </label>
-        <input
-          className={styles.checkboxInput}
-          type="checkbox"
-          name="shoemakerProtocol"
-          defaultChecked={false}
-          onChange={() =>
-            setFormValues({
-              ...formValues,
-              shoemakerProtocol: !formValues.shoemakerProtocol,
-            })
-          }
-        />
+        <fieldset className={styles.multipleCheckboxSection}>
+          <div className={styles.checkboxContainer}>
+            <input
+              className={styles.checkboxInput}
+              type="checkbox"
+              name="telehealth"
+              defaultChecked={false}
+              onChange={() =>
+                setFormValues({
+                  ...formValues,
+                  telehealth: !formValues.telehealth,
+                })
+              }
+            />
+          </div>
+        </fieldset>
       </div>
-      <div className={styles.formRow}></div>
+
+      <div className={styles.formRow}>
+        <label className={styles.formLabel} htmlFor="shoemakerProtocol">
+          Shoemaker Protocol?
+        </label>
+        <fieldset className={styles.multipleCheckboxSection}>
+          <div className={styles.checkboxContainer}>
+            <input
+              className={styles.checkboxInput}
+              type="checkbox"
+              name="shoemakerProtocol"
+              defaultChecked={false}
+              onChange={() =>
+                setFormValues({
+                  ...formValues,
+                  shoemakerProtocol: !formValues.shoemakerProtocol,
+                })
+              }
+            />
+          </div>
+        </fieldset>
+      </div>
+
       <div className={styles.formRow}>
         <label className={styles.formLabel} htmlFor="conditionsTreated">
           Conditions Treated:
@@ -343,7 +394,6 @@ export default function NewListingForm() {
               }
             />
           </div>
-
           <div className={styles.checkboxContainer}>
             <label className={styles.checkboxLabel} htmlFor="conditionsTreated">
               CIRS
@@ -361,7 +411,6 @@ export default function NewListingForm() {
               }
             />
           </div>
-
           <div className={styles.checkboxContainer}>
             <label className={styles.checkboxLabel} htmlFor="conditionsTreated">
               Heavy Metals
@@ -382,7 +431,6 @@ export default function NewListingForm() {
               }
             />
           </div>
-
           <div className={styles.checkboxContainer}>
             <label className={styles.checkboxLabel} htmlFor="conditionsTreated">
               Lyme Disease
@@ -403,7 +451,6 @@ export default function NewListingForm() {
               }
             />
           </div>
-
           <div className={styles.checkboxContainer}>
             <label className={styles.checkboxLabel} htmlFor="conditionsTreated">
               Gut Issues
@@ -424,7 +471,6 @@ export default function NewListingForm() {
               }
             />
           </div>
-
           <div className={styles.checkboxContainer}>
             <label className={styles.checkboxLabel} htmlFor="conditionsTreated">
               Thyroid Issues
@@ -445,6 +491,31 @@ export default function NewListingForm() {
               }
             />
           </div>
+          <div className={styles.checkboxContainer}>
+            <label className={styles.checkboxLabel} htmlFor="conditionsTreated">
+              Other
+            </label>
+            <input
+              className={styles.checkboxInput}
+              type="checkbox"
+              name="conditionsTreated"
+              value="Other"
+              onChange={() =>
+                setConditionsTreatedOtherDisabled(
+                  !conditionsTreatedOtherDisabled
+                )
+              }
+            />
+            <input
+              className={styles.formInputOther}
+              type="text"
+              name="conditionsTreatedOther"
+              value={formValues.conditionsTreatedOther}
+              // This is set to invisible when disabled. Clicking the above checkbox will set disabled to false.
+              disabled={conditionsTreatedOtherDisabled}
+              onChange={handleChange}
+            />
+          </div>
         </fieldset>
       </div>
 
@@ -452,14 +523,141 @@ export default function NewListingForm() {
         <label className={styles.formLabel} htmlFor="certifications">
           Certifications:
         </label>
-        <input
-          className={styles.formInput}
-          type="text"
-          name="certifications"
-          value={formValues.certifications}
-          onChange={handleChange}
-        />
+
+        <fieldset className={styles.multipleCheckboxSection}>
+          <div className={styles.checkboxContainer}>
+            <label className={styles.checkboxLabel} htmlFor="certifications">
+              MD
+            </label>
+            <input
+              className={styles.checkboxInput}
+              type="checkbox"
+              name="certifications"
+              value="MD"
+              onChange={() =>
+                setFormValues({
+                  ...formValues,
+                  certifications: [...formValues.certifications, "MD"],
+                })
+              }
+            />
+          </div>
+
+          <div className={styles.checkboxContainer}>
+            <label className={styles.checkboxLabel} htmlFor="certifications">
+              DO
+            </label>
+            <input
+              className={styles.checkboxInput}
+              type="checkbox"
+              name="certifications"
+              value="DO"
+              onChange={() =>
+                setFormValues({
+                  ...formValues,
+                  certifications: [...formValues.certifications, "DO"],
+                })
+              }
+            />
+          </div>
+
+          <div className={styles.checkboxContainer}>
+            <label className={styles.checkboxLabel} htmlFor="certifications">
+              L.Ac
+            </label>
+            <input
+              className={styles.checkboxInput}
+              type="checkbox"
+              name="certifications"
+              value="L.Ac"
+              onChange={() =>
+                setFormValues({
+                  ...formValues,
+                  certifications: [...formValues.certifications, "L.Ac"],
+                })
+              }
+            />
+          </div>
+          <div className={styles.checkboxContainer}>
+            <label className={styles.checkboxLabel} htmlFor="certifications">
+              ND
+            </label>
+            <input
+              className={styles.checkboxInput}
+              type="checkbox"
+              name="certifications"
+              value="ND"
+              onChange={() =>
+                setFormValues({
+                  ...formValues,
+                  certifications: [...formValues.certifications, "ND"],
+                })
+              }
+            />
+          </div>
+
+          <div className={styles.checkboxContainer}>
+            <label className={styles.checkboxLabel} htmlFor="certifications">
+              NP
+            </label>
+            <input
+              className={styles.checkboxInput}
+              type="checkbox"
+              name="certifications"
+              value="NP"
+              onChange={() =>
+                setFormValues({
+                  ...formValues,
+                  certifications: [...formValues.certifications, "NP"],
+                })
+              }
+            />
+          </div>
+
+          <div className={styles.checkboxContainer}>
+            <label className={styles.checkboxLabel} htmlFor="certifications">
+              RN
+            </label>
+            <input
+              className={styles.checkboxInput}
+              type="checkbox"
+              name="certifications"
+              value="RN"
+              onChange={() =>
+                setFormValues({
+                  ...formValues,
+                  certifications: [...formValues.certifications, "RN"],
+                })
+              }
+            />
+          </div>
+
+          <div className={styles.checkboxContainer}>
+            <label className={styles.checkboxLabel} htmlFor="certifications">
+              Other
+            </label>
+            <input
+              className={styles.checkboxInput}
+              type="checkbox"
+              name="certifications"
+              value="Other"
+              onChange={() =>
+                setCertificationsOtherDisabled(!certificationsOtherDisabled)
+              }
+            />
+            <input
+              className={styles.formInputOther}
+              type="text"
+              name="certificationsOther"
+              value={formValues.certificationsOther}
+              // This is set to invisible when disabled. Clicking the above checkbox will set disabled to false.
+              disabled={certificationsOtherDisabled}
+              onChange={handleChange}
+            />
+          </div>
+        </fieldset>
       </div>
+
       <div className={styles.formRow}>
         <label className={styles.formLabel} htmlFor="seesPatientsIn">
           What states do they see patients in?
@@ -476,8 +674,8 @@ export default function NewListingForm() {
         <label className={styles.formLabel} htmlFor="bio">
           Bio or short description:
         </label>
-        <input
-          className={styles.formInput}
+        <textarea
+          className={styles.formInputTextArea}
           type="text"
           name="bio"
           value={formValues.bio}
