@@ -45,7 +45,6 @@ export default function LoginForm() {
 
       setLoading(false);
 
-      // console.log(res);
       if (!res?.error) {
         if (document.referrer !== "") {
           // Send the user back to the previous page (e.g. if they clicked the "sign in" link from a doctor page)

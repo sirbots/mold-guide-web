@@ -63,8 +63,6 @@ export default function NewListingForm() {
       "slug"
     ] = `${formValues.firstName}-${formattedMiddleName}${formValues.lastName}-${formValues.addressCity}-${formValues.addressState}`;
 
-    // console.log("The formatted data object:");
-    // console.log(data);
     try {
       fetch("/api/doctors", {
         method: "POST",
@@ -113,7 +111,7 @@ export default function NewListingForm() {
           }
         });
     } catch (error) {
-      // console.log(error);
+      console.log(error);
     }
   };
 

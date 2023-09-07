@@ -165,7 +165,6 @@ export default async function SingleArticlePage({ params }) {
               // Leave a default for unhandled cases
               // TO DO: come back to these later. Check the contentful API for other potential content types
               default:
-                console.log("handling the default case");
                 return <p key={key}>Unhandled Content Style</p>;
             }
           })}
