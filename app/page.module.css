@@ -571,6 +571,12 @@ PAGE LAYOUT & STYLING
   align-items: center;
   padding-top: 100px;
 }
+.addListingPage .transitionGroup {
+  width: 50%;
+
+}
+
+
 
  .addListingFormSelectionContainer {
   display: flex;
@@ -979,7 +985,7 @@ font-size: 14px;
 
 /* Add New Listing Form */
 .addListingForm {
-  width: 50%;
+  width: 100%;
   margin-top: 15px;
   text-align: center;
 
@@ -1064,8 +1070,6 @@ font-size: 14px;
 .addListingForm input:disabled  {
   visibility: hidden;
 }
-
-
 
 
 /* Add Review Form */

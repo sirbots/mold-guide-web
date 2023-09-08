@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-
+import { useState, useEffect, useRef } from "react";
 // Components
 import AddDoctorForm from "./AddDoctorForm";
 import AddInspectorForm from "./AddInspectorForm";
@@ -18,8 +17,19 @@ const lora = Lora({
   // weight: ["400", "600", "700"],
 });
 
+// Animation
+import autoAnimate from "@formkit/auto-animate";
+
 export default function AddListingForms() {
   const [displayForm, setDisplayForm] = useState("doctorForm");
+
+  const parentRef = useRef(null);
+
+  useEffect(() => {
+    if (parentRef.current) {
+      autoAnimate(parentRef.current);
+    }
+  }, [parent]);
 
   return (
     <>
@@ -45,9 +55,13 @@ export default function AddListingForms() {
         </button>
       </div>
 
-      {displayForm === "doctorForm" && <AddDoctorForm />}
-      {displayForm === "inspectorForm" && <AddInspectorForm />}
-      {displayForm === "remediatorForm" && <AddRemediatorForm />}
+      <div className={styles.transitionGroup} ref={parentRef}>
+        {displayForm === "doctorForm" && <AddDoctorForm />}
+
+        {displayForm === "inspectorForm" && <AddInspectorForm />}
+
+        {displayForm === "remediatorForm" && <AddRemediatorForm />}
+      </div>
     </>
   );
 }
