@@ -27,9 +27,13 @@ export default function LoginPage() {
       {/* Page Content */}
       <div className={styles.pageContent}>
         <h2 className={lora.className}>Log in to your account</h2>
-      </div>
 
-      <LoginForm />
+        <LoginForm />
+
+        <p style={{ textAlign: "center" }}>
+          Don't have an account yet? <a href="/signup">Register here.</a>
+        </p>
+      </div>
 
       <Footer />
     </main>

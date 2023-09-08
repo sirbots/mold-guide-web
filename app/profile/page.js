@@ -1,6 +1,8 @@
 // this route is protected in the middleware.
 // see examples in same dir for how to do client- and server-side route protection in a single component.
 
+import { redirect } from "next/navigation";
+
 // Components
 import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
@@ -30,7 +32,11 @@ const lora = Lora({
 export default async function ProfilePage() {
   const session = await getServerSession(authOptions);
 
-  const userName = JSON.stringify(session.user.name).replaceAll('"', "");
+  if (!session) {
+    // Redirect to login page if no session exists
+    redirect("/login");
+  }
+
   const userEmail = JSON.stringify(session.user.email).replaceAll('"', "");
 
   return (

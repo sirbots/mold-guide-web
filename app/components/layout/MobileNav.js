@@ -91,40 +91,16 @@ export default function MobileNav() {
             About
           </a>
         </li>
-        {status == "unauthenticated" ? (
-          <>
-            <li>
-              <a
-                href="/api/auth/signin"
-                data-umami-event="Nav Click"
-                data-umami-event-form="Login"
-              >
-                Login
-              </a>
-            </li>
-            <li>
-              <a
-                href="/signup"
-                data-umami-event="Nav Click"
-                data-umami-event-form="Register"
-              >
-                Register
-              </a>
-            </li>
-          </>
-        ) : (
-          <>
-            <li>
-              <a
-                href="/profile"
-                data-umami-event="Nav Click"
-                data-umami-event-form="Profile"
-              >
-                Profile
-              </a>
-            </li>
-          </>
-        )}
+        <li>
+          <a
+            href="/profile"
+            data-umami-event="Nav Click"
+            data-umami-event-form="My Account"
+          >
+            My Account
+          </a>
+        </li>
+
         <li>
           <a
             href="/add-listing"

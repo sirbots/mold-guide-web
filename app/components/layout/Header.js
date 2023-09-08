@@ -86,39 +86,17 @@ export default async function Header() {
               About
             </a>
           </li>
+          {/* If they are not logged in, the /profile page will redirect to /login */}
+          <li>
+            <a
+              href="/profile"
+              data-umami-event="Nav Click"
+              data-umami-event-form="My Account"
+            >
+              My Account
+            </a>
+          </li>
 
-          {session ? (
-            <li>
-              <a
-                href="/profile"
-                data-umami-event="Nav Click"
-                data-umami-event-form="Profile"
-              >
-                Profile
-              </a>
-            </li>
-          ) : (
-            <>
-              <li>
-                <a
-                  href="/api/auth/signin"
-                  data-umami-event="Nav Click"
-                  data-umami-event-form="Login"
-                >
-                  Login
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/signup"
-                  data-umami-event="Nav Click"
-                  data-umami-event-form="Register"
-                >
-                  Register
-                </a>
-              </li>
-            </>
-          )}
           <li>
             <a
               href="/add-listing"
