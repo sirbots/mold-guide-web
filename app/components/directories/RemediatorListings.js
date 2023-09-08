@@ -65,7 +65,12 @@ const RemediatorListing = ({
         </span>
 
         {/* Button */}
-        <a className={styles.listingBtn} href={"/remediation/" + slug}>
+        <a
+          className={styles.listingBtn}
+          href={"/remediation/" + slug}
+          data-umami-event="View Profile Click"
+          data-umami-event-form="Remediators Directory"
+        >
           <span className={styles.listingBtnText}>View Profile</span>
         </a>
       </div>

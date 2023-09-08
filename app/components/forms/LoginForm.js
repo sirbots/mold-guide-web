@@ -43,6 +43,9 @@ export default function LoginForm() {
         callbackUrl,
       });
 
+      // Send an Umami event
+      umami.track("Login");
+
       setLoading(false);
 
       if (!res?.error) {

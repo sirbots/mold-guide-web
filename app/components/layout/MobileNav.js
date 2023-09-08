@@ -47,38 +47,92 @@ export default function MobileNav() {
         className={menuOpen ? styles.mobileListOpen : styles.mobileListClosed}
       >
         <li>
-          <a href="/practitioners">Mold Doctors</a>
+          <a
+            href="/practitioners"
+            data-umami-event="Nav Click"
+            data-umami-event-form="Mold Doctors"
+          >
+            Mold Doctors
+          </a>
         </li>
         <li>
-          <a href="/inspection">Mold Inspectors</a>
+          <a
+            href="/inspection"
+            data-umami-event="Nav Click"
+            data-umami-event-form="Mold Inspectors"
+          >
+            Mold Inspectors
+          </a>
         </li>
         <li>
-          <a href="/remediation">Mold Remediation</a>
+          <a
+            href="/remediation"
+            data-umami-event="Nav Click"
+            data-umami-event-form="Mold Remediation"
+          >
+            Mold Remediation
+          </a>
         </li>
         <li>
-          <a href="/resources">Resources</a>
+          <a
+            href="/resources"
+            data-umami-event="Nav Click"
+            data-umami-event-form="Resources"
+          >
+            Resources
+          </a>
         </li>
         <li>
-          <a href="/about">About</a>
+          <a
+            href="/about"
+            data-umami-event="Nav Click"
+            data-umami-event-form="About"
+          >
+            About
+          </a>
         </li>
         {status == "unauthenticated" ? (
           <>
             <li>
-              <a href="/api/auth/signin">Login</a>
+              <a
+                href="/api/auth/signin"
+                data-umami-event="Nav Click"
+                data-umami-event-form="Login"
+              >
+                Login
+              </a>
             </li>
             <li>
-              <a href="/signup">Register</a>
+              <a
+                href="/signup"
+                data-umami-event="Nav Click"
+                data-umami-event-form="Register"
+              >
+                Register
+              </a>
             </li>
           </>
         ) : (
           <>
             <li>
-              <a href="/profile">Profile</a>
+              <a
+                href="/profile"
+                data-umami-event="Nav Click"
+                data-umami-event-form="Profile"
+              >
+                Profile
+              </a>
             </li>
           </>
         )}
         <li>
-          <a href="/add-listing">+ Add Listing</a>
+          <a
+            href="/add-listing"
+            data-umami-event="Nav Click"
+            data-umami-event-form="Add Listing"
+          >
+            + Add Listing
+          </a>
         </li>
       </ul>
     </div>

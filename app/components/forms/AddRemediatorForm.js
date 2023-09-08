@@ -118,6 +118,9 @@ export default function AddRemediatorForm() {
               },
               body: JSON.stringify({ formSubmitted: "Remediator Listing" }),
             });
+
+            // Send an Umami event
+            umami.track("Remediator Submitted");
           } catch (error) {
             console.log(error);
           }

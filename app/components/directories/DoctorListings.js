@@ -76,7 +76,12 @@ const DoctorListing = ({
         </span>
 
         {/* Button */}
-        <a className={styles.listingBtn} href={"/practitioners/" + slug}>
+        <a
+          className={styles.listingBtn}
+          href={"/practitioners/" + slug}
+          data-umami-event="View Profile Click"
+          data-umami-event-form="Doctors Directory"
+        >
           <span className={styles.listingBtnText}>View Profile</span>
         </a>
       </div>

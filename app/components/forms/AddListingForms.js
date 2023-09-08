@@ -38,18 +38,24 @@ export default function AddListingForms() {
         <button
           className={styles.addListingSelector}
           onClick={() => setDisplayForm("doctorForm")}
+          data-umami-event="Change Add Listing Form"
+          data-umami-event-form="Practitioners"
         >
           Practitioners
         </button>
         <button
           className={styles.addListingSelector}
           onClick={() => setDisplayForm("inspectorForm")}
+          data-umami-event="Change Add Listing Form"
+          data-umami-event-form="Inspectors"
         >
           Inspectors
         </button>
         <button
           className={styles.addListingSelector}
           onClick={() => setDisplayForm("remediatorForm")}
+          data-umami-event="Change Add Listing Form"
+          data-umami-event-form="Remediators"
         >
           Remediators
         </button>

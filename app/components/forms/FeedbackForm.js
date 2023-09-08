@@ -40,6 +40,9 @@ export default function FeedbackForm() {
         },
         body: JSON.stringify(formValues),
       });
+
+      // Send an Umami event
+      umami.track("Feedback Submitted");
     } catch (error) {
       console.log(error);
     }

@@ -47,6 +47,9 @@ export default function SignUpForm() {
         return;
       }
 
+      // Send an Umami event
+      umami.track("Registration");
+
       // Sign the user in
       const signInRes = await signIn("credentials", {
         redirect: false,

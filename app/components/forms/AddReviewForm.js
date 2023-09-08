@@ -99,6 +99,9 @@ export default function AddReviewForm({ listingId, listingType }) {
               },
               body: JSON.stringify({ formSubmitted: "New Review" }),
             });
+
+            // Send an Umami event
+            umami.track("Review Submitted", { listingType: listingType });
           } catch (error) {
             console.log(error);
           }

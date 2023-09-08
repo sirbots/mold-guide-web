@@ -70,7 +70,12 @@ const InspectorListing = ({
         </span>
 
         {/* Button */}
-        <a className={styles.listingBtn} href={"/inspection/" + slug}>
+        <a
+          className={styles.listingBtn}
+          href={"/inspection/" + slug}
+          data-umami-event="View Profile Click"
+          data-umami-event-form="Inspectors Directory"
+        >
           <span className={styles.listingBtnText}>View Profile</span>
         </a>
       </div>

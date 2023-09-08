@@ -34,7 +34,10 @@ export const LogoutButton = () => {
   return (
     <a
       className={styles.logoutBtn}
-      onClick={() => signOut({ callbackUrl: "/" })}
+      onClick={() => {
+        umami.track("Logout");
+        signOut({ callbackUrl: "/" });
+      }}
     >
       <span className={styles.logoutBtnText}>Log Out</span>
     </a>

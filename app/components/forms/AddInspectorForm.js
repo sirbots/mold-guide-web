@@ -117,6 +117,9 @@ export default function AddInspectorForm() {
               },
               body: JSON.stringify({ formSubmitted: "Inspector Listing" }),
             });
+
+            // Send an Umami event
+            umami.track("Inspector Submitted");
           } catch (error) {
             console.log(error);
           }

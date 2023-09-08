@@ -150,6 +150,9 @@ export default function AddDoctorForm() {
               },
               body: JSON.stringify({ formSubmitted: "Doctor Listing" }),
             });
+
+            // Send an Umami event
+            umami.track("Doctor Submitted");
           } catch (error) {
             console.log(error);
           }
