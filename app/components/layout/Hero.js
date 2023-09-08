@@ -20,7 +20,9 @@ const Hero = ({
   return (
     <div className={styles.hero}>
       <div className={styles.heroTextBox}>
-        <h1 style={lora.style}>{headline}</h1>
+        <h1 style={lora.style} data-test="hero-heading">
+          {headline}
+        </h1>
         <h3 style={{ textAlign: "center" }}>{subHead}</h3>
       </div>
       {useBtn && (
