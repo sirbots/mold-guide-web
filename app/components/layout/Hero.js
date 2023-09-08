@@ -27,7 +27,9 @@ const Hero = ({
       </div>
       {useBtn && (
         <a className={styles.heroBtn} href={btnLink}>
-          <span className={styles.heroBtnText}>{buttonText}</span>
+          <span data-test="hero-cta-txt" className={styles.heroBtnText}>
+            {buttonText}
+          </span>
         </a>
       )}
     </div>
