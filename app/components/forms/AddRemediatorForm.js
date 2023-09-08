@@ -35,13 +35,13 @@ export default function AddRemediatorForm() {
     addressZipcode: "",
     addressCountry: "USA",
     website: "",
-    certifications: [], // Array
+    // certifications: [], // Array
     bio: [], // Array
     createdAt: new Date(),
     lastModified: new Date(),
 
     // These are in the form, but get merged with other fields or manipulated before being sent to the API
-    certificationsOther: "", // String
+    // certificationsOther: "", // String
   });
 
   // Initialize the router because redirect doesn't seem to work in client components
@@ -64,11 +64,11 @@ export default function AddRemediatorForm() {
       `${formattedCompanyName}-${formValues.addressCity}-${formValues.addressState}`.toLowerCase();
 
     // Add any "other" certifications to the certifications array. Delete the "other" field.
-    data["certifications"] = [
-      ...formValues.certifications,
-      formValues.certificationsOther,
-    ];
-    delete data["certificationsOther"];
+    // data["certifications"] = [
+    //   ...formValues.certifications,
+    //   formValues.certificationsOther,
+    // ];
+    // delete data["certificationsOther"];
 
     // Arrange bio into an array
     if (formValues.bio != "") {
@@ -84,11 +84,11 @@ export default function AddRemediatorForm() {
         body: JSON.stringify(data),
       })
         .then(async (res) => {
-          // Reset the button text
-          setSending(false);
-
           // Check for errors from the API
           if (!res.ok) {
+            // Reset the button text
+            setSending(false);
+
             // If the statusText == "conflict", it means that the record already exists in the database.
             if (res.statusText == "Conflict") {
               alert(
@@ -130,8 +130,6 @@ export default function AddRemediatorForm() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
-
-    // console.log(formattedCompanyName);
   };
 
   return (
@@ -259,74 +257,7 @@ export default function AddRemediatorForm() {
           />
         </div>
 
-        {/* Certifications */}
-        <div className={styles.formRow}>
-          <label className={styles.formLabel} htmlFor="certifications">
-            Certifications:
-          </label>
-
-          <fieldset className={styles.multipleCheckboxSection}>
-            <div className={styles.checkboxContainer}>
-              <label className={styles.checkboxLabel} htmlFor="certifications">
-                ACAC
-              </label>
-              <input
-                className={styles.checkboxInput}
-                type="checkbox"
-                name="certifications"
-                value="ACAC"
-                onChange={() =>
-                  setFormValues({
-                    ...formValues,
-                    certifications: [...formValues.certifications, "ACAC"],
-                  })
-                }
-              />
-            </div>
-
-            <div className={styles.checkboxContainer}>
-              <label className={styles.checkboxLabel} htmlFor="certifications">
-                IIRC
-              </label>
-              <input
-                className={styles.checkboxInput}
-                type="checkbox"
-                name="certifications"
-                value="IIRC"
-                onChange={() =>
-                  setFormValues({
-                    ...formValues,
-                    certifications: [...formValues.certifications, "IIRC"],
-                  })
-                }
-              />
-            </div>
-
-            <div className={styles.checkboxContainer}>
-              <label className={styles.checkboxLabel} htmlFor="certifications">
-                Other
-              </label>
-              <input
-                className={styles.checkboxInput}
-                type="checkbox"
-                name="certifications"
-                value="Other"
-                onChange={() =>
-                  setCertificationsOtherDisabled(!certificationsOtherDisabled)
-                }
-              />
-              <input
-                className={styles.formInputOther}
-                type="text"
-                name="certificationsOther"
-                value={formValues.certificationsOther}
-                // This is set to invisible when disabled. Clicking the above checkbox will set disabled to false.
-                disabled={certificationsOtherDisabled}
-                onChange={handleChange}
-              />
-            </div>
-          </fieldset>
-        </div>
+        {/* Certifications (removed for now) */}
 
         <div className={styles.formRow}>
           <label className={styles.formLabel} htmlFor="bio">

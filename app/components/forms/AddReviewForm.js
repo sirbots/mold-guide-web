@@ -74,11 +74,10 @@ export default function AddReviewForm({ listingId, listingType }) {
         body: JSON.stringify(data),
       })
         .then(async (res) => {
-          // Reset the button text
-          setSending(false);
-
           // Check for errors from the API
           if (!res.ok) {
+            // Reset the button text
+            setSending(false);
             alert(
               "Ooops. Received an error with this message: " +
                 res.statusText +

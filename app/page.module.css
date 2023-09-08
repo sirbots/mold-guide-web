@@ -564,6 +564,50 @@ PAGE LAYOUT & STYLING
   margin-bottom: 100px;
  }
 
+ /* Add Listing page */
+ .addListingPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 100px;
+}
+
+ .addListingFormSelectionContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-items: flex-end;
+  margin-top: 25px;
+  margin-bottom: 50px;
+  width: 40%;
+  justify-content: space-evenly;
+ }
+
+ .addListingSelector {
+  height: 50px;
+  width: 225p;
+  padding: 0 20px;
+
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: bold;
+  
+  border-radius: 5px;
+  color: #fefefe;
+  background-color: #005F73;
+  border: 1px solid #005F73;
+  box-shadow: 1px 2px #0A9396;
+ }
+ button.addListingSelector:hover {
+  cursor: pointer;
+  background-color: #0a9396;
+  box-shadow: 0px 0px;
+  transition: ease-in-out 0.15s;
+  border: #005F73;
+ }
+
+ 
+ 
 
 /****************
 Directory Pages 
@@ -934,11 +978,6 @@ font-size: 14px;
 }
 
 /* Add New Listing Form */
-.addListingPage {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 .addListingForm {
   width: 50%;
   margin-top: 35px;

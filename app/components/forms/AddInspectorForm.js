@@ -84,11 +84,10 @@ export default function AddInspectorForm() {
         body: JSON.stringify(data),
       })
         .then(async (res) => {
-          // Reset the button text
-          setSending(false);
-
           // Check for errors from the API
           if (!res.ok) {
+            // Reset the button text
+            setSending(false);
             // If the statusText == "conflict", it means that the record already exists in the database.
             if (res.statusText == "Conflict") {
               alert(

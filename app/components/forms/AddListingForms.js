@@ -24,16 +24,25 @@ export default function AddListingForms() {
   console.log("displayForm", displayForm);
   return (
     <>
-      <div>
-        <h1>Add a Listing to the Directory</h1>
-        <button onClick={() => setDisplayForm("doctorForm")}>
-          Add a Doctor
+      <h1>Add a Listing to the Directory</h1>
+      <div className={styles.addListingFormSelectionContainer}>
+        <button
+          className={styles.addListingSelector}
+          onClick={() => setDisplayForm("doctorForm")}
+        >
+          Practitioners
         </button>
-        <button onClick={() => setDisplayForm("inspectorForm")}>
-          Add an Inspector
+        <button
+          className={styles.addListingSelector}
+          onClick={() => setDisplayForm("inspectorForm")}
+        >
+          Inspectors
         </button>
-        <button onClick={() => setDisplayForm("remediatorForm")}>
-          Add a Remediation Company
+        <button
+          className={styles.addListingSelector}
+          onClick={() => setDisplayForm("remediatorForm")}
+        >
+          Remediators
         </button>
       </div>
 
@@ -42,8 +51,4 @@ export default function AddListingForms() {
       {displayForm === "remediatorForm" && <AddRemediatorForm />}
     </>
   );
-
-  //   if (displayForm === "doctorForm") return <AddDoctorForm />;
-  //   if (displayForm === "inspectorForm") return <AddInspectorForm />;
-  //   if (displayForm === "remediatoreForm") return <AddRemediatorForm />;
 }
