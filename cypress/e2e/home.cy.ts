@@ -9,12 +9,14 @@ describe('home page', () => {
   // You can write it as it.only() to only run that one test.
   it('the h1 contains the correct text"', () => {
     // cy.visit('http://localhost:3000') // removed this line because we are using beforeEach
-    cy.get("[data-test='hero-heading']").contains('Mold Recovery Made Simple')
+    cy.getByData("hero-heading").contains('Mold Recovery Made Simple')
   })
 
   it("the homepage Hero CTA text is correct", () => {
     cy.visit("http://localhost:3000")
-    cy.get("[data-test='hero-cta-txt']").contains("Find Doctors")
+    // Rewrote the line below to use the new getByData command
+    // cy.get("[data-test='hero-cta-txt']").contains("Find Doctors")
+    cy.getByData("hero-cta-txt").contains("Find Doctors")
     
   })
   it("the homepage content is correct", () => {
@@ -25,3 +27,4 @@ describe('home page', () => {
   })
   
 })
+

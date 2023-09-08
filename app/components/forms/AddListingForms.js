@@ -33,13 +33,14 @@ export default function AddListingForms() {
 
   return (
     <>
-      <h1>Add a Listing to the Directory</h1>
+      <h1 data-test="add-listing-headline">Add a Listing to the Directory</h1>
       <div className={styles.addListingFormSelectionContainer}>
         <button
           className={styles.addListingSelector}
           onClick={() => setDisplayForm("doctorForm")}
           data-umami-event="Change Add Listing Form"
           data-umami-event-form="Practitioners"
+          data-test="add-listing-doctor-btn"
         >
           Practitioners
         </button>
@@ -48,6 +49,7 @@ export default function AddListingForms() {
           onClick={() => setDisplayForm("inspectorForm")}
           data-umami-event="Change Add Listing Form"
           data-umami-event-form="Inspectors"
+          data-test="add-listing-inspector-btn"
         >
           Inspectors
         </button>
@@ -56,6 +58,7 @@ export default function AddListingForms() {
           onClick={() => setDisplayForm("remediatorForm")}
           data-umami-event="Change Add Listing Form"
           data-umami-event-form="Remediators"
+          data-test="add-listing-remediator-btn"
         >
           Remediators
         </button>

@@ -35,3 +35,14 @@
 //     }
 //   }
 // }
+
+declare namespace Cypress {
+    interface Chainable {
+        getByData(dataTestAttribute: string): Chainable<JQuery<HTMLElement>>
+    }
+}
+
+// This allows us to simplify the syntax for selecting elements by data-test attributes
+Cypress.Commands.add('getByData', (selector) => {
+    return cy.get(`[data-test=${selector}]`)
+})
