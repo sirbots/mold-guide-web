@@ -1,7 +1,7 @@
 "use client";
 
 // Auth
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 // Styles & Fonts
 import styles from "../../page.module.css";
@@ -13,6 +13,9 @@ const merriweather = Merriweather({
   display: "swap",
 });
 
+// Animation
+import autoAnimate from "@formkit/auto-animate";
+
 export default function FeedbackForm() {
   const [cookieExists, setCookieExists] = useState(true);
   const [formStatus, setStatus] = useState("hidden");
@@ -21,7 +24,7 @@ export default function FeedbackForm() {
     email: "",
   });
 
-  const [error, setError] = useState("");
+  const parentRef = useRef(null);
 
   // Handles the submit event on form submit.
   const handleSubmit = async (e) => {
@@ -97,58 +100,62 @@ export default function FeedbackForm() {
     }
   }, [cookieExists]);
 
-  if (formStatus === "hidden") return;
+  useEffect(() => {
+    if (parentRef.current) {
+      autoAnimate(parentRef.current);
+    }
+  }, [parentRef]);
 
-  if (formStatus === "submitted") {
-    return (
-      <div className={styles.giveFeedbackFormModal}>
-        <p className={styles.thankYouMsg}>Thank you for your feedback 🙏🏼</p>
-      </div>
-    );
-  }
-
-  if (formStatus === "visible") {
-    return (
-      <div className={styles.giveFeedbackFormModal}>
-        <form className={styles.giveFeedbackForm} onSubmit={handleSubmit}>
-          <button className={styles.xButton} onClick={() => hideForm()}>
-            X
-          </button>
-          <h3>Give Feedback</h3>
-          <p>Anything we could do to improve the site?</p>
-          <div className={styles.formRow}>
-            {/* <label className={styles.formLabel} htmlFor="feedbackMessage">
+  return (
+    <div ref={parentRef}>
+      {formStatus === "hidden" && null}
+      {formStatus === "submitted" && (
+        <div className={styles.giveFeedbackFormModal}>
+          <p className={styles.thankYouMsg}>Thank you for your feedback 🙏🏼</p>
+        </div>
+      )}
+      {formStatus === "visible" && (
+        <div ref={parentRef} className={styles.giveFeedbackFormModal}>
+          <form className={styles.giveFeedbackForm} onSubmit={handleSubmit}>
+            <button className={styles.xButton} onClick={() => hideForm()}>
+              X
+            </button>
+            <h3>Give Feedback</h3>
+            <p>Anything we could do to improve the site?</p>
+            <div className={styles.formRow}>
+              {/* <label className={styles.formLabel} htmlFor="feedbackMessage">
               Feedback:
             </label> */}
-            <textarea
-              className={styles.formInputTextArea}
-              name="feedbackMessage"
-              rows="7"
-              value={formValues.feedbackMessage}
-              onChange={handleChange}
-            />
-          </div>
-          <div className={styles.formRow}>
-            <p style={{ fontSize: "14px" }}>Your email (optional):</p>
-            <input
-              className={styles.formInput}
-              type="email"
-              name="email"
-              value={formValues.email}
-              onChange={handleChange}
-            />
-          </div>
-          <button
-            className={styles.formBtn}
-            type="submit"
-            disabled={formStatus === "submitted" ? true : false}
-          >
-            <span style={merriweather.style} className={styles.formBtnText}>
-              Send
-            </span>
-          </button>
-        </form>
-      </div>
-    );
-  }
+              <textarea
+                className={styles.formInputTextArea}
+                name="feedbackMessage"
+                rows="7"
+                value={formValues.feedbackMessage}
+                onChange={handleChange}
+              />
+            </div>
+            <div className={styles.formRow}>
+              <p style={{ fontSize: "14px" }}>Your email (optional):</p>
+              <input
+                className={styles.formInput}
+                type="email"
+                name="email"
+                value={formValues.email}
+                onChange={handleChange}
+              />
+            </div>
+            <button
+              className={styles.formBtn}
+              type="submit"
+              disabled={formStatus === "submitted" ? true : false}
+            >
+              <span style={merriweather.style} className={styles.formBtnText}>
+                Send
+              </span>
+            </button>
+          </form>
+        </div>
+      )}
+    </div>
+  );
 }

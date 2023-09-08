@@ -29,7 +29,7 @@ export default function AddListingForms() {
     if (parentRef.current) {
       autoAnimate(parentRef.current);
     }
-  }, [parent]);
+  }, [parentRef]);
 
   return (
     <>
