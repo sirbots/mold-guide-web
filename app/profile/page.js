@@ -4,7 +4,7 @@
 // Components
 import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
-import { LogoutButton } from "../components/buttons";
+import { LogoutButton } from "../components/forms/buttons";
 import UserReviews from "../components/directories/UserReviews";
 
 // Auth

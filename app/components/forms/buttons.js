@@ -4,7 +4,7 @@ import { signIn, signOut } from "next-auth/react";
 import Link from "next/link";
 
 // Styles & Fonts
-import styles from "../page.module.css";
+import styles from "./forms.module.css";
 import { Lora } from "next/font/google";
 
 const lora = Lora({

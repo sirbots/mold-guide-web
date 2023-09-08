@@ -76,6 +76,9 @@ Signup & Login Forms
       border: 1px solid #005F73;
       box-shadow: 1px 2px #0A9396;
     }
+  .logoutBtn:hover {  
+      cursor: pointer;
+    }
     
   .logoutBtnText {
     justify-content: center;
