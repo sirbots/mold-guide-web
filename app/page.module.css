@@ -980,7 +980,14 @@ font-size: 14px;
 /* Add New Listing Form */
 .addListingForm {
   width: 50%;
-  margin-top: 35px;
+  margin-top: 15px;
+  text-align: center;
+
+  transition: 2000ms ease-in-out;
+
+}
+.addListingForm .formDescription {
+  margin-bottom: 45px;
 }
 .addListingForm .formRow {
   display: flex;
@@ -1052,6 +1059,7 @@ font-size: 14px;
   font-size: 14px;
   align-self: center;
   min-width: 28%;
+  text-align: left;
 }
 .addListingForm input:disabled  {
   visibility: hidden;

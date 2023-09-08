@@ -134,12 +134,12 @@ export default function AddRemediatorForm() {
 
   return (
     <>
-      <h2 className={lora.className}>Add a Remediator</h2>
-      <p style={{ maxWidth: "500px" }}>
-        Submit the form below to add a new remediator to the directory. Fields
-        marked with an asterisk (*) are required.
-      </p>
       <form className={styles.addListingForm} onSubmit={handleSubmit}>
+        <h2 className={lora.className}>Add a Remediator</h2>
+        <p className={styles.formDescription}>
+          Submit the form below to add a new remediator to the directory. Fields
+          marked with an asterisk (*) are required.
+        </p>
         <div className={styles.formRow}>
           <label className={styles.formLabel} htmlFor="companyName">
             Company Name:*

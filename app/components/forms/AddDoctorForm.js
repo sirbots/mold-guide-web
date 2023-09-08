@@ -166,12 +166,12 @@ export default function AddDoctorForm() {
 
   return (
     <>
-      <h2 className={lora.className}>Add a Practitioner</h2>
-      <p style={{ maxWidth: "500px" }}>
-        Submit the form below to add a new practitioner to the directory. Fields
-        marked with an asterisk (*) are required.
-      </p>
       <form className={styles.addListingForm} onSubmit={handleSubmit}>
+        <h2 className={lora.className}>Add a Practitioner</h2>
+        <p className={styles.formDescription}>
+          Submit the form below to add a new practitioner to the directory.
+          Fields marked with an asterisk (*) are required.
+        </p>
         <div className={styles.formRow}>
           <label className={styles.formLabel} htmlFor="firstName">
             First Name:*

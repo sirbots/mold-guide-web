@@ -21,7 +21,6 @@ const lora = Lora({
 export default function AddListingForms() {
   const [displayForm, setDisplayForm] = useState("doctorForm");
 
-  console.log("displayForm", displayForm);
   return (
     <>
       <h1>Add a Listing to the Directory</h1>
