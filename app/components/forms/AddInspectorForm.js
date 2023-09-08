@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 // Styles & Fonts
-import styles from "../../page.module.css";
+import styles from "./forms.module.css";
 import { Lora, Merriweather } from "next/font/google";
 
 const lora = Lora({

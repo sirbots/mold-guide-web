@@ -1,27 +1,15 @@
 .container {
-  /* display: flex; 
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  padding: 6rem;
-  */
-  
   display: flex;
   flex-direction: column;
-
   position: relative;
-  
   min-height: 100%;
   margin: 0;
   padding: 0;
-  
   width: 100%;
   background-color: #FEFEFE;
-    
   color: #001219;
   font-size: 16px;
 }
-
 
 /* Text */
 .container h1 {
@@ -573,44 +561,8 @@ PAGE LAYOUT & STYLING
 }
 .addListingPage .transitionGroup {
   width: 50%;
-
 }
 
-
-
- .addListingFormSelectionContainer {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-items: flex-end;
-  margin-top: 25px;
-  margin-bottom: 50px;
-  width: 40%;
-  justify-content: space-evenly;
- }
-
- .addListingSelector {
-  height: 50px;
-  width: 225p;
-  padding: 0 20px;
-
-  font-family: inherit;
-  font-size: 16px;
-  font-weight: bold;
-  
-  border-radius: 5px;
-  color: #fefefe;
-  background-color: #005F73;
-  border: 1px solid #005F73;
-  box-shadow: 1px 2px #0A9396;
- }
- button.addListingSelector:hover {
-  cursor: pointer;
-  background-color: #0a9396;
-  box-shadow: 0px 0px;
-  transition: ease-in-out 0.15s;
-  border: #005F73;
- }
 
  
  
@@ -710,6 +662,17 @@ Directory Pages
   font-weight: bold;
   color: #FEFEFE;
 } 
+
+/* Listing Filter Forms (not in the form-specific CSS file) */
+.filterForm .formLabel {
+  align-self: center;
+}
+.filterForm .formRow {
+  flex-direction: row;
+}
+.filterForm .formRow .formInput {
+  margin: 0 25px;
+}
 
 
 
@@ -838,343 +801,10 @@ Single Listing Pages
  }
 
 
- /**********
- FORMS
- **********/
-
-/* Global Form Elements */
-.formRow {
-  display: flex;
-  flex-direction: column;
-}
-
-.formLabel {
-  display: flex;
-  align-items: center;
-  font-weight: 700;
-  margin-bottom: 10px;
-}
-
-.formInput {
-  background: transparent;
-  border: 1px solid #001219;
-  border-radius: 3px;
-  color: #001219;
-  font-family: inherit;
-  width: 100%;
-  padding: 0 10px;
-  min-height: 40px;
-}
-
-.formBtn { 
-  display: flex;
-  height: 50px;
-  width: 100%;
-
-  border-radius: 10px;
-  margin-top: 22px;
-  justify-content: center;
-  align-items: center;
-
-  text-align: center;
-
-  background-color: #005F73;
-  border: 1px solid #005F73;
-  box-shadow: 1px 2px #0A9396;
-  
-  }  
-
-.formBtnText {
-  color: #FEFEFE;
-  font-size: 16px;
-  font-weight: bold;
-  font-family: inherit;
-}
-
-/* Signup & Login Forms */
-.signUpForm {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  width: 300px;
-  margin: 0 auto 50px;
-}
-
-.logoutBtn {  
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  
-    height: 40px;
-    width: 160px;
-      
-    border-radius: 20px;  
-    background-color: #005F73;
-    border: 1px solid #005F73;
-    box-shadow: 1px 2px #0A9396;
-  }
-  
-.logoutBtnText {
-  justify-content: center;
-  font-weight: bold;
-  font-size: 16px;
-  color: #FEFEFE;
-}
-
-/* Give Feedback Form */
-.giveFeedbackFormModal {
-  position: fixed;
-  bottom: 0px;
-  right: 3%;
-  
-  z-index: 99;
-  
-  max-width: 270px;
-  background-color: #FEFEFE;
-
-  box-shadow: #005F73 0px 0px 5px 0px;
-  border-radius: 5px;
-  
-}
-.giveFeedbackFormModal p {
-font-size: 14px;
-}
-.giveFeedbackFormModal .thankYouMsg {
-  font-size: 16px;
-  padding: 60px 25px;
-  text-align: center;
-}
-
-.giveFeedbackForm {  
-  padding: 10px 25px;
-  display: flex;
-  flex-direction: column;
-}
-
-.giveFeedbackForm h3 {  
-  text-align: center;
-}
-
-.giveFeedbackForm .formInput {
-  border: 1px lightgray solid;
-}
-
-.giveFeedbackForm .formInputTextArea {
-  background: transparent;
-  border: 1px solid lightgray;
-  border-radius: 3px;
-  color: #001219;
-  font-family: inherit;
-  font-size: 13px;
-
-  min-width: 100%;
-  
-  padding: 10px;
-  min-height: 140px;
-}
-
-.xButton {
-  width: 20px;
-  align-self: end;
-  color: #001219;
-  background-color: #FEFEFE;
-  border: none;
-  font-size: 20px;
-
-}
-
-/* Add New Listing Form */
-.addListingForm {
-  width: 100%;
-  margin-top: 15px;
-  text-align: center;
-
-  transition: 2000ms ease-in-out;
-
-}
-.addListingForm .formDescription {
-  margin-bottom: 45px;
-}
-.addListingForm .formRow {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 12px;
-}
-
-.addListingForm .formLabel {
-  display: flex;
-  align-items: center;
-  font-weight: 700;
-  margin-bottom: 10px;
-  width: 35%;
-}
-.addListingForm .formInput {
-  background: transparent;
-  border: 1px solid #001219;
-  border-radius: 3px;
-  color: #001219;
-  font-family: inherit;
-  width: 65%;
-  padding: 0 10px;
-  min-height: 40px;
-}
-
-.addListingForm .formInputTextArea {
-  background: transparent;
-  border: 1px solid #001219;
-  border-radius: 3px;
-  color: #001219;
-  font-size: 14px;
-  font-family: inherit;
-  width: 65%;
-  min-width: 65%;
-  max-width: 65%;
-  padding: 10px;
-  min-height: 140px;
-}
-
-/* for the "other" fields next to checkboxes */
-.addListingForm .formInputOther {
-  background: transparent;
-  border: 1px solid #001219;
-  border-radius: 3px;
-  color: #001219;
-  font-family: inherit;
-  width: 40%;
-  padding: 0 10px;
-  min-height: 27px;
-  margin-left: 35px;
-}
-
-.addListingForm .multipleCheckboxSection {
-  display: flex;
-  flex-direction: column;
-  border: none;
-  width: 65%;
-}
-
-.addListingForm .checkboxContainer {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  height: 65%;
-  min-height: 22px;
-}
-
-.addListingForm .checkboxLabel {
-  font-size: 14px;
-  align-self: center;
-  min-width: 28%;
-  text-align: left;
-}
-.addListingForm input:disabled  {
-  visibility: hidden;
-}
-
-
-/* Add Review Form */
-.addReviewSubmitted {
-  align-self: center;
-  text-align: center;
-  max-width: 75%;
-
-}
-.addReviewForm {
-  display: flex;
-  flex-direction: column;
-  align-self: center;
-  width: 30%;
-  margin-bottom: 100px;
-}
-
-.addReviewTitle {
- text-align: center;
-}
-.addReviewForm .addReviewP  {
-  margin-bottom: 15px;
-}
-
-.addReviewForm .formRow {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 12px;
-}
-
-.addReviewForm .formLabel {
-  display: flex;
-  align-items: center;
-  font-weight: 700;
-  margin-bottom: 10px;
-  width: 30%;
-}
-.addReviewForm .formInput {
-  background: transparent;
-  border: 1px solid #001219;
-  border-radius: 3px;
-  color: #001219;
-  font-family: inherit;
-  width: 70%;
-  padding: 0 10px;
-  min-height: 40px;
-}
-
-.addReviewForm .formInputTextArea {
-  background: transparent;
-  border: 1px solid #001219;
-  border-radius: 3px;
-  color: #001219;
-  font-family: inherit;
-  width: 70%;
-  min-width: 70%;
-  max-width: 70%;
-  padding: 10px;
-  min-height: 140px;
-}
-
-.addReviewForm .formBtn { 
-  display: flex;
-  height: 50px;
-  width: 50%;
-
-  border-radius: 10px;
-  margin-top: 22px;
-  justify-content: center;
-  align-items: center;
-
-  text-align: center;
-
-  background-color: #005F73;
-  border: 1px solid #005F73;
-  box-shadow: 1px 2px #0A9396;
-  
-  }  
-
-/* Commented out for now. TO DO: come back and format this nicely using stars. */
-/* .addReviewForm datalist {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  writing-mode: vertical-lr;
-  width: 200px;   
-}*/
-
-
-/* Listing Filter Forms */
-.filterForm .formLabel {
-  align-self: center;
-}
-.filterForm .formRow {
-  flex-direction: row;
-}
-.filterForm .formRow .formInput {
-  margin: 0 25px;
-}
-
 
 @media screen and (max-width: 1300px) {
-  /*  */
+  
   /* Handling the mobile nav */
-  /*  */
   .header {
     min-height: 24vh;
   }
@@ -1198,7 +828,7 @@ font-size: 14px;
     height: 100px;
     padding-top: 10px;
     z-index: 99;
-        
+
     /* background-color:#CA383A; */
   }
   
@@ -1225,9 +855,8 @@ font-size: 14px;
 }
 
 @media screen and (max-width: 500px) {
-  /*  */
+  
   /* Handling the listing page filters */
-  /*  */
   .filterForm .formRow {
     flex-direction: column;
     align-items: center;   

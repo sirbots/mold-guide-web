@@ -4,7 +4,7 @@
 import { useEffect, useState, useRef } from "react";
 
 // Styles & Fonts
-import styles from "../../page.module.css";
+import styles from "./forms.module.css";
 import { Lora, Merriweather } from "next/font/google";
 
 const merriweather = Merriweather({

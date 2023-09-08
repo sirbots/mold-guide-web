@@ -2,13 +2,12 @@
 
 // Auth
 import { signIn } from "next-auth/react";
-import { ChangeEvent, useState } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 // Styles & Fonts
-import styles from "../../page.module.css";
+import styles from "./forms.module.css";
 import { Lora, Merriweather } from "next/font/google";
-import { UserGroupIcon } from "@heroicons/react/24/outline";
 
 const merriweather = Merriweather({
   weight: ["400", "700"],

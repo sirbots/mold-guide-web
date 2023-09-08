@@ -6,7 +6,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { ChangeEvent, useState } from "react";
 
 // Styles & Fonts
-import styles from "../../page.module.css";
+import styles from "./forms.module.css";
 import { Lora, Merriweather } from "next/font/google";
 
 const merriweather = Merriweather({

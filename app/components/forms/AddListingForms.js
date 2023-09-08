@@ -7,7 +7,8 @@ import AddInspectorForm from "./AddInspectorForm";
 import AddRemediatorForm from "./AddRemediatorForm";
 
 // Styles & Fonts
-import styles from "../../page.module.css";
+import formStyles from "./forms.module.css";
+import pageStyles from "../../page.module.css";
 import { Lora } from "next/font/google";
 
 const lora = Lora({
@@ -34,9 +35,9 @@ export default function AddListingForms() {
   return (
     <>
       <h1 data-test="add-listing-headline">Add a Listing to the Directory</h1>
-      <div className={styles.addListingFormSelectionContainer}>
+      <div className={formStyles.addListingFormSelectionContainer}>
         <button
-          className={styles.addListingSelector}
+          className={formStyles.addListingSelector}
           onClick={() => setDisplayForm("doctorForm")}
           data-umami-event="Change Add Listing Form"
           data-umami-event-form="Practitioners"
@@ -45,7 +46,7 @@ export default function AddListingForms() {
           Practitioners
         </button>
         <button
-          className={styles.addListingSelector}
+          className={formStyles.addListingSelector}
           onClick={() => setDisplayForm("inspectorForm")}
           data-umami-event="Change Add Listing Form"
           data-umami-event-form="Inspectors"
@@ -54,7 +55,7 @@ export default function AddListingForms() {
           Inspectors
         </button>
         <button
-          className={styles.addListingSelector}
+          className={formStyles.addListingSelector}
           onClick={() => setDisplayForm("remediatorForm")}
           data-umami-event="Change Add Listing Form"
           data-umami-event-form="Remediators"
@@ -64,11 +65,9 @@ export default function AddListingForms() {
         </button>
       </div>
 
-      <div className={styles.transitionGroup} ref={parentRef}>
+      <div className={pageStyles.transitionGroup} ref={parentRef}>
         {displayForm === "doctorForm" && <AddDoctorForm />}
-
         {displayForm === "inspectorForm" && <AddInspectorForm />}
-
         {displayForm === "remediatorForm" && <AddRemediatorForm />}
       </div>
     </>
