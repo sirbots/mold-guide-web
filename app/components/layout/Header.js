@@ -89,21 +89,23 @@ export default async function Header() {
           {/* If they are not logged in, the /profile page will redirect to /login */}
           <li>
             <a
+              className={styles.navBtnSimple}
               href="/profile"
               data-umami-event="Nav Click"
               data-umami-event-form="My Account"
             >
-              My Account
+              <span className={styles.navBtnSimpleText}>My Account</span>
             </a>
           </li>
 
           <li>
             <a
+              className={styles.navBtnCta}
               href="/add-listing"
               data-umami-event="Nav Click"
               data-umami-event-form="Add Listing"
             >
-              + Add Listing
+              <span className={styles.navBtnCtaText}>+ Add Listing</span>
             </a>
           </li>
         </ul>
