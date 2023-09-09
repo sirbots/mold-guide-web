@@ -23,11 +23,17 @@ export default function LoginPage() {
   return (
     <main className={styles.container}>
       <Header />
+      <Hero
+        orientation="left"
+        headline="Log in to your account"
+        subHead=""
+        // useBtn
+        // btnLink=""
+        // buttonText=""
+      />
 
       {/* Page Content */}
       <div className={styles.pageContent}>
-        <h2 className={lora.className}>Log in to your account</h2>
-
         <LoginForm />
 
         <p style={{ textAlign: "center" }}>

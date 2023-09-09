@@ -43,13 +43,13 @@ const UserReviews = async ({ userEmail }) => {
     },
   });
 
-  if (userReviews) {
+  if (userReviews.length > 0) {
     return (
       <div className="userReviewsContainer">
         {userReviews &&
           userReviews.map((rev) => {
             return (
-              <div style={{ marginBottom: "50px" }} key={rev.id}>
+              <div style={{ marginBottom: "55px" }} key={rev.id}>
                 <DoctorMetaData doctorId={rev.doctorId} />
                 <Stars starCount={rev.rating} />
 
@@ -58,6 +58,12 @@ const UserReviews = async ({ userEmail }) => {
               </div>
             );
           })}
+      </div>
+    );
+  } else {
+    return (
+      <div style={{ marginBottom: "55px" }}>
+        <p>Your reviews will appear here.</p>
       </div>
     );
   }

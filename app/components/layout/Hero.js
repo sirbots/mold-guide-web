@@ -23,7 +23,9 @@ const Hero = ({
         <h1 style={lora.style} data-test="hero-heading">
           {headline}
         </h1>
-        <h3 style={{ textAlign: "center" }}>{subHead}</h3>
+        {subHead.length > 0 && (
+          <h3 style={{ textAlign: "center" }}>{subHead}</h3>
+        )}
       </div>
       {useBtn && (
         <a className={styles.heroBtn} href={btnLink}>

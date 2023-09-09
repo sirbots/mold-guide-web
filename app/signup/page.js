@@ -23,13 +23,22 @@ export default function AboutPage() {
   return (
     <main className={styles.container}>
       <Header />
+      <Hero
+        orientation="left"
+        headline="Create Your Account"
+        subHead=""
+        // useBtn
+        // btnLink=""
+        // buttonText=""
+      />
 
       {/* Page Content */}
       <div className={styles.pageContent}>
-        <h2 className={lora.className}>Create Your Account</h2>
+        <SignUpForm />
+        <p style={{ textAlign: "center" }}>
+          Already have an account yet? <a href="/login">Log in here.</a>
+        </p>
       </div>
-
-      <SignUpForm />
       <Footer />
     </main>
   );
