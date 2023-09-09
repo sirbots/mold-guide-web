@@ -586,8 +586,8 @@ PAGE LAYOUT & STYLING
   justify-content: center;
   align-items: center;
 
-  height: 40px;
-  min-width: 140px;
+  height: 45px;
+  min-width: 180px;
   margin-left: 30px;
 
   border-radius: 20px;  
@@ -760,7 +760,7 @@ Directory Pages
   padding: 8px 0;
   font-family: inherit;
   text-align: center;
-  width: 130px;
+  width: 200px;
   border-radius: 5px;
   border: 1px solid #001219;
 }

@@ -80,39 +80,19 @@ export default function Home() {
       <div className={styles.pageContent}>
         <h2 className={lora.className}>Do You Have a Mold Problem?</h2>
 
-        <p className={styles.text}>
-          If you&rsquo;re here, then there&rsquo;s a good chance that
-          you&rsquo;re not feeling great.
-        </p>
         <p>
-          You might feel sick or you might feel like your body and mind are
-          falling apart. Mold illness can manifest in all sorts of strange and
-          debilitating ways.
+          Mold illness can manifest in all sorts of strange and debilitating
+          ways.
+          {/* insert link here to symptoms. */}
         </p>
-        <p>
-          Maybe you&rsquo;re plagued with anxiety and depression, chronic
-          fatigue, or constant muscle and joint aches. Maybe you&rsquo;re
-          coughing more or having trouble sleeping.
-        </p>
-        <p>
-          Maybe you&rsquo;re suffering from brain fog, cognitive impairment, or
-          memory loss. You&rsquo;re reacting to foods that never bothered you
-          before or you developed eczema, psorisasis, or weird rashes.
-        </p>
-        <p>
-          And worst of all, mold illness seems to just drain the joy out of
-          life.
+
+        <p style={{ marginBottom: "45px" }}>
+          The good news is that it&rsquo;s possible to heal and restore your
+          body. For some, the process of detox and healing is a long one, and
+          for others, it's just a matter of eliminating the source of the mold.
         </p>
 
         <div className={styles.steps}>
-          {/* <h2 style={lora.style}>Dealing with Mold, One Step at a Time</h2> */}
-
-          <p style={{ marginBottom: "45px" }}>
-            The good news is that it&rsquo;s possible to heal and restore your
-            body. The bad news is that it&rsquo;s going to take more than a
-            simple pill. Let&rsquo;s break it down.
-          </p>
-
           <StepComponent
             number="1"
             title="Diagnose Your Illness"
@@ -130,6 +110,7 @@ export default function Home() {
             buttonCopy="Find Inspectors"
             buttonLink="/inspectors"
             imageSource={inspection2}
+            showButton
           />
           <StepComponent
             number="3"
@@ -138,17 +119,20 @@ export default function Home() {
             buttonCopy="Find Remediators"
             buttonLink="/remediation-companies"
             imageSource={remediation3}
+            showButton
           />
-          <StepComponent
+          {/* TO DO: Add content for cleaning and enable this step */}
+          {/* <StepComponent
             number="4"
             title="Clean Your Belongings"
             copy="In some cases, it may be necessary to sanitize or discard personal items to avoid triggering your symptoms."
             buttonCopy="Clean Up"
+            // TO DO: link this to /resources/cleaning
             buttonLink="/cleaning"
             imageSource={cleaning1}
-          />
+          /> */}
           <StepComponent
-            number="5"
+            number="4"
             title="Detox & Heal"
             copy="Once you&rsquo;ve eliminated your exposure to mold, it&rsquo;s time for your body to heal and recover."
             buttonCopy="Find Doctors"
@@ -156,14 +140,15 @@ export default function Home() {
             imageSource={recovery3}
             showButton
           />
-          <StepComponent
+          {/* TO DO: Add content for support and enable this step */}
+          {/* <StepComponent
             number="6"
             title="Get Support"
             copy="It&rsquo;s important to get help from others to get through this -- either from your friends and family or an online community on the same journey as you."
             buttonCopy="Join The Community"
             buttonLink="/community"
             imageSource={community3}
-          />
+          /> */}
         </div>
       </div>
       <Footer />
