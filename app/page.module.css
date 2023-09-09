@@ -539,6 +539,8 @@
   bottom: 0;
   margin-top: 50px;
   padding: 30px 40px 15px 40px;
+
+  text-align: center;
 }
 
 .footer p {
@@ -695,7 +697,7 @@ Directory Pages
   height: 290px;
   margin-right: 20px;
   margin-left: 20px;
-  margin-bottom: 55px;
+  margin-bottom: 90px;
   padding: 20px 15px 0 15px;
   background-color: #FEFEFE;
   border: 1.5px solid #94D2BD;
@@ -758,10 +760,14 @@ Directory Pages
 } 
 
 /* Listing Filter Forms (not in the form-specific CSS file) */
+.filterForm {
+  
+}
 .filterForm .formLabel {
   align-self: center;
 }
 .filterForm .formRow {
+  display: flex;
   flex-direction: row;
 }
 .filterForm .formRow .formInput {
@@ -958,35 +964,38 @@ Single Listing Pages
   }
 }
 
-@media screen and (max-width: 1200px) { 
-  /* Handling the homepage content */
-
-  .stepContainer {
-    /* display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 50px; */
-  }
-
-  .stepBox {
-    /* display: flex; */
-    /* align-items: center; */
-
-    
-  }
-
-
-}
-
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 750px) {
   
   /* Handling the listing page filters */
   .filterForm .formRow {
     flex-direction: column;
-    align-items: center;   
+    align-items: center;  
   }
   .filterForm .formRow .formInput {
-    margin: 13px 0;
+    margin: 10px 0;
   }
 }
 
+@media screen and (max-width: 900px) {
+  .stepBox {
+    max-width: 80%;
+  }
+}
+@media screen and (max-width: 700px) {
+  .stepBox {
+    max-width: 1000%;
+  }
+}
+
+@media screen and (max-width: 400px) { 
+  /* Handling smaller screens */
+
+  .header {
+    padding: 55px 0 0;
+  }
+
+
+
+  
+
+}
