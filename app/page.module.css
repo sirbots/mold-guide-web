@@ -978,6 +978,15 @@ Single Listing Pages
     font-size: 30px;
     margin-top: 20px
   }
+  .articleContent h1 {
+    font-size: 30px;
+  }
+  .articleContent h2 {
+    font-size: 22px;
+  }
+  .articleContent h3 {
+    font-size: 17px;
+  }
 }
 
 @media screen and (max-width: 900px) {
