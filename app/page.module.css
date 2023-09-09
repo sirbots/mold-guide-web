@@ -987,6 +987,12 @@ Single Listing Pages
   .articleContent h3 {
     font-size: 17px;
   }
+
+  .addListingPage h1 {
+    font-size: 30px;
+    padding: 0 20px;
+    text-align: center;
+  }
 }
 
 @media screen and (max-width: 900px) {
@@ -998,6 +1004,15 @@ Single Listing Pages
   .stepBox {
     max-width: 1000%;
   }
+}
+
+
+@media screen and (max-width: 650px) { 
+  /* Handing the transitionGroup on the Add Listing Page */
+  .addListingPage .transitionGroup {
+    width: 75%;
+  }
+  
 }
 
 @media screen and (max-width: 400px) { 

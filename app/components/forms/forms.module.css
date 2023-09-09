@@ -168,7 +168,6 @@ Add Listing Forms
     
     .addListingSelector {
     height: 50px;
-    width: 225p;
     padding: 0 20px;
     
     font-family: inherit;
@@ -180,6 +179,8 @@ Add Listing Forms
     background-color: #005F73;
     border: 1px solid #005F73;
     box-shadow: 1px 2px #0A9396;
+
+    margin: 0 12px;
     }
 
 button.addListingSelector:hover {
@@ -213,6 +214,7 @@ button.addListingSelector:hover {
     font-weight: 700;
     margin-bottom: 10px;
     width: 35%;
+    text-align: left;
   }
   .addListingForm .formInput {
     background: transparent;
@@ -270,7 +272,7 @@ button.addListingSelector:hover {
   .addListingForm .checkboxLabel {
     font-size: 14px;
     align-self: center;
-    min-width: 28%;
+    min-width: 40%;
     text-align: left;
   }
   .addListingForm input:disabled  {
@@ -377,14 +379,58 @@ button.addListingSelector:hover {
   }
   
   
-  @media screen and (max-width: 1300px) {
+  
+  @media screen and (max-width: 950px) {
+    /****************
+    Add Listing Forms
+    ****************/ 
+    .addListingForm .checkboxLabel {
+      min-width: 65%;    
+    }
     
     
   }
   
-  @media screen and (max-width: 500px) {
-    
+  
+  @media screen and (max-width: 650px) {
+    /****************
+    Add Listing Forms
+    ****************/
+    .addListingFormSelectionContainer {
+      flex-direction: column;
+    }
 
+    .addListingSelector  {
+      margin: 10px 0;
+      height: 40px;
+      width: 150px;
+
+    }
+}
+
+@media screen and (max-width: 600px) {
+  /****************
+  Add Listing Forms
+  ****************/
+  .addListingForm .formLabel {
+    font-size: 14px;
+    width: 42%;
+  }
+  .addListingForm .formInput {
+    margin-left: 10px;
+  }
+  .addListingForm .checkboxContainer {
+    margin-left: 5px;
+  }
+  .addListingForm .checkboxLabel {
+    min-width: 70%;
+  }
+  .addListingForm .formInputTextArea {
+    width: 59%;
+    min-width: 59%;
+    max-width: 59%;
   }
   
+
   
+}
