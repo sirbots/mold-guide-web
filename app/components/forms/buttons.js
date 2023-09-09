@@ -32,15 +32,17 @@ export const RegisterButton = () => {
 
 export const LogoutButton = () => {
   return (
-    <a
-      className={styles.logoutBtn}
-      onClick={() => {
-        umami.track("Logout");
-        signOut({ callbackUrl: "/" });
-      }}
-    >
-      <span className={styles.logoutBtnText}>Log Out</span>
-    </a>
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      <a
+        className={styles.logoutBtn}
+        onClick={() => {
+          umami.track("Logout");
+          signOut({ callbackUrl: "/" });
+        }}
+      >
+        <span className={styles.logoutBtnText}>Log Out</span>
+      </a>
+    </div>
   );
 };
 

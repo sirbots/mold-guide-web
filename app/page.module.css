@@ -974,6 +974,10 @@ Single Listing Pages
   .filterForm .formRow .formInput {
     margin: 10px 0;
   }
+  .heroTextBox h1 {
+    font-size: 30px;
+    margin-top: 20px
+  }
 }
 
 @media screen and (max-width: 900px) {

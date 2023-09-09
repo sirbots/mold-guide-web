@@ -53,7 +53,7 @@ export default async function ProfilePage() {
         // buttonText=""
       />
 
-      <div className={styles.pageContent}>
+      <div className={styles.pageContent} style={{ textAlign: "center" }}>
         <p>Display Name: {userName}</p>
         <p>Email: {userEmail}</p>
 
