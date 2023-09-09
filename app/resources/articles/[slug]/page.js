@@ -168,6 +168,14 @@ export default async function SingleArticlePage({ params }) {
                 return <p key={key}>Unhandled Content Style</p>;
             }
           })}
+        <div className={styles.articleEndBox}>
+          <p>
+            Do you have a mold problem? Check out our directories of{" "}
+            <a href="/practitioners">mold doctors</a>,{" "}
+            <a href="/inspection">inspectors</a>, and{" "}
+            <a href="/remediation">remediators</a>.
+          </p>
+        </div>
       </div>
 
       <Footer />

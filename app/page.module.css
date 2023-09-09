@@ -623,6 +623,13 @@ PAGE LAYOUT & STYLING
   max-width: 63%;
 }
 
+.articleEndBox {
+  border: 1px dotted #001219;
+  margin-top:40px;
+  padding: 10px 20px;
+  border-radius: 5px;
+
+}
  /* User Profile Page */
  .userReviewsContainer {
   margin-bottom: 100px;
