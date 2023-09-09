@@ -42,11 +42,11 @@ const StepComponent = ({
 }) => {
   return (
     <>
-      <h3>
-        Step {number}: {title}
-      </h3>
       <div className={styles.stepBox}>
         <Image src={imageSource} className={styles.stepImg} alt={buttonCopy} />
+        <h3>
+          Step {number}: {title}
+        </h3>
         <p>{copy}</p>
         {showButton ? (
           <a className={styles.stepBtn} href={buttonLink}>
@@ -80,19 +80,19 @@ export default function Home() {
       <div className={styles.pageContent}>
         <h2 className={lora.className}>Do You Have a Mold Problem?</h2>
 
-        <p>
+        <p style={{ textAlign: "center" }}>
           Mold illness can manifest in all sorts of strange and debilitating
           ways.
           {/* insert link here to symptoms. */}
         </p>
 
-        <p style={{ marginBottom: "45px" }}>
-          The good news is that it&rsquo;s possible to heal and restore your
-          body. For some, the process of detox and healing is a long one, and
-          for others, it's just a matter of eliminating the source of the mold.
+        <p style={{ marginBottom: "45px", textAlign: "center" }}>
+          For some, the process of detox and healing is a long one, and for
+          others, it's just a matter of eliminating the source of the mold.
         </p>
 
-        <div className={styles.steps}>
+        <div className={styles.stepContainer}>
+          <h2 style={{ fontSize: "24px" }}>A 4-step Path to Recovery</h2>
           <StepComponent
             number="1"
             title="Diagnose Your Illness"

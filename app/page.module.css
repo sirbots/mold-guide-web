@@ -28,7 +28,6 @@
 }
 
 .container h3 {
-  
   font-size: 20px;
   margin-top: 18px;
   margin-bottom: 10px;
@@ -569,16 +568,28 @@ PAGE LAYOUT & STYLING
 
 
 /*  Homepage */
+.stepContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
 .stepBox {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
+  margin-bottom: 100px;
+  text-align: center;
+  max-width: 50%;
 }
 
 .stepImg {
-  width: 150px;
-  height: 150px;
-  margin-right: 30px;
+  width: 200px;
+  height: 200px;
+}
+
+.stepBox h3 {
+  margin: 0;
 }
 
 .stepBtn {
@@ -588,16 +599,16 @@ PAGE LAYOUT & STYLING
 
   height: 45px;
   min-width: 180px;
-  margin-left: 30px;
 
   border-radius: 20px;  
   background-color: #005F73;
   border: 1px solid #005F73;
   box-shadow: 1px 2px #0A9396;
+
+  margin-top: 20px;
 }
 
 .stepBtnText {
-  justify-content: center;
   font-weight: bold;
   font-size: 16px;
   color: #FEFEFE;
@@ -893,7 +904,6 @@ Single Listing Pages
 
 
 @media screen and (max-width: 1300px) {
-  
   /* Handling the mobile nav */
   .header {
     
@@ -946,10 +956,26 @@ Single Listing Pages
     width: 100%;
     text-align: right;
   }
+}
 
-  
-  
-  
+@media screen and (max-width: 1200px) { 
+  /* Handling the homepage content */
+
+  .stepContainer {
+    /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px; */
+  }
+
+  .stepBox {
+    /* display: flex; */
+    /* align-items: center; */
+
+    
+  }
+
+
 }
 
 @media screen and (max-width: 500px) {
