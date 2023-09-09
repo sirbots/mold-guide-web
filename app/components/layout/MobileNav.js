@@ -92,7 +92,7 @@ export default function MobileNav() {
           </a>
         </li>
         {/* If they are not logged in, the /profile page will redirect to /login */}
-        <li>
+        <li style={{ paddingLeft: "33px" }}>
           <a
             className={styles.navBtnSimple}
             href="/profile"
@@ -103,7 +103,7 @@ export default function MobileNav() {
           </a>
         </li>
 
-        <li>
+        <li style={{ paddingLeft: "33px", paddingBottom: "25px" }}>
           <a
             className={styles.navBtnCta}
             href="/add-listing"

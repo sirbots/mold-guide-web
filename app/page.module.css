@@ -896,7 +896,7 @@ Single Listing Pages
   
   /* Handling the mobile nav */
   .header {
-    min-height: 24vh;
+    
   }
   .desktopNav {
     display: none;
@@ -918,10 +918,9 @@ Single Listing Pages
     height: 100px;
     padding-top: 10px;
     z-index: 99;
-
-    /* background-color:#CA383A; */
+    min-width: 165px;
   }
-  
+    
   .hamburgerHolder {
     display: block;
   }
@@ -937,10 +936,19 @@ Single Listing Pages
     display: none;
   }
   .mobileListOpen li {
+    list-style-type: none;
     display: inline-block;    
     font-size: 1rem;
     margin: 4px 0;
+    background-color: #fefefe;
+    padding: 6px;
+    margin: 0;
+    width: 100%;
+    text-align: right;
   }
+
+  
+  
   
 }
 
