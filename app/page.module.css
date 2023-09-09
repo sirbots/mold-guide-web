@@ -177,6 +177,35 @@
  display: none;   
 }
 
+.mobileNav .navBtnSimple {
+  height: 30px;
+  width: 120px;
+  border: 1.5px solid #005F73;
+  box-shadow: 0.5px 1.25px #0A9396;
+}  
+.mobileNav .navBtnSimple:hover {
+  box-shadow: 0px 0px;
+  transition: ease-in-out 0.15s;
+}
+
+.mobileNav .navBtnSimpleText {
+  font-size: 0.9rem;
+}
+.mobileNav .navBtnCta {
+  height: 30px;
+  width: 120px;
+  border: 1.5px solid #005F73;
+  box-shadow: 0.5px 1.25px #0A9396; 
+}  
+
+.mobileNav .navBtnCta:hover {
+  
+}
+
+.mobileNav .navBtnCtaText {
+  font-size: 0.9rem;
+}
+
 
 /* Hero styles */
 .hero {
