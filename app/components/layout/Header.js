@@ -7,23 +7,23 @@ import logo from "../../../public/logos/logo_with_text.png";
 import MobileNav from "./MobileNav";
 
 // Auth
-import { authOptions } from "../../lib/auth";
-import { getServerSession } from "next-auth";
+// import { authOptions } from "../../lib/auth";
+// import { getServerSession } from "next-auth";
 
-async function getUserSession() {
-  const session = await getServerSession(authOptions);
+// async function getUserSession() {
+//   const session = await getServerSession(authOptions);
 
-  if (!session) {
-    return false;
-  }
-  if (session) {
-    return true;
-  }
-}
+//   if (!session) {
+//     return false;
+//   }
+//   if (session) {
+//     return true;
+//   }
+// }
 
 // Create a header component to use in the Navigator
 export default async function Header() {
-  const session = await getUserSession();
+  // const session = await getUserSession();
 
   return (
     <div className={styles.header}>

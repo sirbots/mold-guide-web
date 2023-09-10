@@ -1,7 +1,7 @@
 "use client";
 
 // React
-import { cache, use } from "react";
+import { cache, use, useEffect, useState } from "react";
 
 // Styles & Images
 import styles from "../../page.module.css";
@@ -19,7 +19,15 @@ const ListingReviews = ({ listingId, listingType }) => {
   const apiUrl = `/api/reviews/${listingType}s/reviews-with-name/by-${listingType}-id/${listingId}`;
   let reviews = use(getListingReviews(apiUrl));
 
-  if (reviews.length === 0) {
+  const [hasReviews, setHasReviews] = useState(false);
+
+  useEffect(() => {
+    if (reviews.length > 0) {
+      setHasReviews(true);
+    }
+  }, [reviews]);
+
+  if (!hasReviews) {
     return (
       <div className={styles.reviewsContainer}>
         <h2>Reviews</h2>
@@ -43,8 +51,17 @@ const ListingReviews = ({ listingId, listingType }) => {
           });
 
           return (
-            <div key={rev.id} className={styles.review}>
-              <h4 style={{ marginBottom: "5px" }}>{rev.title}</h4>
+            <div
+              key={rev.id}
+              className={styles.review}
+              data-test="single-review"
+            >
+              <h4
+                style={{ marginBottom: "5px" }}
+                data-test="single-review-title"
+              >
+                {rev.title}
+              </h4>
               <Stars starCount={rev.rating} />
 
               <p style={{ marginTop: "5px" }}>{rev.body}</p>

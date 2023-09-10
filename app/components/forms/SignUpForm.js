@@ -88,6 +88,7 @@ export default function SignUpForm() {
           Display Name:
         </label>
         <input
+          data-test="name-input"
           className={styles.formInput}
           type="text"
           name="name"
@@ -102,9 +103,9 @@ export default function SignUpForm() {
           Email:
         </label>
         <input
+          data-test="email-input"
           className={styles.formInput}
           type="email"
-          // id="email"
           name="email"
           value={formValues.email}
           onChange={handleChange}
@@ -116,16 +117,21 @@ export default function SignUpForm() {
           Password:
         </label>
         <input
+          data-test="password-input"
           className={styles.formInput}
           type="password"
-          // id="password"
           name="password"
           value={formValues.password}
           onChange={handleChange}
           required
         />
       </div>
-      <button className={styles.formBtn} type="submit" disabled={loading}>
+      <button
+        className={styles.formBtn}
+        type="submit"
+        disabled={loading}
+        data-test="submit-button"
+      >
         <span style={merriweather.style} className={styles.formBtnText}>
           {loading ? "Loading..." : "Sign Up"}
         </span>

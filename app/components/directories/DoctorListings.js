@@ -102,7 +102,7 @@ const ResultsFilter = ({
 
   return (
     <>
-      <form className={styles.filterForm}>
+      <form className={styles.filterForm} data-test="filter-form-doctors">
         <div className={styles.formRow}>
           {/* Filter by State */}
           <select
@@ -200,7 +200,10 @@ export default function DoctorListings({}) {
         addressStatesIncluded={addressStatesIncluded}
       />
 
-      <div className={styles.listingsContainer}>
+      <div
+        className={styles.listingsContainer}
+        data-test="listings-container-doctors"
+      >
         {doctors &&
           doctors.map((doc) => (
             <DoctorListing

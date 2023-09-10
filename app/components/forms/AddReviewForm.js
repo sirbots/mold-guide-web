@@ -141,7 +141,7 @@ export default function AddReviewForm({ listingId, listingType }) {
   // If the user is not logged in, display a message telling them to sign in or register in order to leave a review
   if (user.status === "fail") {
     return (
-      <div className={styles.addReviewSubmitted}>
+      <div className={styles.addReviewSubmitted} id="review-form">
         <h3 className={styles.addReviewTitle}>
           Leave a Review of this {listingName}
         </h3>
@@ -164,6 +164,7 @@ export default function AddReviewForm({ listingId, listingType }) {
       // Has an id so the Add Review button can link to this location on the page
       <form
         id="review-form"
+        data-test="review-form"
         className={styles.addReviewForm}
         onSubmit={handleSubmit}
       >
@@ -189,6 +190,7 @@ export default function AddReviewForm({ listingId, listingType }) {
             value={formValues.title}
             onChange={handleChange}
             required
+            data-test="input-title"
           />
         </div>
         <div className={styles.formRow}>
@@ -202,6 +204,7 @@ export default function AddReviewForm({ listingId, listingType }) {
             value={formValues.body}
             onChange={handleChange}
             required
+            data-test="input-body"
           />
         </div>
         <div className={styles.formRow}>
@@ -220,7 +223,7 @@ export default function AddReviewForm({ listingId, listingType }) {
             list="rating-markers"
             required
           />
-          <datalist id="rating-markers">
+          <datalist id="rating-markers" data-test="input-rating-datalist">
             <option value="0" label="0"></option>
             <option value="1" label="1"></option>
             <option value="2" label="2"></option>
@@ -230,7 +233,12 @@ export default function AddReviewForm({ listingId, listingType }) {
           </datalist>
         </div>
 
-        <button className={styles.formBtn} type="submit" disabled={sending}>
+        <button
+          className={styles.formBtn}
+          type="submit"
+          disabled={sending}
+          data-test="submit-button"
+        >
           <span style={merriweather.style} className={styles.formBtnText}>
             {sending ? "Sending..." : "Add Review"}
           </span>
