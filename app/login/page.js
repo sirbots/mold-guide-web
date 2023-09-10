@@ -37,7 +37,7 @@ export default function LoginPage() {
         <LoginForm />
 
         <p style={{ textAlign: "center" }}>
-          Don't have an account yet? <a href="/signup">Register here.</a>
+          Don&rsquo;t have an account yet? <a href="/signup">Register here.</a>
         </p>
       </div>
 

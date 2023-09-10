@@ -291,8 +291,10 @@ button.addListingSelector:hover {
     display: flex;
     flex-direction: column;
     align-self: center;
-    width: 30%;
     margin-bottom: 100px;
+    width: 100%;
+    max-width: 750px;
+    padding: 0 15%;
   }
   
   .addReviewTitle {
@@ -431,6 +433,12 @@ button.addListingSelector:hover {
     max-width: 59%;
   }
   
+
+  
+  .addReviewForm {
+
+    
+  } 
 
   
 }

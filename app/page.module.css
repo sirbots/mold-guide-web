@@ -829,7 +829,6 @@ Single Listing Pages
   justify-content: center;
   flex-wrap: wrap;
   max-width: 400px;
-  padding-top: 30px;
   margin-left: 50px;
 }
 .singleListingHero .img {
@@ -875,7 +874,7 @@ Single Listing Pages
   align-self: center;
   max-width: 800px;
   margin: 50px 0;
-  padding: 0 70px;
+  padding: 0 15%;
 }
 
 /* .spacer {
@@ -892,9 +891,11 @@ Single Listing Pages
   margin-bottom: 50px;
   align-self: center;
   align-items: center;
-  padding: 20px;
-  min-width: 50%;
-  max-width: 50%;
+  
+  width: 100%;
+  max-width: 750px;
+  width: 100%;
+  padding: 0 15%;
  }
 
  .review {
@@ -911,9 +912,7 @@ Single Listing Pages
 
 @media screen and (max-width: 1300px) {
   /* Handling the mobile nav */
-  .header {
-    
-  }
+
   .desktopNav {
     display: none;
   }
@@ -965,7 +964,6 @@ Single Listing Pages
 }
 
 @media screen and (max-width: 750px) {
-  
   /* Handling the listing page filters */
   .filterForm .formRow {
     flex-direction: column;
@@ -974,24 +972,29 @@ Single Listing Pages
   .filterForm .formRow .formInput {
     margin: 10px 0;
   }
-  .heroTextBox h1 {
-    font-size: 30px;
-    margin-top: 20px
-  }
-  .articleContent h1 {
-    font-size: 30px;
-  }
-  .articleContent h2 {
-    font-size: 22px;
-  }
-  .articleContent h3 {
-    font-size: 17px;
-  }
 
   .addListingPage h1 {
     font-size: 30px;
     padding: 0 20px;
     text-align: center;
+  }
+
+  .container h1 {
+    font-size: 30px;
+  }
+  .heroTextBox h1 {
+    font-size: 30px;
+    margin-top: 20px
+  }
+  
+  .container h2 {
+    font-size: 22px;
+  }
+  .container h3 {
+    font-size: 17px;
+  }
+  .container p {
+    font-size: 14px;
   }
 }
 
@@ -1016,14 +1019,19 @@ Single Listing Pages
 }
 
 @media screen and (max-width: 400px) { 
-  /* Handling smaller screens */
-
   .header {
     padding: 55px 0 0;
   }
 
+  .singleListingHero .img {
+    height: 250px;
+    width: 250px;
+  }
+  .singleListingHero .textBox {
+    margin-left: 0;
+  }
 
-
+  
   
 
 }

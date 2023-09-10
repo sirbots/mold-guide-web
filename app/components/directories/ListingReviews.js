@@ -22,7 +22,7 @@ const ListingReviews = ({ listingId, listingType }) => {
   if (reviews.length === 0) {
     return (
       <div className={styles.reviewsContainer}>
-        <h3>Reviews</h3>
+        <h2>Reviews</h2>
         <p>There are no reviews yet for this listing.</p>
       </div>
     );
@@ -30,7 +30,7 @@ const ListingReviews = ({ listingId, listingType }) => {
 
   return (
     <div className={styles.reviewsContainer}>
-      <h3>Reviews</h3>
+      <h2>Reviews</h2>
 
       {reviews &&
         reviews.map((rev) => {

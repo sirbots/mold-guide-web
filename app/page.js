@@ -88,7 +88,8 @@ export default function Home() {
 
         <p style={{ marginBottom: "45px", textAlign: "center" }}>
           For some, the process of detox and healing is a long one, and for
-          others, it's just a matter of eliminating the source of the mold.
+          others, it&rsquo;s just a matter of eliminating the source of the
+          mold.
         </p>
 
         <div className={styles.stepContainer}>
