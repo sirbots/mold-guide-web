@@ -114,35 +114,34 @@ export default function AddDoctorForm() {
           "content-type": "application/json",
         },
         body: JSON.stringify(data),
-      })
-        .then(async (res) => {
-          // Check for errors from the API
-          if (!res.ok) {
-            // Reset the button text
-            setSending(false);
+      }).then(async (res) => {
+        // Check for errors from the API
+        if (!res.ok) {
+          // Reset the button text
+          setSending(false);
 
-            // If the statusText == "conflict", it means that the record already exists in the database.
-            if (res.statusText == "Conflict") {
-              alert(
-                "That doctor already exists. If you think this is an error, please contact us."
-              );
-            } else {
-              // Alert with some other error message
-              alert(
-                "Ooops. Received an error with this message: " +
-                  res.statusText +
-                  "\n\nPlease contact us for help."
-              );
-            }
+          // If the statusText == "conflict", it means that the record already exists in the database.
+          if (res.statusText == "Conflict") {
+            alert(
+              "That doctor already exists. If you think this is an error, please contact us."
+            );
+          } else {
+            // Alert with some other error message
+            alert(
+              "Ooops. Received an error with this message: " +
+                res.statusText +
+                "\n\nPlease contact us for help."
+            );
           }
-          // Redirect to the TY page if the form was submitted successfully.
-          if (res.ok) {
-            router.push("/add-listing/thank-you-doctor");
-          }
-        })
-        .then(() => {
-          // Send an email notification to let you know that a new doctor was submitted
+        }
+
+        // If the form was submitted successfully...
+        if (res.ok) {
           try {
+            // Send an Umami event
+            umami.track("Doctor Submitted");
+
+            // Send an email notification to let you know that a new doctor was submitted
             fetch("/api/email/content-submission-notification", {
               method: "POST",
               headers: {
@@ -150,13 +149,14 @@ export default function AddDoctorForm() {
               },
               body: JSON.stringify({ formSubmitted: "Doctor Listing" }),
             });
-
-            // Send an Umami event
-            umami.track("Doctor Submitted");
           } catch (error) {
             console.log(error);
           }
-        });
+
+          // Redirect to the TY page
+          router.push("/add-listing/thank-you-doctor");
+        }
+      });
     } catch (error) {
       console.log(error);
     }
@@ -186,6 +186,7 @@ export default function AddDoctorForm() {
             value={formValues.firstName}
             onChange={handleChange}
             required
+            data-test="firstName-input"
           />
         </div>
         <div className={styles.formRow}>
@@ -198,6 +199,7 @@ export default function AddDoctorForm() {
             name="middleName"
             value={formValues.middleName}
             onChange={handleChange}
+            data-test="middleName-input"
           />
         </div>
         <div className={styles.formRow}>
@@ -211,6 +213,7 @@ export default function AddDoctorForm() {
             value={formValues.lastName}
             onChange={handleChange}
             required
+            data-test="lastName-input"
           />
         </div>
         <div className={styles.formRow}>
@@ -223,6 +226,7 @@ export default function AddDoctorForm() {
             name="gender"
             value={formValues.gender}
             onChange={handleChange}
+            data-test="gender-input"
           />
         </div>
         <div className={styles.formRow}>
@@ -235,6 +239,7 @@ export default function AddDoctorForm() {
             name="practiceName"
             value={formValues.practiceName}
             onChange={handleChange}
+            data-test="practiceName-input"
           />
         </div>
         <div className={styles.formRow}>
@@ -247,6 +252,7 @@ export default function AddDoctorForm() {
             name="phoneNumber"
             value={formValues.phoneNumber}
             onChange={handleChange}
+            data-test="phoneNumber-input"
           />
         </div>
         <div className={styles.formRow}>
@@ -259,6 +265,7 @@ export default function AddDoctorForm() {
             name="website"
             value={formValues.website}
             onChange={handleChange}
+            data-test="website-input"
           />
         </div>
 
@@ -272,6 +279,7 @@ export default function AddDoctorForm() {
             name="addressStreet"
             value={formValues.addressStreet}
             onChange={handleChange}
+            data-test="addressStreet-input"
           />
         </div>
 
@@ -285,6 +293,7 @@ export default function AddDoctorForm() {
             name="addressUnit"
             value={formValues.addressUnit}
             onChange={handleChange}
+            data-test="addressUnit-input"
           />
         </div>
         <div className={styles.formRow}>
@@ -298,6 +307,7 @@ export default function AddDoctorForm() {
             value={formValues.addressCity}
             onChange={handleChange}
             required
+            data-test="addressCity-input"
           />
         </div>
 
@@ -312,6 +322,7 @@ export default function AddDoctorForm() {
             value={formValues.addressState}
             onChange={handleChange}
             required
+            data-test="addressState-input"
           />
         </div>
         <div className={styles.formRow}>
@@ -324,6 +335,7 @@ export default function AddDoctorForm() {
             name="addressZipcode"
             value={formValues.addressZipcode}
             onChange={handleChange}
+            data-test="addressZipcode-input"
           />
         </div>
         <div className={styles.formRow}>
@@ -337,6 +349,7 @@ export default function AddDoctorForm() {
             value={formValues.addressCountry}
             onChange={handleChange}
             required
+            data-test="addressCountry-input"
           />
         </div>
 
@@ -347,6 +360,7 @@ export default function AddDoctorForm() {
           <fieldset className={styles.multipleCheckboxSection}>
             <div className={styles.checkboxContainer}>
               <input
+                data-test="telehealth-input-checkbox"
                 className={styles.checkboxInput}
                 type="checkbox"
                 name="telehealth"
@@ -369,6 +383,7 @@ export default function AddDoctorForm() {
           <fieldset className={styles.multipleCheckboxSection}>
             <div className={styles.checkboxContainer}>
               <input
+                data-test="shoemaker-input-checkbox"
                 className={styles.checkboxInput}
                 type="checkbox"
                 name="shoemakerProtocol"
@@ -398,6 +413,7 @@ export default function AddDoctorForm() {
                 Mold Illness
               </label>
               <input
+                data-test="conditions-mold-illness-input-checkbox"
                 className={styles.checkboxInput}
                 type="checkbox"
                 name="conditionsTreated"
@@ -421,6 +437,7 @@ export default function AddDoctorForm() {
                 CIRS
               </label>
               <input
+                data-test="conditions-cirs-input-checkbox"
                 className={styles.checkboxInput}
                 type="checkbox"
                 name="conditionsTreated"
@@ -444,6 +461,7 @@ export default function AddDoctorForm() {
                 Heavy Metals
               </label>
               <input
+                data-test="conditions-heavy-metals-input-checkbox"
                 className={styles.checkboxInput}
                 type="checkbox"
                 name="conditionsTreated"
@@ -467,6 +485,7 @@ export default function AddDoctorForm() {
                 Lyme Disease
               </label>
               <input
+                data-test="conditions-lyme-disease-input-checkbox"
                 className={styles.checkboxInput}
                 type="checkbox"
                 name="conditionsTreated"
@@ -490,6 +509,7 @@ export default function AddDoctorForm() {
                 Gut Issues
               </label>
               <input
+                data-test="conditions-gut-issues-input-checkbox"
                 className={styles.checkboxInput}
                 type="checkbox"
                 name="conditionsTreated"
@@ -513,6 +533,7 @@ export default function AddDoctorForm() {
                 Thyroid Issues
               </label>
               <input
+                data-test="conditions-thyroid-issues-input-checkbox"
                 className={styles.checkboxInput}
                 type="checkbox"
                 name="conditionsTreated"
@@ -536,6 +557,7 @@ export default function AddDoctorForm() {
                 Other
               </label>
               <input
+                data-test="conditions-other-input-checkbox"
                 className={styles.checkboxInput}
                 type="checkbox"
                 name="conditionsTreated"
@@ -547,6 +569,7 @@ export default function AddDoctorForm() {
                 }
               />
               <input
+                data-test="conditions-input-other-text"
                 className={styles.formInputOther}
                 type="text"
                 name="conditionsTreatedOther"
@@ -570,6 +593,7 @@ export default function AddDoctorForm() {
                 MD
               </label>
               <input
+                data-test="certifications-md-input-checkbox"
                 className={styles.checkboxInput}
                 type="checkbox"
                 name="certifications"
@@ -588,6 +612,7 @@ export default function AddDoctorForm() {
                 DO
               </label>
               <input
+                data-test="certifications-do-input-checkbox"
                 className={styles.checkboxInput}
                 type="checkbox"
                 name="certifications"
@@ -606,6 +631,7 @@ export default function AddDoctorForm() {
                 L.Ac
               </label>
               <input
+                data-test="certifications-lac-input-checkbox"
                 className={styles.checkboxInput}
                 type="checkbox"
                 name="certifications"
@@ -623,6 +649,7 @@ export default function AddDoctorForm() {
                 ND
               </label>
               <input
+                data-test="certifications-nd-input-checkbox"
                 className={styles.checkboxInput}
                 type="checkbox"
                 name="certifications"
@@ -641,6 +668,7 @@ export default function AddDoctorForm() {
                 NP
               </label>
               <input
+                data-test="certifications-np-input-checkbox"
                 className={styles.checkboxInput}
                 type="checkbox"
                 name="certifications"
@@ -659,6 +687,7 @@ export default function AddDoctorForm() {
                 RN
               </label>
               <input
+                data-test="certifications-rn-input-checkbox"
                 className={styles.checkboxInput}
                 type="checkbox"
                 name="certifications"
@@ -677,6 +706,7 @@ export default function AddDoctorForm() {
                 Other
               </label>
               <input
+                data-test="certifications-other-input-checkbox"
                 className={styles.checkboxInput}
                 type="checkbox"
                 name="certifications"
@@ -686,6 +716,7 @@ export default function AddDoctorForm() {
                 }
               />
               <input
+                data-test="certifications-input-other-text"
                 className={styles.formInputOther}
                 type="text"
                 name="certificationsOther"
@@ -703,6 +734,7 @@ export default function AddDoctorForm() {
             What states do they see patients in?
           </label>
           <input
+            data-test="seesPatientsIn-input"
             className={styles.formInput}
             type="text"
             name="seesPatientsIn"
@@ -715,6 +747,7 @@ export default function AddDoctorForm() {
             Bio or short description:
           </label>
           <textarea
+            data-test="bio-input"
             className={styles.formInputTextArea}
             type="text"
             name="bio"
@@ -722,7 +755,12 @@ export default function AddDoctorForm() {
             onChange={handleChange}
           />
         </div>
-        <button className={styles.formBtn} type="submit" disabled={sending}>
+        <button
+          className={styles.formBtn}
+          type="submit"
+          disabled={sending}
+          data-test="submit-button"
+        >
           <span style={merriweather.style} className={styles.formBtnText}>
             {sending ? "Sending..." : "Add Listing"}
           </span>

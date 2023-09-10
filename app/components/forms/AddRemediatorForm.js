@@ -82,35 +82,34 @@ export default function AddRemediatorForm() {
           "content-type": "application/json",
         },
         body: JSON.stringify(data),
-      })
-        .then(async (res) => {
-          // Check for errors from the API
-          if (!res.ok) {
-            // Reset the button text
-            setSending(false);
+      }).then(async (res) => {
+        // Check for errors from the API
+        if (!res.ok) {
+          // Reset the button text
+          setSending(false);
 
-            // If the statusText == "conflict", it means that the record already exists in the database.
-            if (res.statusText == "Conflict") {
-              alert(
-                "That remediator already exists. If you think this is an error, please contact us."
-              );
-            } else {
-              // Alert with some other error message
-              alert(
-                "Ooops. Received an error with this message: " +
-                  res.statusText +
-                  "\n\nPlease contact us for help."
-              );
-            }
+          // If the statusText == "conflict", it means that the record already exists in the database.
+          if (res.statusText == "Conflict") {
+            alert(
+              "That remediator already exists. If you think this is an error, please contact us."
+            );
+          } else {
+            // Alert with some other error message
+            alert(
+              "Ooops. Received an error with this message: " +
+                res.statusText +
+                "\n\nPlease contact us for help."
+            );
           }
-          // Redirect to the TY page if the form was submitted successfully.
-          if (res.ok) {
-            router.push("/add-listing/thank-you-remediator");
-          }
-        })
-        .then(() => {
-          // Send an email notification to let you know that a new remediator was submitted
+        }
+
+        // If the form was submitted successfully...
+        if (res.ok) {
           try {
+            // Send an Umami event
+            umami.track("Remediator Submitted");
+
+            // Send an email notification to let you know that a new remediator was submitted
             fetch("/api/email/content-submission-notification", {
               method: "POST",
               headers: {
@@ -118,13 +117,14 @@ export default function AddRemediatorForm() {
               },
               body: JSON.stringify({ formSubmitted: "Remediator Listing" }),
             });
-
-            // Send an Umami event
-            umami.track("Remediator Submitted");
           } catch (error) {
             console.log(error);
           }
-        });
+
+          // Redirect to the TY page
+          router.push("/add-listing/thank-you-remediator");
+        }
+      });
     } catch (error) {
       console.log(error);
     }
@@ -154,6 +154,7 @@ export default function AddRemediatorForm() {
             value={formValues.companyName}
             onChange={handleChange}
             required
+            data-test="companyName-input"
           />
         </div>
 
@@ -167,6 +168,7 @@ export default function AddRemediatorForm() {
             name="phoneNumber"
             value={formValues.phoneNumber}
             onChange={handleChange}
+            data-test="phoneNumber-input"
           />
         </div>
         <div className={styles.formRow}>
@@ -179,6 +181,7 @@ export default function AddRemediatorForm() {
             name="website"
             value={formValues.website}
             onChange={handleChange}
+            data-test="website-input"
           />
         </div>
 
@@ -192,6 +195,7 @@ export default function AddRemediatorForm() {
             name="addressStreet"
             value={formValues.addressStreet}
             onChange={handleChange}
+            data-test="addressStreet-input"
           />
         </div>
 
@@ -205,6 +209,7 @@ export default function AddRemediatorForm() {
             name="addressUnit"
             value={formValues.addressUnit}
             onChange={handleChange}
+            data-test="addressUnit-input"
           />
         </div>
         <div className={styles.formRow}>
@@ -218,6 +223,7 @@ export default function AddRemediatorForm() {
             value={formValues.addressCity}
             onChange={handleChange}
             required
+            data-test="addressCity-input"
           />
         </div>
 
@@ -232,6 +238,7 @@ export default function AddRemediatorForm() {
             value={formValues.addressState}
             onChange={handleChange}
             required
+            data-test="addressState-input"
           />
         </div>
         <div className={styles.formRow}>
@@ -244,6 +251,7 @@ export default function AddRemediatorForm() {
             name="addressZipcode"
             value={formValues.addressZipcode}
             onChange={handleChange}
+            data-test="addressZipcode-input"
           />
         </div>
         <div className={styles.formRow}>
@@ -257,6 +265,7 @@ export default function AddRemediatorForm() {
             value={formValues.addressCountry}
             onChange={handleChange}
             required
+            data-test="addressCountry-input"
           />
         </div>
 
@@ -272,9 +281,15 @@ export default function AddRemediatorForm() {
             name="bio"
             value={formValues.bio}
             onChange={handleChange}
+            data-test="bio-input"
           />
         </div>
-        <button className={styles.formBtn} type="submit" disabled={sending}>
+        <button
+          className={styles.formBtn}
+          type="submit"
+          disabled={sending}
+          data-test="submit-button"
+        >
           <span style={merriweather.style} className={styles.formBtnText}>
             {sending ? "Sending..." : "Add Listing"}
           </span>
