@@ -18,7 +18,7 @@ FORMS
   .formInput {
     background: transparent;
     border: 1px solid #001219;
-    border-radius: 3px;
+    border-radius: 5px;
     color: #001219;
     font-family: inherit;
     width: 90%;
@@ -41,6 +41,8 @@ FORMS
     background-color: #005F73;
     border: 1px solid #005F73;
     box-shadow: 1px 2px #0A9396;
+
+    cursor: pointer;
     
     }  
   
@@ -96,13 +98,17 @@ Give Feedback Form
     right: 3%;
     
     z-index: 99;
-    
+
+    /* to prevent it from taking over the screen on mobile*/
+    max-height: 75%; 
+    max-width: 90%;
+        
     max-width: 270px;
     background-color: #FEFEFE;
   
     box-shadow: #005F73 0px 0px 5px 0px;
     border-radius: 5px;
-    
+    text-align: center;
   }
   .giveFeedbackFormModal p {
   font-size: 14px;
@@ -114,41 +120,57 @@ Give Feedback Form
   }
   
   .giveFeedbackForm {  
-    padding: 10px 25px;
+    padding: 18px 28px;
     display: flex;
     flex-direction: column;
   }
-  
-  .giveFeedbackForm h3 {  
-    text-align: center;
+
+  .giveFeedbackForm .formRow {
+    margin: 5px 0;
   }
   
+  .giveFeedbackForm h3 {  
+    margin-bottom: 10px;
+  }
+  .giveFeedbackForm p {
+    margin: 10px 0;
+  }
   .giveFeedbackForm .formInput {
     border: 1px lightgray solid;
+    width: 100%;
   }
   
   .giveFeedbackForm .formInputTextArea {
     background: transparent;
     border: 1px solid lightgray;
-    border-radius: 3px;
+    border-radius: 5px;
     color: #001219;
     font-family: inherit;
     font-size: 13px;
-  
-    min-width: 100%;
-    
+    min-width: 100%;  
     padding: 10px;
-    min-height: 140px;
+    min-height: 100px;
+  }
+
+  .giveFeedbackForm .formBtn { 
+    height: 35px;
+    width: 75%;
+    align-self: center;
+  }  
+  .giveFeedbackForm .formBtnText { 
+    font-size: 13px;  
   }
   
   .xButton {
+    cursor: pointer;
     width: 20px;
     align-self: end;
     color: #001219;
     background-color: #FEFEFE;
     border: none;
     font-size: 20px;
-  
+  }
+  .xButton:hover {
   }
 
 
@@ -219,7 +241,7 @@ button.addListingSelector:hover {
   .addListingForm .formInput {
     background: transparent;
     border: 1px solid #001219;
-    border-radius: 3px;
+    border-radius: 5px;
     color: #001219;
     font-family: inherit;
     width: 65%;
@@ -230,7 +252,7 @@ button.addListingSelector:hover {
   .addListingForm .formInputTextArea {
     background: transparent;
     border: 1px solid #001219;
-    border-radius: 3px;
+    border-radius: 5px;
     color: #001219;
     font-size: 14px;
     font-family: inherit;
@@ -245,7 +267,7 @@ button.addListingSelector:hover {
   .addListingForm .formInputOther {
     background: transparent;
     border: 1px solid #001219;
-    border-radius: 3px;
+    border-radius: 5px;
     color: #001219;
     font-family: inherit;
     width: 40%;
@@ -320,7 +342,7 @@ button.addListingSelector:hover {
   .addReviewForm .formInput {
     background: transparent;
     border: 1px solid #001219;
-    border-radius: 3px;
+    border-radius: 5px;
     color: #001219;
     font-family: inherit;
     width: 70%;
@@ -331,7 +353,7 @@ button.addListingSelector:hover {
   .addReviewForm .formInputTextArea {
     background: transparent;
     border: 1px solid #001219;
-    border-radius: 3px;
+    border-radius: 5px;
     color: #001219;
     font-family: inherit;
     width: 70%;
@@ -432,13 +454,5 @@ button.addListingSelector:hover {
     min-width: 59%;
     max-width: 59%;
   }
-  
 
-  
-  .addReviewForm {
-
-    
-  } 
-
-  
 }

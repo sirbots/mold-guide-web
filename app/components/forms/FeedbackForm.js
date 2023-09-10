@@ -96,7 +96,7 @@ export default function FeedbackForm() {
       if (!cookieExists) {
         setTimeout(() => {
           setStatus("visible");
-        }, 15_000);
+        }, 1_000);
       }
     } catch (error) {
       console.log(error);
@@ -132,7 +132,7 @@ export default function FeedbackForm() {
               <textarea
                 className={styles.formInputTextArea}
                 name="feedbackMessage"
-                rows="7"
+                rows="3"
                 value={formValues.feedbackMessage}
                 onChange={handleChange}
               />
