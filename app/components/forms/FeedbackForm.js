@@ -24,6 +24,7 @@ export default function FeedbackForm() {
     email: "",
   });
 
+  // Add a ref so that autoAnimate can find the parent element
   const parentRef = useRef(null);
 
   // Handles the submit event on form submit.

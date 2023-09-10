@@ -23,7 +23,7 @@ export default function SignUpForm() {
     password: "",
   });
 
-  // We may not need these. Copied over from LoginForm.js
+  // Used to redirect the user after successful registration.
   const router = useRouter();
 
   // Handles the submit event on form submit.
@@ -58,7 +58,16 @@ export default function SignUpForm() {
 
       // If the user signs in successfully, redirect to the profile page.
       if (!signInRes?.error) {
-        router.push("/profile");
+        // Send an Umami event
+        umami.track("Login");
+
+        if (document.referrer.includes("/login") || document.referrer == "") {
+          // If the user is coming from the /login page, or there is no document.referrer, redirect them to the /profile page
+          router.push("/profile");
+        } else {
+          // Send the user back to the previous page (e.g. if they clicked the "sign in" link from a doctor page)
+          router.push(document.referrer);
+        }
       }
     } catch (error) {
       setLoading(false);

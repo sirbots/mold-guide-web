@@ -3,8 +3,6 @@ import { compare } from "bcryptjs";
 import CredentialsProvider from "next-auth/providers/credentials";
 // import { NextAuthOptions } from "next-auth"; Only need this if you use TS methinks
 
-// const prisma = new PrismaClient();
-
 export const authOptions = {
   pages: {
     signIn: "/login",
@@ -47,7 +45,6 @@ export const authOptions = {
           id: user.id,
           email: user.email,
           name: user.name,
-          // displayName: user.displayName,
         };
       },
     }),
