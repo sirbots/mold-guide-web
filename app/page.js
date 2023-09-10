@@ -92,7 +92,7 @@ export default function Home() {
           mold.
         </p>
 
-        <div className={styles.stepContainer}>
+        <div className={styles.stepContainer} data-test="steps-container">
           <h2 style={{ fontSize: "24px" }}>A 4-step Path to Recovery</h2>
           <StepComponent
             number="1"
@@ -109,7 +109,7 @@ export default function Home() {
             title="Find the Source"
             copy="Locating the source of your exposure is important so you can understand the severity of the problem."
             buttonCopy="Find Inspectors"
-            buttonLink="/inspectors"
+            buttonLink="/inspection"
             imageSource={inspection2}
             showButton
           />
@@ -118,7 +118,7 @@ export default function Home() {
             title="Remediate or Move"
             copy="Depending on your situation, you may need to move to a new home or hire professionals to remediate the contaminated area."
             buttonCopy="Find Remediators"
-            buttonLink="/remediation-companies"
+            buttonLink="/remediation"
             imageSource={remediation3}
             showButton
           />

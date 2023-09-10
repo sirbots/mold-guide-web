@@ -30,6 +30,7 @@ describe('Add Inspector Form', () => {
     cy.getByData('certifications-input-other-text').type('Certification 1, Certification 2, Certification 3')
     cy.getByData('bio-input').type('This is a great company. They do great work.\n\nThey are the best. They did a great job for my home. No more mold!\n\nI highly recommend them.')
     cy.getByData('submit-button').click() 
+    cy.location("pathname").should("equal", "/add-listing/thank-you-inspector")
   })
 
 }) 

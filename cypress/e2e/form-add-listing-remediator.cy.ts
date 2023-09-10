@@ -26,6 +26,7 @@ describe('Add Remediator Form', () => {
     cy.getByData('addressCountry-input').clear().type('USA')
     cy.getByData('bio-input').type('This is a great company. They do great work.\n\nThey are the best. They did a great job for my home. No more mold!\n\nI highly recommend them.')
     cy.getByData('submit-button').click() 
+    cy.location("pathname").should("equal", "/add-listing/thank-you-remediator")
   })
 
 }) 

@@ -37,6 +37,7 @@ describe('Add Practitioner Form', () => {
     cy.getByData('seesPatientsIn-input').type('MD, FL IL CA, MT') 
     cy.getByData('bio-input').type('This is a great doctor. They do great work.\n\nThey are the best. They did a great job for my home. No more mold!\n\nI highly recommend them.')
     cy.getByData('submit-button').click() 
+    cy.location("pathname").should("equal", "/add-listing/thank-you-doctor")
   })
 
 }) 
