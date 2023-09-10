@@ -96,7 +96,7 @@ export default function FeedbackForm() {
       if (!cookieExists) {
         setTimeout(() => {
           setStatus("visible");
-        }, 1_000);
+        }, 15_000);
       }
     } catch (error) {
       console.log(error);
