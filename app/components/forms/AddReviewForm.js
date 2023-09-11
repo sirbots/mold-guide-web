@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, cache, use } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
 
 // Styles & Fonts
 import styles from "./forms.module.css";
@@ -13,12 +12,10 @@ const merriweather = Merriweather({
   display: "swap",
 });
 
-// Cache the user session data so we can send it to the API with the form data
-const getUser = cache(() => fetch("/api/session/").then((res) => res.json()));
-
 export default function AddReviewForm({ listingId, listingType }) {
   let [reviewPublished, setPublished] = useState(false);
   let [sending, setSending] = useState(false);
+  const [userId, setUserId] = useState(null);
 
   let [formValues, setFormValues] = useState({
     title: "Title your review", // String
@@ -26,13 +23,19 @@ export default function AddReviewForm({ listingId, listingType }) {
     rating: "3", // Int
   });
 
-  // Initialize the router because redirect doesn't seem to work in client components
-  const router = useRouter();
+  // Get the user's id from the session (if they are logged in) and set it to state
+  useEffect(() => {
+    async function getUserId() {
+      const res = await fetch("/api/session/");
+      const data = await res.json();
 
-  // Get the user from the cache
-  let user = use(getUser());
-  // Get the user's ID
-  let userId = user?.session?.user?.id;
+      if (data.status != "fail") {
+        setUserId(data.session.user.id);
+      }
+    }
+
+    getUserId();
+  }, []);
 
   // Handles the submit event on form submit.
   const handleSubmit = async (e) => {
@@ -62,8 +65,6 @@ export default function AddReviewForm({ listingId, listingType }) {
         data["remediatorId"] = listingId; // Set the remediatorId to the remediatorId of the current page
     }
 
-    // console.log("The formatted data object:");
-    // console.log(data);
     try {
       const apiUrl = `/api/reviews/${listingType}s`;
       fetch(apiUrl, {
@@ -139,7 +140,7 @@ export default function AddReviewForm({ listingId, listingType }) {
   }
 
   // If the user is not logged in, display a message telling them to sign in or register in order to leave a review
-  if (user.status === "fail") {
+  if (!userId) {
     return (
       <div className={styles.addReviewSubmitted} id="review-form">
         <h3 className={styles.addReviewTitle}>

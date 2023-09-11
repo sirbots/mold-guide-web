@@ -201,4 +201,8 @@ const stateNames = [
   },
 ];
 
-export default stateNames;
+export const stateAbbreviationsArray = stateNames.map(
+  (state) => state.abbreviation
+);
+
+export { stateNames };

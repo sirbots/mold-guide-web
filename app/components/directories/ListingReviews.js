@@ -1,7 +1,7 @@
 "use client";
 
 // React
-import { cache, use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 // Styles & Images
 import styles from "../../page.module.css";
@@ -9,23 +9,30 @@ import styles from "../../page.module.css";
 // Components
 import Stars from "./Stars";
 
-// Pulls from a Prisma view that joins the reviews table with the users table (to get the user's display name)
-const getListingReviews = cache((apiUrl) =>
-  // apiUrl is created below, from the listingType and id props
-  fetch(apiUrl).then((res) => res.json())
-);
-
 const ListingReviews = ({ listingId, listingType }) => {
+  // Create the API url based on the listingType and listingId
   const apiUrl = `/api/reviews/${listingType}s/reviews-with-name/by-${listingType}-id/${listingId}`;
-  let reviews = use(getListingReviews(apiUrl));
-
   const [hasReviews, setHasReviews] = useState(false);
+  const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    if (reviews.length > 0) {
-      setHasReviews(true);
+    //
+    async function getListingReviews() {
+      const res = await fetch(apiUrl, {
+        method: "GET",
+      });
+      const reviews = await res.json();
+
+      // Set the reviews in state
+      setReviews(reviews);
+
+      // If there are reviews, set hasReviews to true so that they display
+      if (reviews.length > 0) {
+        setHasReviews(true);
+      }
     }
-  }, [reviews]);
+    getListingReviews();
+  }, []);
 
   if (!hasReviews) {
     return (

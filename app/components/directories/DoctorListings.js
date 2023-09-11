@@ -1,8 +1,7 @@
 "use client";
 
 // React
-import { useState } from "react";
-import React, { cache, use } from "react";
+import { useState, useEffect } from "react";
 
 // Components
 import Stars from "./Stars";
@@ -18,7 +17,7 @@ import femaleDoctor6 from "../../../public/female-doctor6.png";
 // Helpers
 import arrayToCommaString from "../../lib/arrayToCommaString";
 import formatMiddleName from "../../lib/formatMiddleName";
-import stateNames from "../../lib/stateNames";
+import { stateNames, stateAbbreviationsArray } from "../../lib/stateNames";
 import roundTo from "../../lib/roundTo";
 
 // Doctor Listing Component
@@ -144,53 +143,69 @@ const ResultsFilter = ({
   );
 };
 
-const getPublishedDoctors = cache(() =>
-  fetch("/api/doctors/published").then((res) => res.json())
-);
-const getDoctorReviews = cache(() =>
-  fetch("/api/reviews/doctors").then((res) => res.json())
-);
-
 export default function DoctorListings({}) {
-  // Call the API to get all of the published doctors and reviews
-  let reviews = use(getDoctorReviews());
-  let doctors = use(getPublishedDoctors());
-
-  // Go through all the doctors
-  doctors.forEach((prac) => {
-    // Create an empty array to hold the ratings for this doctor
-    const allRatings = [];
-
-    // Go through every review and see if the doctor ID matches the current doctor
-    reviews.forEach((rev) => {
-      if (prac.id == rev.doctorId) {
-        allRatings.push(rev.rating);
-      }
-    });
-
-    // Use a reducr to sum up all of the ratings
-    const ratingsSum = parseFloat(
-      allRatings.reduce(
-        (accumulator, currentValue) => accumulator + currentValue,
-        0
-      )
-    );
-
-    // Calculate a rounded average if the rating is higher than 0
-    const roundedAvg =
-      ratingsSum > 0 ? parseInt(roundTo(ratingsSum / allRatings.length)) : 0;
-
-    // Add the average rating to the doctor object for this particular doctor
-    prac["avgRating"] = roundedAvg;
-  });
-
-  // const [addressStateSelected, setAddressStateSelected] = useState("CH");
+  const [doctors, setDoctors] = useState();
+  const [addressStatesIncluded, setAddressStatesIncluded] = useState(
+    stateAbbreviationsArray
+  );
   const [filterValues, setFilterValues] = useState({
     addressStateSelected: "CH",
     shoemakerProtocolSelected: "any",
   });
 
-  const addressStatesIncluded = doctors.map((doc) => doc.addressState);
+  // Call the API to get all of the published doctors and reviews
+  useEffect(() => {
+    async function getDoctors() {
+      const doctorReviewsRes = await fetch("/api/reviews/doctors", {
+        method: "GET",
+      });
+      const reviews = await doctorReviewsRes.json();
+
+      const res = await fetch("/api/doctors/published", {
+        method: "GET",
+      });
+      const doctorsObj = await res.json();
+      let doctors = await doctorsObj;
+
+      // Go through all the doctors to create an average rating for each one
+      doctors.forEach((doctor) => {
+        // Create an empty array to hold the ratings for this doctor
+        const allRatings = [];
+
+        // Go through every review and see if the doctor ID matches the current doctor
+        reviews.forEach((rev) => {
+          if (doctor.id == rev.doctorId) {
+            allRatings.push(rev.rating);
+          }
+        });
+
+        // Use a reducr to sum up all of the ratings
+        const ratingsSum = parseFloat(
+          allRatings.reduce(
+            (accumulator, currentValue) => accumulator + currentValue,
+            0
+          )
+        );
+
+        // Calculate a rounded average if the rating is higher than 0
+        const roundedAvg =
+          ratingsSum > 0
+            ? parseInt(roundTo(ratingsSum / allRatings.length))
+            : 0;
+
+        // Add the average rating to the doctor object for this particular doctor
+        doctor["avgRating"] = roundedAvg;
+      });
+
+      setDoctors(doctors);
+
+      let statesIncluded = doctors.map((doctor) => doctor.addressState);
+
+      setAddressStatesIncluded(statesIncluded);
+    }
+
+    getDoctors();
+  }, []);
 
   return (
     <>

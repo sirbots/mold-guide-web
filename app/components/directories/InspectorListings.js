@@ -1,8 +1,7 @@
 "use client";
 
 // React
-import { useState } from "react";
-import React, { cache, use } from "react";
+import { useState, useEffect } from "react";
 
 // Components
 import Stars from "./Stars";
@@ -16,7 +15,7 @@ import inspection1 from "../../../public/inspection1.png";
 
 // Helpers
 import arrayToCommaString from "../../lib/arrayToCommaString";
-import stateNames from "../../lib/stateNames";
+import { stateNames, stateAbbreviationsArray } from "../../lib/stateNames";
 import roundTo from "../../lib/roundTo";
 
 // Inspector Listing Component
@@ -126,56 +125,70 @@ const ResultsFilter = ({
   );
 };
 
-const getPublishedInspectors = cache(() =>
-  fetch("/api/inspectors/published").then((res) => res.json())
-);
-const getReviews = cache(() =>
-  fetch("/api/reviews/inspectors").then((res) => res.json())
-);
-
 export default function InspectorListings({}) {
-  // Call the API to get all of the published inspectors and reviews
-  let reviews = use(getReviews());
-  let inspectors = use(getPublishedInspectors());
-
-  // Go through all the listings
-  inspectors.forEach((inspector) => {
-    // Create an empty array to hold the ratings for this inspector
-    const allRatings = [];
-
-    // Go through every review and see if the inspector ID matches the current inspector
-    reviews.forEach((rev) => {
-      if (inspector.id == rev.inspectorId) {
-        allRatings.push(rev.rating);
-      }
-    });
-
-    // console.log(allRatings);
-
-    // Use a reducr to sum up all of the ratings
-    const ratingsSum = parseFloat(
-      allRatings.reduce(
-        (accumulator, currentValue) => accumulator + currentValue,
-        0
-      )
-    );
-
-    // Calculate a rounded average if the rating is higher than 0
-    const roundedAvg =
-      ratingsSum > 0 ? parseInt(roundTo(ratingsSum / allRatings.length)) : 0;
-
-    // Add the average rating to the inspector object for this particular inspector
-    inspector["avgRating"] = roundedAvg;
-  });
-
-  // Set the initial filter values
+  const [inspectors, setInspectors] = useState();
+  const [addressStatesIncluded, setAddressStatesIncluded] = useState(
+    stateAbbreviationsArray
+  );
   const [filterValues, setFilterValues] = useState({
     addressStateSelected: "CH",
   });
 
-  const addressStatesIncluded = inspectors.map(
-    (inspector) => inspector.addressState
-  );
+  // Call the API to get all of the published inspectors and reviews
+  useEffect(() => {
+    async function getInspectors() {
+      const inspectorReviewsRes = await fetch("/api/reviews/inspectors", {
+        method: "GET",
+      });
+      const reviews = await inspectorReviewsRes.json();
+
+      const res = await fetch("/api/inspectors/published", {
+        method: "GET",
+      });
+      const inspectorsObj = await res.json();
+      let inspectors = await inspectorsObj;
+
+      // Go through all the inspectors to create an average rating for each one
+      inspectors.forEach((inspector) => {
+        // Create an empty array to hold the ratings for this inspector
+        const allRatings = [];
+
+        // Go through every review and see if the inspector ID matches the current inspector
+        reviews.forEach((rev) => {
+          if (inspector.id == rev.inspectorId) {
+            allRatings.push(rev.rating);
+          }
+        });
+
+        // Use a reducr to sum up all of the ratings
+        const ratingsSum = parseFloat(
+          allRatings.reduce(
+            (accumulator, currentValue) => accumulator + currentValue,
+            0
+          )
+        );
+
+        // Calculate a rounded average if the rating is higher than 0
+        const roundedAvg =
+          ratingsSum > 0
+            ? parseInt(roundTo(ratingsSum / allRatings.length))
+            : 0;
+
+        // Add the average rating to the inspector object for this particular inspector
+        inspector["avgRating"] = roundedAvg;
+      });
+
+      setInspectors(inspectors);
+
+      let statesIncluded = inspectors.map(
+        (inspector) => inspector.addressState
+      );
+
+      setAddressStatesIncluded(statesIncluded);
+    }
+
+    getInspectors();
+  }, []);
 
   return (
     <>

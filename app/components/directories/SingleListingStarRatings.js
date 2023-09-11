@@ -1,23 +1,38 @@
 "use client";
 
-import { cache, use } from "react";
+import { useEffect, useState } from "react";
 import getAvgRating from "../../lib/getAvgRating";
 import { StarIcon as StarIconOutline } from "@heroicons/react/24/outline";
 import { StarIcon as StarIconSolid } from "@heroicons/react/24/solid";
 
-const getReviewsOfThisListing = cache((apiUrl) =>
-  fetch(apiUrl).then((res) => res.json())
-);
-
 export default function SingleListingStarRatings({ listingId, listingType }) {
+  // Build the apiUrl based on the listingType and listingId
   const apiUrl = `/api/reviews/${listingType}s/by-${listingType}-id/${listingId}`;
-  let reviewsOfThisListing = use(getReviewsOfThisListing(apiUrl));
-  const ratingsAvgRounded = getAvgRating(reviewsOfThisListing);
+
+  const [avgRatingRounded, setAvgRatingRounded] = useState(0);
+
+  useEffect(() => {
+    async function getAvgRatingForThisListing() {
+      // Fetch the reviews for this listing from the API
+      const res = await fetch(apiUrl, {
+        method: "GET",
+      });
+      const reviews = await res.json();
+
+      // Calculate the average rating using the getAvgRating() library function
+      const ratingsAvgRounded = getAvgRating(reviews);
+
+      // Set the averge rating in state
+      setAvgRatingRounded(ratingsAvgRounded);
+    }
+
+    getAvgRatingForThisListing();
+  }, []);
 
   return (
     <div>
       <span>
-        {[...Array(ratingsAvgRounded)].map((value, index) => (
+        {[...Array(avgRatingRounded)].map((value, index) => (
           <StarIconSolid
             // colors:
             // #f5e085
@@ -33,7 +48,7 @@ export default function SingleListingStarRatings({ listingId, listingType }) {
             }}
           />
         ))}
-        {[...Array(5 - ratingsAvgRounded)].map((value, index) => (
+        {[...Array(5 - avgRatingRounded)].map((value, index) => (
           <StarIconOutline
             key={index}
             className="h-12 w-12"
