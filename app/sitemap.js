@@ -106,7 +106,7 @@ const staticUrls = [
     url: URL + "resources",
     lastModified: new Date(),
   },
-  // TO DO: insert other status pages here as you create them
+  // TO DO: insert other static pages here as you create them
 ];
 
 const combinedUrls = staticUrls.concat(
