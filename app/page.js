@@ -80,17 +80,27 @@ export default function Home() {
       <div className={styles.pageContent}>
         <h2 className={lora.className}>Do You Have a Mold Problem?</h2>
 
-        <p style={{ textAlign: "center" }}>
-          Mold illness can manifest in all sorts of strange and debilitating
-          ways.
-          {/* insert link here to symptoms. */}
-        </p>
+        <div className={styles.introContent}>
+          <p>
+            Mold illness is often a long and difficult journey. If you think you
+            might have a mold problem, you can read about{" "}
+            <a href="/resources/articles/symptoms-of-mold-illness">
+              the most common symptoms of mold illness
+            </a>
+            .
+          </p>
 
-        <p style={{ marginBottom: "45px", textAlign: "center" }}>
-          For some, the process of detox and healing is a long one, and for
-          others, it&rsquo;s just a matter of eliminating the source of the
-          mold.
-        </p>
+          <p>
+            For some, the process of detox and healing is a long one, and for
+            others, it&rsquo;s just a matter of eliminating the source of the
+            mold.
+          </p>
+          <p>
+            The goal of this site is to make the process easier by connecting
+            you with professionals who can help you diagnose, remediate, and
+            recover from mold illness.
+          </p>
+        </div>
 
         <div className={styles.stepContainer} data-test="steps-container">
           <h2 style={{ fontSize: "24px" }}>A 4-step Path to Recovery</h2>
