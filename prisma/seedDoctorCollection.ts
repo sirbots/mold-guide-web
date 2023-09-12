@@ -3,7 +3,7 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-const doctorData = [
+const doctorTestData = [
   {
     firstName: "John",
     middleName: "D",
@@ -11,12 +11,12 @@ const doctorData = [
     slug: "john-d-doe-sacramento-ca",
     gender: "male",
     practiceName: "Test",
-    phoneNumber: "(000) 000-0000",
+    phoneNumber: "(000) 111-5555",
     addressStreet: "123 Main St",
     addressUnit: "Suite A",
     addressCity: "Sacramento",
     addressState: "CA",
-    addressZipcode: "00000",
+    addressZipcode: "12345",
     addressCountry: "US",
     website: "",
     telehealth: false,
@@ -29,6 +29,9 @@ const doctorData = [
     lastModified: new Date(),
     
 },
+]
+
+const doctorLiveData = [
   {
       firstName: "Robin",
       middleName: "A",
@@ -68,17 +71,16 @@ const doctorData = [
       addressState: "CA",
       addressZipcode: "91030",
       addressCountry: "US",
-      website: "http://masterymedical.com/",
+      website: "https://masterymedical.com/",
+      // telehealth: false,
       shoemakerProtocol: true,
       conditionsTreated: ["Mold Illness"],
       certifications: ["MD"],
       seesPatientsIn: ["CA"],
-
       bio: ["Dr. Lysander Jim is a Board-certified Physical Medicine and Rehabilitation doctor who specializes in the treatment of low back pain and immunological conditions arising from damp building exposure. He graduated from the University of California, Berkeley with a bachelor’s degree in psychology (2007) and earned his medical doctorate (M.D.) at the Albert Einstein College of Medicine (2011).", "Dr. Jim has always been interested in the connection between the mind, the body, and the environment. He sees patients from all over the world who suffer from Chronic Inflammatory Response Syndrome (CIRS) due to water-damaged buildings (WDB). His approach is to use Shoemaker Protocol to help patients recover from their symptoms. He also uses a functional medicine approach to help patients improve their overall health and wellness.", "When he’s not seeing patients, Dr. Jim enjoys spending time with his family and is a passionate musician who plays multiple instruments."],
       createdAt: new Date(),
       lastModified: new Date(),
       published: true,
-
   },
   {
       firstName: "Scott",
@@ -86,12 +88,21 @@ const doctorData = [
       lastName: "McMahon",
       slug: "scott-w-mcmahon-roswell-nm",
       gender: "male",
+      practiceName: "Whole World Healthcare",
+      phoneNumber: "575) 627-5571",
+      addressStreet: "330 N Main St" ,
+      addressUnit: "",
       addressCity: "Roswell",
       addressState: "NM",
+      addressZipcode: "88201" ,
       addressCountry: "US",
+      website:"https://scottmcmahon.doctor/" ,
+      // telehealth: false,
+      shoemakerProtocol: true,
       conditionsTreated: ["Mold Illness"],
       certifications: ["MD"],
-      shoemakerProtocol: true,
+      seesPatientsIn: ["NM"],
+      bio: ["Scott W. McMahon, MD, of Whole World Healthcare, received his Bachelor of Science degree in Chemistry from Creighton University in 1985. He completed his Medical Degree at Creighton University School of Medicine in 1989. He concluded a prestigious pediatric residency at Duke University Medical Center in 1992. He has maintained board certification and has been practicing pediatrics in Roswell, New Mexico, for 26 years. His interest in Chronic Inflammatory Response Syndrome (CIRS) began in 2009.", "  Dr. McMahon first learned about CIRS after being approached by a businessman whose daughter became ill while attending a local school. The search for this child’s healing led him to Dr. Richie Shoemaker, the global expert on mold illnesses. Dr. McMahon visited Dr. Shoemaker’s practice to learn about the treatment for CIRS and saw the tremendous need for more physicians prepared to treat CIRS. He immediately opened a practice in Roswell specifically to diagnose and treat patients with CIRS, starting with 15 patients from the local school. His CIRS practice has now grown and he has seen thousands of adults and children to date.","No board certification currently covers this illness and the closest to such is completing Dr. Shoemaker’s CIRS Certification Program. Dr. McMahon is the first physician in the world to complete this rigorous testing.","Dr. McMahon has spoken on CIRS and other topics at a number of medical meetings. He has written three books and co-authored consensus statements, one of which is the most comprehensive paper to date on CIRS and the health effects of exposure to the interior of water-damaged buildings. Dr. McMahon has participated in “mold” cases for plaintiffs and the defense. He maintains an office for CIRS patients in Roswell, New Mexico.","Dr. McMahon has now embarked on a mission to create a mold-free clinic and healing experience for patients in Roswell, New Mexico. The Oasis will provide a new model of care (medical vacation) by immersing the patient in a safe, holistic, health-centered resort setting where they will have access to treatments, surroundings, and resources to help them realize peace and health.","The community will include state of the art construction techniques (SIRE wall construction) that guarantees mold-free casitas and clinic space, wellness services such as massage, spa, and other ancillary medical services, organic, whole food grown primarily on-site, and outdoor amenities to encourage healthy activity and living."],
       createdAt: new Date(),
       lastModified: new Date(),
       published: true,
@@ -374,15 +385,36 @@ const doctorData = [
 ];
 
 
-
 async function main() {
 
-  doctorData.forEach( async (doctorObj) => {
+  // use doctorTestData for testing
+  doctorLiveData.forEach( async (doctorObj) => {
     const doctor = await prisma.doctor.upsert({
       where: { slug: doctorObj.slug },
       update: { 
+        // slug: doctorObj.slug,
+        firstName: doctorObj.firstName,
+        middleName: doctorObj.middleName,
+        lastName: doctorObj.lastName,
+        gender: doctorObj.gender,
+        practiceName: doctorObj.practiceName,
+        phoneNumber: doctorObj.phoneNumber,
+        addressStreet: doctorObj.addressStreet,
+        addressUnit: doctorObj.addressUnit,
+        addressCity: doctorObj.addressCity,
+        addressState: doctorObj.addressState,
+        addressZipcode: doctorObj.addressZipcode,
+        addressCountry: doctorObj.addressCountry,
+        website: doctorObj.website,
+        telehealth: doctorObj.telehealth,
+        shoemakerProtocol: doctorObj.shoemakerProtocol,   // Boolean
+        conditionsTreated: doctorObj.conditionsTreated,   // Array with default of "Mold Illness"
+        certifications: doctorObj.certifications,         // Array
+        seesPatientsIn: doctorObj.seesPatientsIn,         // Array
+        bio: doctorObj.bio,                               // Array with default of "Coming Soon!"
         // createdAt: doctorObj.createdAt,
-        // lastModified: doctorObj.lastModified,
+        lastModified: doctorObj.lastModified,
+
       },
       create: {
         slug: doctorObj.slug,
