@@ -314,24 +314,6 @@ const doctorLiveData = [
 
   },
   {
-    firstName: "Tamara",
-    middleName: "",
-    lastName: "Lyday",
-    slug: "tamara-lyday-green-bay-wi",
-    gender: "female",
-    
-    addressCity: "Green Bay",
-    addressState: "WI",
-    
-    addressCountry: "US",
-    shoemakerProtocol: true,
-    conditionsTreated: ["Mold Illness"],
-    certifications: ["DO"],
-    createdAt: new Date(),
-    lastModified: new Date(),
-    published: true,
-  },
-  {
     firstName: "Ming",
     middleName: "",
     lastName: "Dooley",
