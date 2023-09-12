@@ -156,8 +156,12 @@ export default async function SinglePractitionerPage({ params }) {
 
       {/* Doctor Info */}
       <div className={styles.singleListingInfoContainer}>
-        <h3>Practice Name</h3>
-        <p>{practiceName}</p>
+        {practiceName && (
+          <>
+            <h3>Practice Name</h3>
+            <p>{practiceName}</p>
+          </>
+        )}
 
         <h3>About the Practitioner</h3>
         {bio &&
