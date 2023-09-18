@@ -17,7 +17,7 @@ export const metadata = {
   title: "404 - Page not found",
 };
 
-export default function Custom404() {
+export default function NotFound() {
   return (
     <main className={styles.container}>
       <Header />
