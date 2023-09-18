@@ -1,9 +1,9 @@
-import Header from "./components/layout/Header";
-import WideImage from "./components/layout/WideImage";
-import Footer from "./components/layout/Footer";
+import Header from "../components/layout/Header";
+import WideImage from "../components/layout/WideImage";
+import Footer from "../components/layout/Footer";
 
 // Styles & Fonts
-import styles from "./page.module.css";
+import styles from "../page.module.css";
 import { Lora } from "next/font/google";
 
 const lora = Lora({
