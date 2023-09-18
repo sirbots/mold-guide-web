@@ -1,9 +1,10 @@
 {
     "workbench.colorCustomizations": {
       "titleBar.activeForeground": "#000",
-      "titleBar.inactiveForeground": "#000000CC",
-      "titleBar.activeBackground": "#47b0f1",
-      "titleBar.inactiveBackground": "#00a6dd"
+      "titleBar.inactiveForeground": "#000",
+      "titleBar.activeBackground": "#6cc6ae",
+      "titleBar.inactiveBackground": "#439881",
+      "tree.indentGuidesStroke": "#00da33"
     },
     "emmet.includeLanguages": { 
       "javascript": "javascriptreact", 
@@ -11,16 +12,16 @@
     }, 
     "emmet.triggerExpansionOnTab": true,
     "editor.formatOnSave": true,
-    "[javascript]": {
-      "editor.formatOnSave": true
-    },
-    "[javascriptreact]": {
-      "editor.formatOnSave": false
-    },
-    "eslint.alwaysShowStatus": true,
     "editor.codeActionsOnSave": {
       "source.fixAll": true
     },
+    // Styling the file system navigator on the sidebar 
+    "workbench.tree.indent": 15,
+    "workbench.tree.renderIndentGuides": "always",
+  
+    // Cobalt2 Theme from Wes Bos
+    "workbench.colorTheme": "Cobalt2",
+
     
   }
   

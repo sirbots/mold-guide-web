@@ -876,7 +876,7 @@ Single Listing Pages
 /* Listing Info Container */
 .singleListingInfoContainer {
   display: flex;
-  flex-direction: column;
+  flex-direction: column; 
   flex-wrap: wrap;
   align-items: center;
   align-self: center;
