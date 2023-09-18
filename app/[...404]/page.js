@@ -1,3 +1,5 @@
+"use client";
+
 import Header from "../components/layout/Header";
 import WideImage from "../components/layout/WideImage";
 import Footer from "../components/layout/Footer";
@@ -13,9 +15,9 @@ const lora = Lora({
   // weight: ["400", "600", "700"],
 });
 
-export const metadata = {
-  title: "404 - Page not found",
-};
+// export const metadata = {
+//   title: "404 - Page not found",
+// };
 
 export default function NotFound() {
   return (
@@ -25,7 +27,7 @@ export default function NotFound() {
       <WideImage backgroundImage="doctor-patient3" />
 
       <div className={styles.pageContent}>
-        <h2 className={lora.className}>Page not found 😞</h2>
+        <h2 className={lora.className}>Page not found 😞 </h2>
         <p style={{ textAlign: "center" }}>
           Try going <a href="/">home</a>.
         </p>
