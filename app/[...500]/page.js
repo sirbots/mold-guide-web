@@ -1,5 +1,3 @@
-"use client";
-
 import Header from "../components/layout/Header";
 import WideImage from "../components/layout/WideImage";
 import Footer from "../components/layout/Footer";
@@ -15,9 +13,9 @@ const lora = Lora({
   // weight: ["400", "600", "700"],
 });
 
-// export const metadata = {
-//   title: "404 - Page not found",
-// };
+export const metadata = {
+  title: "500 - Internal Server Error",
+};
 
 export default function NotFound() {
   return (
