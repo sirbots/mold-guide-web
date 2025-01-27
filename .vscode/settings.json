@@ -1,27 +1,24 @@
 {
-    "workbench.colorCustomizations": {
-      "titleBar.activeForeground": "#000",
-      "titleBar.inactiveForeground": "#000",
-      "titleBar.activeBackground": "#6cc6ae",
-      "titleBar.inactiveBackground": "#439881",
-      "tree.indentGuidesStroke": "#00da33"
-    },
-    "emmet.includeLanguages": { 
-      "javascript": "javascriptreact", 
-      "vue-html": "html", 
-    }, 
-    "emmet.triggerExpansionOnTab": true,
-    "editor.formatOnSave": true,
-    "editor.codeActionsOnSave": {
-      "source.fixAll": true
-    },
-    // Styling the file system navigator on the sidebar 
-    "workbench.tree.indent": 15,
-    "workbench.tree.renderIndentGuides": "always",
-  
-    // Cobalt2 Theme from Wes Bos
-    "workbench.colorTheme": "Cobalt2",
+  "workbench.colorCustomizations": {
+    "titleBar.activeForeground": "#000",
+    "titleBar.inactiveForeground": "#000",
+    "titleBar.activeBackground": "#6cc66c",
+    "titleBar.inactiveBackground": "#abd5ab",
+    "tree.indentGuidesStroke": "#00da33"
+  },
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+    "vue-html": "html"
+  },
+  "emmet.triggerExpansionOnTab": true,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit"
+  },
+  // Styling the file system navigator on the sidebar
+  "workbench.tree.indent": 15,
+  "workbench.tree.renderIndentGuides": "always",
 
-    
-  }
-  
+  // Cobalt2 Theme from Wes Bos
+  "workbench.colorTheme": "Cobalt2"
+}
